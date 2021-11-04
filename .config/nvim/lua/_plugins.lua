@@ -3,7 +3,8 @@ local map = vim.api.nvim_set_keymap
 -- Colorscheme
 -- vim.g.onedark_disable_toggle_style = true -- By default it is false
 -- vim.g.onedark_transparent_background = true -- By default it is false
-require('onedark').setup()
+-- require('onedark').setup()
+require('nord').set()
 
 -- Map blankline
 vim.g.indent_blankline_char = ''

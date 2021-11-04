@@ -1,6 +1,6 @@
-export EDITOR=/usr/bin/micro
-export BROWSER=firedragon
-export TERM=alacritty
+export EDITOR=/usr/bin/nvim
+export BROWSER=/usr/bin/google-chrome-stable
+export TERM=kitty
 export MAIL=geary
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
