@@ -1,5 +1,6 @@
 --ozone-platform-hint=auto
+--enable-features=TouchpadOverscrollHistoryNavigation
 
---ignore-gpu-blocklist
+--disable-features=WaylandFractionalScaleV1
 
 --enable-smooth-scrolling
