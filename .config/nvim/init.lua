@@ -1,8 +1,5 @@
 vim.g.python3_host_prog = '/home/astadnik/.virtualenvs/neovim/bin/python3'
 
-require '_mappings'
-require '_parameters'
-
 -- Install packer
 local install_path = vim.fn.stdpath 'data' ..
                          '/site/pack/packer/start/packer.nvim'
@@ -70,7 +67,8 @@ require('packer').startup(function()
 
     -- use 'joshdick/onedark.vim' -- Theme inspired by Atom
     -- use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-    use 'ful1e5/onedark.nvim'
+    -- use 'ful1e5/onedark.nvim'
+		use 'shaunsingh/nord.nvim'
     -- use 'projekt0n/github-nvim-theme'
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'mhinz/vim-startify' -- Starting screen
@@ -153,6 +151,9 @@ enable = true
 	} ]]
     -- use {'mhinz/neovim-remote',			   ft= 'tex' }
 end)
+
+require '_mappings'
+require '_parameters'
 
 require '_lsp' -- LSP settings
 require '_dap' -- LSP settings
