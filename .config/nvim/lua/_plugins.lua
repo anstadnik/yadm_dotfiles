@@ -7,22 +7,20 @@ local map = vim.api.nvim_set_keymap
 require('nord').set()
 
 -- Map blankline
-vim.g.indent_blankline_char = ''
-vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
-vim.g.indent_blankline_buftype_exclude = {'terminal', 'nofile'}
-vim.g.indent_blankline_char_highlight = 'LineNr'
-vim.g.indent_blankline_show_trailing_blankline_indent = false
+require("indent_blankline").setup {
+	    show_current_context = true,
+}
 
 -- Gitsigns
 require('gitsigns').setup {
-    signs = {
+    --[[ signs = {
         add = {hl = 'GitGutterAdd', text = '+'},
         change = {hl = 'GitGutterChange', text = '~'},
         delete = {hl = 'GitGutterDelete', text = '_'},
         topdelete = {hl = 'GitGutterDelete', text = '‾'},
         changedelete = {hl = 'GitGutterChange', text = '~'}
-    },
-    numhl = false,
+    }, ]]
+    numhl = true,
     linehl = false,
     keymaps = {
         -- Default keymap options
@@ -114,7 +112,7 @@ require'lualine'.setup({
         }
     },
     options = {
-        theme = require 'lualine.themes.onedark',
+        theme = 'nord',
         -- theme = 'dracula',
         section_separators = {left = '', right = ''},
         component_separators = {left = '/', right = '/'},
