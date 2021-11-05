@@ -54,7 +54,10 @@ dap.adapters.lldb = {
     name = "lldb"
 }
 
-vim.g.dap_virtual_text = true
+require("nvim-dap-virtual-text").setup {
+    show_stop_reason = false,
+    highlight_changed_variables = true
+}
 
 dap.configurations.cpp = {
     {
