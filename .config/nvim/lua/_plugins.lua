@@ -101,7 +101,6 @@ require'lualine'.setup({
     sections = {
         lualine_c = {
             {'filename', file_status = true},
-            {"diagnostics", sources = {"nvim_lsp"}}
         }
     },
     options = {
@@ -241,7 +240,7 @@ vim.g.tmuxline_separators = {
     space = ' '
 }
 
-vim.o.tabline = '%!v:lua.require\'luatab\'.tabline()'
+require('luatab').setup({})
 
 require('hlslens').setup({
     auto_enable = true,

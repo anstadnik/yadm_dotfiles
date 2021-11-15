@@ -224,11 +224,11 @@ cmp.setup {
     },
     sources = cmp.config.sources({
         {name = 'ultisnips'}, {name = 'nvim_lsp'}, {name = 'tmux'},
-        {name = 'spell'}, {name = 'path'},
-		{name = 'cmp_tabnine'}
+        {name = 'spell'}, {name = 'path'}, {name = 'cmp_tabnine'}
     }, {
-			-- {name = 'buffer'},
-			{name = 'tmux'}})
+        -- {name = 'buffer'},
+        {name = 'tmux'}
+    })
 }
 
 -- Use buffer source for `/`.
@@ -305,8 +305,17 @@ require'lspsaga'.init_lsp_saga()
 require("trouble").setup {}
 map("n", "<leader>q", "<cmd>Trouble lsp_workspace_diagnostics<cr>",
     {silent = true, noremap = true})
+require('rust-tools').setup({
+    server = {
+        on_attach = on_attach,
+        flags = {debounce_text_changes = 150},
+        capabilities = capabilities
+    },
+    hover_with_actions = true
+})
 
 require('nvim-autopairs').setup({enable_check_bracket_line = false})
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+cmp.event:on('confirm_done',
+             cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))

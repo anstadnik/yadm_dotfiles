@@ -114,6 +114,7 @@ bindkey '\C-x\C-e' edit-command-line
 autoload -Uz zmv
 
 # Define functions and completions.
+unalias md
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
 # Usage: codi [filetype]
 codi() {
@@ -166,14 +167,14 @@ setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
 # # Changing/making/removing directory
-# setopt correct                                                  # Auto correct mistakes
+setopt correct                                                  # Auto correct mistakes
 # setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
 # setopt nocaseglob                                               # Case insensitive globbing
 # setopt rcexpandparam                                            # Array expension with parameters
-# setopt nocheckjobs                                              # Don't warn about running processes when exiting
+setopt nocheckjobs                                              # Don't warn about running processes when exiting
 # setopt numericglobsort                                          # Sort filenames numerically when it makes sense
 # setopt nobeep                                                   # No beep
-# setopt appendhistory                                            # Immediately append history instead of overwriting
+setopt appendhistory                                            # Immediately append history instead of overwriting
 # setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 # setopt autocd                                                   # if only directory path is entered, cd there.
 # setopt auto_pushd
