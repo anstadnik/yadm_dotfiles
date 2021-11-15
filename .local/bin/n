@@ -2,7 +2,7 @@
 
 export NNN_OPENER=${HOME}/.config/nnn/plugins/nuke
 export NNN_PLUG='s:preview-tui;p:dragdrop;z:autojump;d:diffs;f:fzcd'
-export NNN_OPTS="ac"
+export NNN_OPTS="acS"
 export GUI=1
 
 # Block nesting of nnn in subshells
