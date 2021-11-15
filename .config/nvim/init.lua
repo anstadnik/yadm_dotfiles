@@ -51,6 +51,7 @@ require('packer').startup(function()
     use 'nvim-telescope/telescope-dap.nvim';
     use 'theHamsta/nvim-dap-virtual-text'
     use 'mhartington/formatter.nvim' -- Format python
+		use {'simrat39/rust-tools.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
     ---------------------------------------------------------------------------------
     --                                 Treesitter                                  --

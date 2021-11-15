@@ -20,7 +20,7 @@ vim.api.nvim_set_keymap('n', '<M-p>',
 vim.api.nvim_set_keymap('n', '<M-l>', "<cmd> lua require'dap'.run_last()<CR>",
                         opts)
 vim.api.nvim_set_keymap('n', '<M-q>',
-                        "<cmd> lua require'dapui'.close(); require'dap'.close(); require'dapui'.close()<CR>",
+                        "<cmd> lua require'dap'.close(); require'dapui'.close()<CR>",
                         opts)
 
 local dap = require('dap')
