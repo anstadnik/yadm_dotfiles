@@ -4,11 +4,17 @@ local _, query = pcall(require, 'vim.treesitter.query')
 local M = {}
 
 local MATH_ENVIRONMENTS = {
+    -- math = true,
     displaymath = true,
-    eqnarray = true,
     equation = true,
-    math = true,
-    array = true
+    multline = true,
+    eqnarray = true,
+    align = true,
+    array = true,
+    split = true,
+    alignat = true,
+    gather = true,
+    flalign = true
 }
 local MATH_NODES = {displayed_equation = true, inline_formula = true}
 
