@@ -1,6 +1,6 @@
 let g:tex_flavor='latex'
 let g:tex_conceal='abdmgs' 
-set conceallevel=1
+set conceallevel=2
 " setlocal spell
 " set spelllang=en_gb,uk,ru
 nnoremap <leader>l :TexlabForward<CR>

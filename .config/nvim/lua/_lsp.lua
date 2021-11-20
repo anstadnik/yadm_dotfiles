@@ -291,7 +291,7 @@ nvim_lsp.texlab.setup {
                 executable = "zathura",
                 args = {"--synctex-forward", "%l:1:%f", "%p"}
             },
-            latexindent = {modifyLineBreaks = false}
+            latexindent = {modifyLineBreaks = true}
         }
     }
 }
