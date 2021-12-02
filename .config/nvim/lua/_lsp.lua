@@ -6,8 +6,8 @@ local map = vim.api.nvim_set_keymap
 local on_attach = function(client, bufnr)
     local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-    -- require"lsp_signature".on_attach() -- Note: add in lsp client on-attach
-    require'lsp_signature'.on_attach({bind = false, use_lspsaga = true})
+    -- require'lsp_signature'.on_attach({bind = false, use_lspsaga = true})
+    require'lsp_signature'.on_attach();
     -- local function buf_set_option(...)
     --     vim.api.nvim_buf_set_option(bufnr, ...)
     -- end
@@ -225,9 +225,6 @@ cmp.setup {
     sources = cmp.config.sources({
         {name = 'ultisnips'}, {name = 'nvim_lsp'}, {name = 'tmux'},
         {name = 'spell'}, {name = 'path'}, {name = 'cmp_tabnine'}
-    }, {
-        -- {name = 'buffer'},
-        {name = 'tmux'}
     })
 }
 
@@ -297,7 +294,6 @@ nvim_lsp.texlab.setup {
 }
 
 require('_sourcery')
-require('lspconfig').sourcery.setup {}
 
 require'lspconfig'.vimls.setup {}
 
@@ -311,7 +307,7 @@ require('rust-tools').setup({
         flags = {debounce_text_changes = 150},
         capabilities = capabilities
     },
-    hover_with_actions = true
+    tools = {inlay_hints = {only_current_line = true}}
 })
 
 require('nvim-autopairs').setup({enable_check_bracket_line = false})

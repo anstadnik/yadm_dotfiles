@@ -83,10 +83,11 @@ require('packer').startup(function()
 'akinsho/nvim-bufferline.lua',
 requires = 'kyazdani42/nvim-web-devicons'
 	} ]]
-    use {
+		use "nanozuki/tabby.nvim"
+    --[[ use {
         'alvarosevilla95/luatab.nvim',
         requires = 'kyazdani42/nvim-web-devicons'
-    }
+    } ]]
 
     -- use 'haringsrob/nvim_context_vt'
     use {'kevinhwang91/nvim-hlslens'}

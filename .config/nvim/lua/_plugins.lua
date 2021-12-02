@@ -7,9 +7,7 @@ local map = vim.api.nvim_set_keymap
 require('nord').set()
 
 -- Map blankline
-require("indent_blankline").setup {
-	    show_current_context = true,
-}
+require("indent_blankline").setup {show_current_context = true}
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -41,7 +39,7 @@ require('gitsigns').setup {
         ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
         ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
     },
-    word_diff = true
+    word_diff = false
 }
 
 -- Telescope
@@ -67,8 +65,7 @@ map('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]],
 map('n', '<leader>sd',
     [[<cmd>lua require('telescope.builtin').grep_string()<CR>]],
     {noremap = true, silent = true})
-map('n', '<leader>sp',
-    [[<cmd>lua require('telescope.builtin').live_grep()<CR>]],
+map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]],
     {noremap = true, silent = true})
 map('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags()<CR>]],
     {noremap = true, silent = true})
@@ -98,11 +95,7 @@ map('n', '<C-S-n>', ':NvimTreeFindFile<CR>', {noremap = true}) ]]
 -- NvimTreeOpen and NvimTreeClose are also available if you need them
 
 require'lualine'.setup({
-    sections = {
-        lualine_c = {
-            {'filename', file_status = true},
-        }
-    },
+    sections = {lualine_c = {{'filename', file_status = true}}},
     options = {
         theme = 'nord',
         -- theme = 'dracula',
@@ -240,7 +233,9 @@ vim.g.tmuxline_separators = {
     space = ' '
 }
 
-require('luatab').setup({})
+-- require('luatab').setup({})
+
+require("tabby").setup({tabline = require("tabby.presets").tab_only})
 
 require('hlslens').setup({
     auto_enable = true,
