@@ -68,7 +68,7 @@ z4h install ohmyzsh/ohmyzsh || return
 z4h init || return
 
 # Extend PATH.
-path=(/opt/cisco/anyconnect/bin/ /usr/bin $path)
+path=(/opt/cisco/anyconnect/bin/ /usr/bin ~/.cargo/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
