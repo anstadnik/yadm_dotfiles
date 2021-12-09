@@ -98,6 +98,7 @@ requires = 'kyazdani42/nvim-web-devicons'
 
     -- use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
     use 'b3nj5m1n/kommentary'
+    use 'mbbill/undotree'
     use {'https://gitlab.com/astadnik/snippets.git', rtp = '.'}
     use 'SirVer/ultisnips'
     -- Snippets plugin
@@ -135,6 +136,8 @@ requires = 'kyazdani42/nvim-web-devicons'
     use 'chrisbra/Recover.vim' -- Managing swap
     -- use 'rhysd/vim-grammarous' -- Check grammar
     use 'AndrewRadev/linediff.vim' -- Diff 2 parts of file
+		-- tracking
+		use 'ActivityWatch/aw-watcher-vim'
 
     ------------------------------------------------------------------------------
     --                            Language specific                             --

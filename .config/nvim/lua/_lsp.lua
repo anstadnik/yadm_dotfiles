@@ -269,6 +269,22 @@ nvim_lsp.sumneko_lua.setup {
     }
 }
 
+require'lspconfig'.sqls.setup {
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150},
+    capabilities = capabilities,
+    settings = {
+        sqls = {
+            connections = {
+                {
+                    driver = 'mysql',
+                    dataSourceName = 'unix(/var/run/mysqld/mysqld.sock)/warehousing'
+                }
+            }
+        }
+    }
+}
+
 nvim_lsp.texlab.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
