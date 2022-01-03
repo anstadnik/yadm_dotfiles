@@ -38,7 +38,7 @@ require('packer').startup(function()
         requires = {
             'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'f3fora/cmp-spell',
             'quangnguyen30192/cmp-nvim-ultisnips',
-            {'andersevenrud/compe-tmux', branch = 'cmp'}, -- Autocompletion from tmux
+            {'andersevenrud/cmp-tmux'}, -- Autocompletion from tmux
             {'tzachar/cmp-tabnine', run = './install.sh'},
             {'hrsh7th/cmp-cmdline'}
         }
