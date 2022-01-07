@@ -27,4 +27,7 @@
 	prompt = false
 [delta]
     line-numbers = true
+		side-by-side = true
     colorMoved = default
+[diff]
+	colorMoved = default
