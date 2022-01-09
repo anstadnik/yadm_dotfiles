@@ -136,7 +136,7 @@ requires = 'kyazdani42/nvim-web-devicons'
     -- use 'rhysd/vim-grammarous' -- Check grammar
     use 'AndrewRadev/linediff.vim' -- Diff 2 parts of file
     -- tracking
-    use 'ActivityWatch/aw-watcher-vim'
+    -- use 'ActivityWatch/aw-watcher-vim'
 
     ------------------------------------------------------------------------------
     --                            Language specific                             --
