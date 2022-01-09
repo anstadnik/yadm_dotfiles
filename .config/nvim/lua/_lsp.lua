@@ -51,7 +51,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
 
 -- Use a loop to conveniently call 'setup' on multiple servers and map buffer
 -- local keybindings when the language server attaches
-local servers = {"pyright", "rust_analyzer", "ccls"}
+local servers = {"pyright", "rust_analyzer", "ccls", "vimls", "dockerls"}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -310,8 +310,6 @@ nvim_lsp.texlab.setup {
 }
 
 require('_sourcery')
-
-require'lspconfig'.vimls.setup {}
 
 require'lspsaga'.init_lsp_saga()
 require("trouble").setup {}
