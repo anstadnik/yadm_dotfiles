@@ -142,7 +142,7 @@ requires = 'kyazdani42/nvim-web-devicons'
     --                            Language specific                             --
     ------------------------------------------------------------------------------
 
-    use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
+    use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
     --[[ use {'lervag/vimtex',				   ft = 'tex',
 requires= {
 'nvim-treesitter/playground',				   ft = 'tex',
