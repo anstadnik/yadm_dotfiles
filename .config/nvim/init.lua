@@ -37,8 +37,7 @@ require('packer').startup(function()
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'f3fora/cmp-spell',
-            'quangnguyen30192/cmp-nvim-ultisnips',
-            {'andersevenrud/cmp-tmux'}, -- Autocompletion from tmux
+            'quangnguyen30192/cmp-nvim-ultisnips', {'andersevenrud/cmp-tmux'}, -- Autocompletion from tmux
             {'tzachar/cmp-tabnine', run = './install.sh'},
             {'hrsh7th/cmp-cmdline'}
         }
@@ -51,7 +50,7 @@ require('packer').startup(function()
     use 'nvim-telescope/telescope-dap.nvim';
     use 'theHamsta/nvim-dap-virtual-text'
     use 'mhartington/formatter.nvim' -- Format python
-		use {'simrat39/rust-tools.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use {'simrat39/rust-tools.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
     ---------------------------------------------------------------------------------
     --                                 Treesitter                                  --
@@ -59,7 +58,7 @@ require('packer').startup(function()
 
     use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code using a fast incremental parsing library
     use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
-		-- use 'romgrk/nvim-treesitter-context'
+    -- use 'romgrk/nvim-treesitter-context'
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
 
     ---------------------------------------------------------------------------------
@@ -69,7 +68,7 @@ require('packer').startup(function()
     -- use 'joshdick/onedark.vim' -- Theme inspired by Atom
     -- use 'navarasu/onedark.nvim' -- Theme inspired by Atom
     -- use 'ful1e5/onedark.nvim'
-		use 'shaunsingh/nord.nvim'
+    use 'shaunsingh/nord.nvim'
     -- use 'projekt0n/github-nvim-theme'
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'mhinz/vim-startify' -- Starting screen
@@ -83,7 +82,7 @@ require('packer').startup(function()
 'akinsho/nvim-bufferline.lua',
 requires = 'kyazdani42/nvim-web-devicons'
 	} ]]
-		use "nanozuki/tabby.nvim"
+    use "nanozuki/tabby.nvim"
     --[[ use {
         'alvarosevilla95/luatab.nvim',
         requires = 'kyazdani42/nvim-web-devicons'
@@ -136,8 +135,8 @@ requires = 'kyazdani42/nvim-web-devicons'
     use 'chrisbra/Recover.vim' -- Managing swap
     -- use 'rhysd/vim-grammarous' -- Check grammar
     use 'AndrewRadev/linediff.vim' -- Diff 2 parts of file
-		-- tracking
-		use 'ActivityWatch/aw-watcher-vim'
+    -- tracking
+    use 'ActivityWatch/aw-watcher-vim'
 
     ------------------------------------------------------------------------------
     --                            Language specific                             --
@@ -159,15 +158,15 @@ end)
 
 local ok, _ = pcall(require, 'lspconfig')
 if not ok then
-	require('packer').sync()
+    require('packer').sync()
+else
+    require '_mappings'
+    require '_parameters'
+
+    require '_lsp' -- LSP settings
+    require '_dap' -- LSP settings
+    require '_tex' -- LSP settings
+    require '_treesitter' -- Treesitter
+    require '_misc' -- Miscellaneous
+    require '_plugins' -- Miscellaneous
 end
-
-require '_mappings'
-require '_parameters'
-
-require '_lsp' -- LSP settings
-require '_dap' -- LSP settings
-require '_tex' -- LSP settings
-require '_treesitter' -- Treesitter
-require '_misc' -- Miscellaneous
-require '_plugins' -- Miscellaneous
