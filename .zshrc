@@ -184,7 +184,7 @@ setopt appendhistory                                            # Immediately ap
 # setopt pushdminus
 
 # Replace yay with paru if installed
-[ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
+[[ ! -x /usr/bin/yay ]] && [[ -x /usr/bin/paru ]] && alias yay='paru'
 
 ## Run neofetch
 paleofetch
