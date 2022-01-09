@@ -156,13 +156,11 @@ enable = true
     -- use {'mhinz/neovim-remote',			   ft= 'tex' }
 end)
 
-local ok, _ = pcall(require, 'lspconfig')
-if not ok then
-    require('packer').sync()
-else
-    require '_mappings'
-    require '_parameters'
+require '_mappings'
+require '_parameters'
 
+local ok, _ = pcall(require, 'lspconfig')
+if ok then
     require '_lsp' -- LSP settings
     require '_dap' -- LSP settings
     require '_tex' -- LSP settings
