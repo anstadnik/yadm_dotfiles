@@ -18,7 +18,7 @@ augroup end
 
 local use = require('packer').use
 require('packer').startup(function()
-    -- use 'wbthomason/packer.nvim' -- Package manager
+    use 'wbthomason/packer.nvim' -- Package manager
 
     ---------------------------------------------------------------------------------
     --                                     Git                                     --

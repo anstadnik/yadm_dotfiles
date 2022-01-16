@@ -51,7 +51,9 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
 
 -- Use a loop to conveniently call 'setup' on multiple servers and map buffer
 -- local keybindings when the language server attaches
-local servers = {"pyright", "rust_analyzer", "ccls", "vimls", "dockerls"}
+local servers = {
+    "pyright", "rust_analyzer", "ccls", "vimls", "dockerls", "bashls"
+}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -85,7 +87,7 @@ end
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
-cmp.setup {
+cmp.setup{
     snippet = {expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end},
     formatting = {
         format = lspkind.cmp_format({with_text = false, maxwidth = 50})
