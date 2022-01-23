@@ -4,61 +4,69 @@ local map = vim.api.nvim_set_keymap
 -- Use an on_attach function to only map the following keys after the language
 -- server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
 
-    -- require'lsp_signature'.on_attach({bind = false, use_lspsaga = true})
     require'lsp_signature'.on_attach();
-    -- local function buf_set_option(...)
-    --     vim.api.nvim_buf_set_option(bufnr, ...)
-    -- end
-
-    -- Enable completion triggered by <c-x><c-o> buf_set_option('omnifunc',
-    -- 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
     local opts = {noremap = true, silent = true}
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    map('n', 'gp',
-        '<cmd>lua require"lspsaga.provider".preview_definition()<cr>', opts)
-    map('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
-    map('n', '<leader>k',
-        '<cmd>lua require("lspsaga.signaturehelp").signature_help()<cr>', opts)
-    map('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    map('n', '<leader>rn', '<cmd>Lspsaga rename<cr>', opts)
-    map('n', '<leader>ca', '<cmd>Lspsaga code_action<cr>', opts)
-    map('v', '<leader>ca', ':<c-u>Lspsaga range_code_action<cr>', opts)
-    map('n', 'gr', '<cmd>lua require"lspsaga.provider".lsp_finder()<cr>', opts)
-    map('n', '<leader>e', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
-    map('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<cr>', opts)
-    map('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<cr>', opts)
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'gp', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', '<leader>k',
+                   '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<leader>D',
+                   '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+                   opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>',
+                   opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
-    if client["config"]["name"] == "pyright" or client["config"]["name"] ==
-        "sumneko_lua" then
-        map("n", "<leader>f", "<cmd>Format<CR>", opts)
+    buf_set_keymap("n", "<leader>q", "<cmd>Trouble workspace_diagnostics<cr>",
+        {silent = true, noremap = true})
+
+    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
+                   opts)
+
+    if client.config.filetypes[1] == "python" or client.config.filetypes[1] ==
+        "lua" then
+        buf_set_keymap("n", "<leader>f", "<cmd>Format<CR>", opts)
     else
-        map("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        buf_set_keymap("n", "<leader>f",
+                       "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     end
 
 end
 
---[[ local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true ]]
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
-                                                                     .protocol
-                                                                     .make_client_capabilities())
+-- https://github.com/ray-x/lsp_signature.nvim/issues/143
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or "rounded"
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and map buffer
 -- local keybindings when the language server attaches
+require('_sourcery')
+
 local servers = {
-    "pyright", "rust_analyzer", "ccls", "vimls", "dockerls", "bashls"
+    "pyright", "rust_analyzer", "ccls", "vimls", "dockerls", "bashls",
+    "sourcery"
 }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
-        flags = {debounce_text_changes = 150},
-        capabilities = capabilities
+        flags = {debounce_text_changes = 150}
     }
 end
 
@@ -80,149 +88,58 @@ map("n", "<C-g>", ":Vista!!<cr>", {silent = true, noremap = true})
 
 -- Setup nvim-cmp
 
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+local function t(keys)
+    vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes(keys, true, true, true), "m", true)
 end
 
 local cmp = require('cmp')
+local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 local lspkind = require('lspkind')
 
-cmp.setup{
+cmp.setup {
     snippet = {expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end},
     formatting = {
         format = lspkind.cmp_format({with_text = false, maxwidth = 50})
     },
     mapping = {
-        --[[ ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}), ]]
-        ['<C-d>'] = cmp.mapping(
-            require('lspsaga.action').smart_scroll_with_saga(4), {'i', 'c'}),
-        ['<C-f>'] = cmp.mapping(
-            require('lspsaga.action').smart_scroll_with_saga(-4), {'i', 'c'}),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
         ['<C-e>'] = cmp.mapping({
-            i = cmp.mapping.close(),
+            i = cmp.mapping.abort(),
             c = cmp.mapping.close()
         }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
-        ["<C-j>"] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = true
-                    })
-                else
-                    cmp.complete()
-                    -- fallback()
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = true
-                    })
-                else
-                    fallback()
-                end
-            end,
-            x = function()
-                vim.api.nvim_feedkeys(t("<Plug>(ultisnips_expand)"), 'm', true)
+        ["<C-j>"] = cmp.mapping(function()
+            if cmp.visible() then
+                cmp.confirm({
+                    behavior = cmp.ConfirmBehavior.Replace,
+                    select = true
+                })
+            else
+                cmp.complete()
             end
-        }),
-        ["<C-l>"] = cmp.mapping({
-            i = function(fallback)
-                if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-                    vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"),
-                                          'm', true)
-                else
-                    fallback()
-                end
-            end,
-            s = function(fallback)
-                if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-                    vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"),
-                                          'm', true)
-                else
-                    fallback()
-                end
+        end, {"i", "c"}),
+        ["<C-l>"] = cmp.mapping(function(fallback)
+            if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+                return t("<Plug>(ultisnips_jump_forward)")
+            else
+                fallback()
             end
-        }),
-        ["<C-h>"] = cmp.mapping({
-            i = function(fallback)
-                if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-                    return vim.api.nvim_feedkeys(t(
-                                                     "<Plug>(ultisnips_jump_backward)"),
-                                                 'm', true)
-                else
-                    fallback()
-                end
-            end,
-            s = function(fallback)
-                if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-                    return vim.api.nvim_feedkeys(t(
-                                                     "<Plug>(ultisnips_jump_backward)"),
-                                                 'm', true)
-                else
-                    fallback()
-                end
+        end, {"i", "s"}),
+        ["<C-h>"] = cmp.mapping(function(fallback)
+            if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+                return t("<Plug>(ultisnips_jump_backward)")
+            else
+                fallback()
             end
-        }),
-        --[[ ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({
-            behavior = cmp.SelectBehavior.Select
-        }), {'i'}),
-        ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({
-            behavior = cmp.SelectBehavior.Select
-        }), {'i'}), ]]
-        ['<C-n>'] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
-                else
-                    vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item({behavior = cmp.SelectBehavior.Insert})
-                else
-                    fallback()
-                end
-            end
-        }),
-        ['<C-p>'] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
-                else
-                    vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.select_prev_item({behavior = cmp.SelectBehavior.Insert})
-                else
-                    fallback()
-                end
-            end
-        })
-        --[[ ['<CR>'] = cmp.mapping({
-            i = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = false
-            }),
-            c = function(fallback)
-                if cmp.visible() then
-                    cmp.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = false
-                    })
-                else
-                    fallback()
-                end
-            end
-        }) ]]
-        -- ... Your other configuration ...
+        end, {"i", "s"}),
+        ['<C-n>'] = cmp.mapping(function(fallback)
+            cmp_ultisnips_mappings.compose({"select_next_item"})(fallback)
+        end, {"i", "s"}),
+        ['<C-p>'] = cmp.mapping(function(fallback)
+            cmp_ultisnips_mappings.compose({"select_prev_item"})(fallback)
+        end, {"i", "s"})
     },
     sources = cmp.config.sources({
         {name = 'ultisnips'}, {name = 'nvim_lsp'}, {name = 'tmux'},
@@ -246,7 +163,6 @@ table.insert(runtime_path, 'lua/?/init.lua')
 nvim_lsp.sumneko_lua.setup {
     cmd = {"/usr/bin/lua-language-server"},
     on_attach = on_attach,
-    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {
@@ -274,7 +190,6 @@ nvim_lsp.sumneko_lua.setup {
 require'lspconfig'.sqls.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
-    capabilities = capabilities,
     settings = {
         sqls = {
             connections = {
@@ -290,7 +205,6 @@ require'lspconfig'.sqls.setup {
 nvim_lsp.texlab.setup {
     on_attach = on_attach,
     flags = {debounce_text_changes = 150},
-    capabilities = capabilities,
     settings = {
         texlab = {
             build = {
@@ -311,18 +225,9 @@ nvim_lsp.texlab.setup {
     }
 }
 
-require('_sourcery')
-
-require'lspsaga'.init_lsp_saga()
-require("trouble").setup {}
-map("n", "<leader>q", "<cmd>Trouble lsp_workspace_diagnostics<cr>",
-    {silent = true, noremap = true})
+-- require'lspsaga'.init_lsp_saga()
 require('rust-tools').setup({
-    server = {
-        on_attach = on_attach,
-        flags = {debounce_text_changes = 150},
-        capabilities = capabilities
-    },
+    server = {on_attach = on_attach, flags = {debounce_text_changes = 150}},
     tools = {inlay_hints = {only_current_line = true}}
 })
 
@@ -331,3 +236,5 @@ require('nvim-autopairs').setup({enable_check_bracket_line = false})
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on('confirm_done',
              cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
+
+require("trouble").setup {}

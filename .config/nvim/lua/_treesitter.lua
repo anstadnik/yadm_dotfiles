@@ -1,7 +1,7 @@
 require'nvim-treesitter.configs'.setup {
     highlight = {
-        enable = true, -- false will disable the whole extension
-        additional_vim_regex_highlighting = {'latex'}
+        enable = true -- false will disable the whole extension
+        -- additional_vim_regex_highlighting = {'latex'}
 
     },
     incremental_selection = {
@@ -14,14 +14,6 @@ require'nvim-treesitter.configs'.setup {
         }
     },
     indent = {enable = true},
-    -- refactor = {
-    -- 	highlight_definitions = {
-    -- 		enable = true
-    -- 	},
-    -- 	highlight_current_scope = {
-    -- 		enable = true
-    -- 	},
-    -- },
     textobjects = { -- syntax-aware textobjects
         select = {
             enable = true,
@@ -62,13 +54,21 @@ require'nvim-treesitter.configs'.setup {
                 ["[M"] = "@function.outer",
                 ["[]"] = "@class.outer"
             }
+        },
+        lsp_interop = {
+            enable = true,
+            peek_definition_code = {
+                ["<leader>d"] = "@function.outer"
+                -- ["<leader>dF"] = "@class.outer"
+            }
         }
     },
     rainbow = {
         enable = true,
         extended_mode = true -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     },
-    ensure_installed = "all" -- one of "all", "language", or a list of languages
+    pairs = {enable = true},
+    ensure_installed = "maintained" -- one of "all", "language", or a list of languages
 }
 
 vim.o.foldmethod = 'expr'
