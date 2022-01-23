@@ -16,6 +16,17 @@ autocmd BufWritePost init.lua PackerCompile
 augroup end
 	]], false)
 
+-- Fix https://github.com/ray-x/lsp_signature.nvim/issues/143
+local old_make_floating = vim.lsp.util.make_floating_popup_options
+if not old_make_floating(0, 0, {}).noautocmd then
+    vim.lsp.util.make_floating_popup_options =
+        function(width, height, opts)
+            local ret = old_make_floating(width, height, opts)
+            ret.noautocmd = true
+            return ret
+        end
+end
+
 local use = require('packer').use
 require('packer').startup(function()
     use 'wbthomason/packer.nvim' -- Package manager
@@ -37,18 +48,16 @@ require('packer').startup(function()
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'f3fora/cmp-spell',
-            'quangnguyen30192/cmp-nvim-ultisnips', {'andersevenrud/cmp-tmux'}, -- Autocompletion from tmux
-            {'tzachar/cmp-tabnine', run = './install.sh'},
-            {'hrsh7th/cmp-cmdline'}
+            'quangnguyen30192/cmp-nvim-ultisnips', 'andersevenrud/cmp-tmux', -- Autocompletion from tmux
+            {'tzachar/cmp-tabnine', run = './install.sh'}, 'hrsh7th/cmp-cmdline'
         }
     } -- Autocompletion plugin
     use 'liuchengxu/vista.vim'
     use 'onsails/lspkind-nvim' -- Icons
     use 'ray-x/lsp_signature.nvim' -- Lsp signature
-    use 'tami5/lspsaga.nvim' -- Lsp signature
-    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
+    --[[ use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
     use 'nvim-telescope/telescope-dap.nvim';
-    use 'theHamsta/nvim-dap-virtual-text'
+    use 'theHamsta/nvim-dap-virtual-text' ]]
     use 'mhartington/formatter.nvim' -- Format python
     use {'simrat39/rust-tools.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
@@ -58,37 +67,24 @@ require('packer').startup(function()
 
     use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code using a fast incremental parsing library
     use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
-    -- use 'romgrk/nvim-treesitter-context'
+    use 'romgrk/nvim-treesitter-context'
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
+    use 'theHamsta/nvim-treesitter-pairs'
 
     ---------------------------------------------------------------------------------
     --                                 Appearance                                  --
     ---------------------------------------------------------------------------------
 
-    -- use 'joshdick/onedark.vim' -- Theme inspired by Atom
-    -- use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-    -- use 'ful1e5/onedark.nvim'
     use 'shaunsingh/nord.nvim'
-    -- use 'projekt0n/github-nvim-theme'
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'mhinz/vim-startify' -- Starting screen
     use {
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
-    -- use 'junegunn/vim-peekaboo' -- Register
     use "tversteeg/registers.nvim"
-    --[[ use {
-'akinsho/nvim-bufferline.lua',
-requires = 'kyazdani42/nvim-web-devicons'
-	} ]]
     use "nanozuki/tabby.nvim"
-    --[[ use {
-        'alvarosevilla95/luatab.nvim',
-        requires = 'kyazdani42/nvim-web-devicons'
-    } ]]
 
-    -- use 'haringsrob/nvim_context_vt'
     use {'kevinhwang91/nvim-hlslens'}
 
     ---------------------------------------------------------------------------------
@@ -98,7 +94,7 @@ requires = 'kyazdani42/nvim-web-devicons'
     -- use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
     use 'b3nj5m1n/kommentary'
     use 'mbbill/undotree'
-    use {'https://gitlab.com/astadnik/snippets.git', rtp = '.'}
+    use 'https://gitlab.com/astadnik/snippets.git'
     use 'SirVer/ultisnips'
     -- Snippets plugin
     use 'junegunn/vim-easy-align' -- Aligning
@@ -143,17 +139,6 @@ requires = 'kyazdani42/nvim-web-devicons'
     ------------------------------------------------------------------------------
 
     use {'iamcco/markdown-preview.nvim', run = ':call mkdp#util#install()'}
-    --[[ use {'lervag/vimtex',				   ft = 'tex',
-requires= {
-'nvim-treesitter/playground',				   ft = 'tex',
-config = function () require("nvim-treesitter.configs").setup{
-playground = {
-enable = true
-}
-} end
-}
-	} ]]
-    -- use {'mhinz/neovim-remote',			   ft= 'tex' }
 end)
 
 require '_mappings'
@@ -162,7 +147,7 @@ require '_parameters'
 local ok, _ = pcall(require, 'lspconfig')
 if ok then
     require '_lsp' -- LSP settings
-    require '_dap' -- LSP settings
+    -- require '_dap' -- LSP settings
     require '_tex' -- LSP settings
     require '_treesitter' -- Treesitter
     require '_misc' -- Miscellaneous

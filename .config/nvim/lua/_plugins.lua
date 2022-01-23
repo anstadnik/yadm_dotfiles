@@ -1,9 +1,6 @@
 local map = vim.api.nvim_set_keymap
 
 -- Colorscheme
--- vim.g.onedark_disable_toggle_style = true -- By default it is false
--- vim.g.onedark_transparent_background = true -- By default it is false
--- require('onedark').setup()
 require('nord').set()
 
 -- Map blankline
@@ -48,7 +45,7 @@ require('telescope').setup {
         mappings = {i = {["<esc>"] = require('telescope.actions').close}}
     }
 }
-require('telescope').load_extension('dap')
+-- require('telescope').load_extension('dap')
 -- Add leader shortcuts
 -- map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 map('n', '<leader>sf',
