@@ -49,7 +49,8 @@ require('packer').startup(function()
         requires = {
             'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'f3fora/cmp-spell',
             'quangnguyen30192/cmp-nvim-ultisnips', 'andersevenrud/cmp-tmux', -- Autocompletion from tmux
-            {'tzachar/cmp-tabnine', run = './install.sh'}, 'hrsh7th/cmp-cmdline'
+            {'tzachar/cmp-tabnine', run = './install.sh'},
+            'hrsh7th/cmp-cmdline'
         }
     } -- Autocompletion plugin
     use 'liuchengxu/vista.vim'
@@ -94,7 +95,7 @@ require('packer').startup(function()
     -- use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
     use 'b3nj5m1n/kommentary'
     use 'mbbill/undotree'
-    use 'https://gitlab.com/astadnik/snippets.git'
+    use {'https://gitlab.com/astadnik/snippets.git', rtp = '.'}
     use 'SirVer/ultisnips'
     -- Snippets plugin
     use 'junegunn/vim-easy-align' -- Aligning

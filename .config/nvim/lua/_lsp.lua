@@ -8,7 +8,7 @@ local on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
 
-    require'lsp_signature'.on_attach();
+    require'lsp_signature'.on_attach({hint_enable = false,  hi_parameter = "IncSearch"});
 
     -- Mappings.
     local opts = {noremap = true, silent = true}
@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
     buf_set_keymap("n", "<leader>q", "<cmd>Trouble workspace_diagnostics<cr>",
-        {silent = true, noremap = true})
+                   {silent = true, noremap = true})
 
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
                    opts)
@@ -93,6 +93,8 @@ local function t(keys)
         vim.api.nvim_replace_termcodes(keys, true, true, true), "m", true)
 end
 
+require('cmp_nvim_ultisnips').setup {show_snippets = "all"}
+
 local cmp = require('cmp')
 local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 local lspkind = require('lspkind')
@@ -110,16 +112,32 @@ cmp.setup {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close()
         }),
-        ["<C-j>"] = cmp.mapping(function()
-            if cmp.visible() then
-                cmp.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true
-                })
-            else
-                cmp.complete()
+        ["<C-j>"] = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.confirm({
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = true
+                    })
+                else
+                    cmp.complete()
+                    -- fallback()
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.confirm({
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = true
+                    })
+                else
+                    fallback()
+                end
+            end,
+            x = function()
+                t("<Plug>(ultisnips_expand)")
             end
-        end, {"i", "c"}),
+        }),
         ["<C-l>"] = cmp.mapping(function(fallback)
             if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
                 return t("<Plug>(ultisnips_jump_forward)")
@@ -143,7 +161,8 @@ cmp.setup {
     },
     sources = cmp.config.sources({
         {name = 'ultisnips'}, {name = 'nvim_lsp'}, {name = 'tmux'},
-        {name = 'spell'}, {name = 'path'}, {name = 'cmp_tabnine'}
+        {name = 'spell'}, {name = 'path'}
+        -- , {name = 'cmp_tabnine'}
     })
 }
 
