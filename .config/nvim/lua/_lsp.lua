@@ -8,7 +8,10 @@ local on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
 
-    require'lsp_signature'.on_attach({hint_enable = false,  hi_parameter = "IncSearch"});
+    require'lsp_signature'.on_attach({
+        hint_enable = false,
+        hi_parameter = "IncSearch"
+    });
 
     -- Mappings.
     local opts = {noremap = true, silent = true}
@@ -134,9 +137,7 @@ cmp.setup {
                     fallback()
                 end
             end,
-            x = function()
-                t("<Plug>(ultisnips_expand)")
-            end
+            x = function() t("<Plug>(ultisnips_expand)") end
         }),
         ["<C-l>"] = cmp.mapping(function(fallback)
             if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
