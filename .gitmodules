@@ -1,3 +1,6 @@
 [submodule "/home/astadnik/.tmux/plugins/tpm"]
 	path = /home/astadnik/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "Pictures/nord-backgrounds"]
+	path = Pictures/nord-backgrounds
+	url = https://github.com/dxnst/nord-backgrounds
