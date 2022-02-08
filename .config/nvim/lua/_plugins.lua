@@ -86,7 +86,7 @@ require'nvim-tree'.setup({
     diagnostics = {enable = true},
     hijack_cursor = 0 -- 1 by default, when moving cursor in the tree, will position the cursor at the start of the file on the current line
 })
-map('n', '<C-n>', ':NvimTreeToggle<CR>', {noremap = true})
+map('n', '<C-n>', ':NvimTreeFindFileToggle<CR>', {noremap = true})
 --[[ map('n', '<leader>r', ':NvimTreeRefresh<CR>', {noremap = true})
 map('n', '<C-S-n>', ':NvimTreeFindFile<CR>', {noremap = true}) ]]
 -- NvimTreeOpen and NvimTreeClose are also available if you need them
