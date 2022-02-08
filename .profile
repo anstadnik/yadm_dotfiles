@@ -1,5 +1,5 @@
 export EDITOR=/usr/bin/nvim
-export BROWSER=/usr/bin/google-chrome-stable
+export BROWSER=/usr/bin/google-chrome-beta
 export TERM=kitty
 export MAIL=geary
 export QT_QPA_PLATFORMTHEME="qt5ct"

@@ -17,7 +17,7 @@ smart_borders on
 # Set wallpaper:
 # exec ~/.azotebg
 # exec variety
-output "*" bg ~/.config/variety/nord-backgrounds/operating-systems/3840x2160/archlinux.png fill
+output "*" bg ~/Pictures/nord-backgrounds/operating-systems/3840x2160/archlinux.png fill
 # output "*" bg ~/Pictures/Background/NordNight.png fill
 
 # Title format for windows

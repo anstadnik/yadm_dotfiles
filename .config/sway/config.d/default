@@ -191,7 +191,8 @@ $bindsym --whole-window --border $mod+shift+button4 resize shrink width 5 px or 
 $bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 ppt
 
 $bindsym $mod+o exec kitty --class nnn ${HOME}/.local/bin/n
-$bindsym $mod+g exec google-chrome-stable
+# $bindsym $mod+g exec google-chrome-stable
+$bindsym $mod+g exec google-chrome-beta
 
 #
 # Volume
