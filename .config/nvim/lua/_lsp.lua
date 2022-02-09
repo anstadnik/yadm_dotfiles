@@ -40,8 +40,8 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
                    opts)
 
-    -- if client.config.filetypes[1] == "python" or client.config.filetypes[1] ==
-    if client.config.filetypes[1] == "lua" then
+    if client.config.filetypes[1] == "python" or client.config.filetypes[1] == "lua" then
+    -- if client.config.filetypes[1] == "lua" then
         buf_set_keymap("n", "<leader>f", "<cmd>Format<CR>", opts)
     else
         buf_set_keymap("n", "<leader>f",
@@ -63,7 +63,7 @@ end
 require('_sourcery')
 
 local servers = {
-    "pylsp", "rust_analyzer", "ccls", "vimls", "dockerls", "bashls",
+    "pyright", "rust_analyzer", "ccls", "vimls", "dockerls", "bashls",
     "sourcery"
 }
 for _, lsp in ipairs(servers) do

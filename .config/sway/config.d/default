@@ -12,7 +12,7 @@ set $right l
 # on the original workspace that the command was run on.
 set $menu wofi -c ~/.config/wofi/config -I
 
-set $launcher nwg-drawer -c 7 -is 70 -spacing 23
+# set $launcher nwg-drawer -c 7 -is 70 -spacing 23
 
 set $powermenu nwgbar
 
@@ -53,7 +53,7 @@ set $bindsym bindsym --to-code
     $bindsym $mod+d exec $menu
 
     # Launcher
-    $bindsym $mod+Shift+d exec $launcher
+    # $bindsym $mod+Shift+d exec $launcher
 
     # Activities
     $bindsym $mod+p exec ~/.config/wofi/windows.py
