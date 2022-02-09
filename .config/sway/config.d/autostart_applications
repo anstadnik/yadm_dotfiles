@@ -1,3 +1,6 @@
+# Auth with polkit-gnome:
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # Desktop notifications
 exec mako
 
@@ -22,6 +25,9 @@ exec ~/.config/sway/scripts/light.sh
 # Clipman
 # exec clipman restore
 # exec wl-paste -t text --watch clipman store
+
+# Gnome Keyring
+exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
 
 # for Touchpad gestures
 # exec libinput-gestures-setup start
