@@ -1,6 +1,18 @@
 require("dapui").setup()
 
 local opts = {noremap = true, silent = true}
+    --[[ nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+    nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+    nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+    nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+    nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+    nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+    nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+    nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+    nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR> ]]
+
+vim.api.nvim_set_keymap('n', '<M-d>', "<cmd> lua require'dapui'.toggle()<CR>",
+                        opts)
 vim.api.nvim_set_keymap('n', '<M-r>', "<cmd> lua require'dap'.continue()<CR>",
                         opts)
 vim.api.nvim_set_keymap('n', '<M-n>', "<cmd> lua require'dap'.step_over()<CR>",
@@ -23,7 +35,7 @@ vim.api.nvim_set_keymap('n', '<M-q>',
                         "<cmd> lua require'dap'.close(); require'dapui'.close()<CR>",
                         opts)
 
-local dap = require('dap')
+--[[ local dap = require('dap')
 local api = vim.api
 local keymap_restore = {}
 dap.listeners.after['event_initialized']['me'] = function()
@@ -46,20 +58,15 @@ dap.listeners.after['event_terminated']['me'] = function()
                                 keymap.rhs, {silent = keymap.silent == 1})
     end
     keymap_restore = {}
-end
+end ]]
 
-dap.adapters.lldb = {
+--[[ dap.adapters.lldb = {
     type = 'executable',
     command = '/usr/bin/lldb-vscode', -- adjust as needed
     name = "lldb"
-}
+} ]]
 
-require("nvim-dap-virtual-text").setup {
-    show_stop_reason = false,
-    highlight_changed_variables = true
-}
-
-dap.configurations.cpp = {
+--[[ dap.configurations.cpp = {
     {
         name = "Launch",
         type = "lldb",
@@ -73,4 +80,4 @@ dap.configurations.cpp = {
         args = {},
         runInTerminal = false
     }
-}
+} ]]

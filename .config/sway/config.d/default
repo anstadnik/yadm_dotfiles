@@ -52,6 +52,9 @@ set $bindsym bindsym --to-code
     # Start your launcher
     $bindsym $mod+d exec $menu
 
+    # Find a window
+    $bindsym $mod+Shift+f exec swayr switch-workspace-container-or-window
+
     # Launcher
     # $bindsym $mod+Shift+d exec $launcher
 
@@ -191,8 +194,8 @@ $bindsym --whole-window --border $mod+shift+button4 resize shrink width 5 px or 
 $bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 ppt
 
 $bindsym $mod+o exec kitty --class nnn ${HOME}/.local/bin/n
-# $bindsym $mod+g exec google-chrome-stable
-$bindsym $mod+g exec google-chrome-beta
+$bindsym $mod+g exec google-chrome-stable
+# $bindsym $mod+g exec google-chrome-beta
 
 #
 # Volume

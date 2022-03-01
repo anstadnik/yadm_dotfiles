@@ -11,4 +11,5 @@ nnoremap <silent> <CR> :AsyncRun tmux send-keys -t debug:1.1 'clear' ENTER 'carg
 if expand("%:p:h") =~ '/home/astadnik/edu/competitive/codewars/*'
 	nnoremap <silent> <CR> :AsyncRun tmux send-keys -t debug:1.1 'clear' ENTER 'cargo test -- --nocapture' ENTER <CR>
 endif
-nnoremap <silent> <leader><CR> :RustDebuggables<CR>
+" nnoremap <silent> <CR> :RustRunnables<CR>
+" nnoremap <silent> <leader><CR> :RustDebuggables<CR>
