@@ -56,9 +56,9 @@ require('packer').startup(function()
     use 'liuchengxu/vista.vim'
     use 'onsails/lspkind-nvim' -- Icons
     use 'ray-x/lsp_signature.nvim' -- Lsp signature
-    --[[ use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
+    use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
     use 'nvim-telescope/telescope-dap.nvim';
-    use 'theHamsta/nvim-dap-virtual-text' ]]
+		use 'nvim-telescope/telescope-ui-select.nvim'
     use 'mhartington/formatter.nvim' -- Format python
     use {'simrat39/rust-tools.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
@@ -148,7 +148,7 @@ require '_parameters'
 local ok, _ = pcall(require, 'lspconfig')
 if ok then
     require '_lsp' -- LSP settings
-    -- require '_dap' -- LSP settings
+    require '_dap' -- LSP settings
     require '_tex' -- LSP settings
     require '_treesitter' -- Treesitter
     require '_misc' -- Miscellaneous

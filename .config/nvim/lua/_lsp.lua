@@ -40,8 +40,9 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
                    opts)
 
-    if client.config.filetypes[1] == "python" or client.config.filetypes[1] == "lua" then
-    -- if client.config.filetypes[1] == "lua" then
+    if client.config.filetypes[1] == "python" or client.config.filetypes[1] ==
+        "lua" then
+        -- if client.config.filetypes[1] == "lua" then
         buf_set_keymap("n", "<leader>f", "<cmd>Format<CR>", opts)
     else
         buf_set_keymap("n", "<leader>f",
@@ -162,8 +163,7 @@ cmp.setup {
     },
     sources = cmp.config.sources({
         {name = 'ultisnips'}, {name = 'nvim_lsp'}, {name = 'tmux'},
-        {name = 'spell'}, {name = 'path'}
-        , {name = 'cmp_tabnine'}
+        {name = 'spell'}, {name = 'path'}, {name = 'cmp_tabnine'}
     })
 }
 
