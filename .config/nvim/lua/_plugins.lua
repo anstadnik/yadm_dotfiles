@@ -41,11 +41,7 @@ require('gitsigns').setup {
 
 -- Telescope
 require('telescope').setup {
-	extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {}
-    }
-  },
+    extensions = {["ui-select"] = {require("telescope.themes").get_dropdown {}}},
     defaults = {
         mappings = {i = {["<esc>"] = require('telescope.actions').close}}
     }
@@ -54,22 +50,17 @@ require("telescope").load_extension("ui-select")
 -- require('telescope').load_extension('dap')
 -- Add leader shortcuts
 -- map('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
+local opts = {noremap = true, silent = true}
 map('n', '<leader>n',
-    [[<cmd>lua require('telescope.builtin').find_files()<CR>]],
-    {noremap = true, silent = true})
+    [[<cmd>lua require('telescope.builtin').find_files()<CR>]], opts)
 map('n', '<leader>sh',
-    [[<cmd>lua require('telescope.builtin').help_tags()<CR>]],
-    {noremap = true, silent = true})
+    [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
 map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]],
-    {noremap = true, silent = true})
+    opts)
 map('n', '<leader>sc',
-    [[<cmd>lua require('telescope.builtin').command_history()<CR>]],
-    {noremap = true, silent = true})
-map('n', '<leader>l',
-    [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
-    {noremap = true, silent = true})
+    [[<cmd>lua require('telescope.builtin').command_history()<CR>]], opts)
 map('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]],
-    {noremap = true, silent = true})
+    opts)
 
 -- Nvim tree
 require'nvim-tree'.setup({
