@@ -26,9 +26,9 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>D',
                    '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
-                   opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    --[[ buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+                   opts) ]]
+    -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>',
                    opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -39,6 +39,19 @@ local on_attach = function(client, bufnr)
 
     buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
                    opts)
+
+    buf_set_keymap('n', 'gr',
+                   [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]],
+                   opts)
+    buf_set_keymap('n', '<leader>ca',
+                   [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]],
+                   opts)
+    buf_set_keymap('n', '<leader>l',
+                   [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
+                   opts)
+    -- buf_set_keymap('n', '<leader>l',
+                   -- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
+                   -- opts)
 
     if client.config.filetypes[1] == "python" or client.config.filetypes[1] ==
         "lua" then
@@ -63,10 +76,7 @@ end
 -- local keybindings when the language server attaches
 require('_sourcery')
 
-local servers = {
-    "pyright", "rust_analyzer", "ccls", "vimls", "dockerls", "bashls",
-    "sourcery"
-}
+local servers = {"pyright", "ccls", "vimls", "dockerls", "bashls", "sourcery"}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -245,9 +255,23 @@ nvim_lsp.texlab.setup {
     }
 }
 
+--[[ nvim_lsp.rust_analyzer.setup {
+    on_attach = on_attach,
+    flags = {debounce_text_changes = 150}
+} ]]
+
 -- require'lspsaga'.init_lsp_saga()
 require('rust-tools').setup({
-    server = {on_attach = on_attach, flags = {debounce_text_changes = 150}},
+    server = {
+        on_attach = on_attach,
+        flags = {debounce_text_changes = 150},
+        settings = {
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {command = "clippy"}
+            }
+        }
+    },
     tools = {inlay_hints = {only_current_line = true}}
 })
 

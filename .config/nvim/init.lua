@@ -49,8 +49,7 @@ require('packer').startup(function()
         requires = {
             'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'f3fora/cmp-spell',
             'quangnguyen30192/cmp-nvim-ultisnips', 'andersevenrud/cmp-tmux', -- Autocompletion from tmux
-            {'tzachar/cmp-tabnine', run = './install.sh'},
-            'hrsh7th/cmp-cmdline'
+            {'tzachar/cmp-tabnine', run = './install.sh'}, 'hrsh7th/cmp-cmdline'
         }
     } -- Autocompletion plugin
     use 'liuchengxu/vista.vim'
@@ -58,7 +57,7 @@ require('packer').startup(function()
     use 'ray-x/lsp_signature.nvim' -- Lsp signature
     use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
     use 'nvim-telescope/telescope-dap.nvim';
-		use 'nvim-telescope/telescope-ui-select.nvim'
+    use 'nvim-telescope/telescope-ui-select.nvim'
     use 'mhartington/formatter.nvim' -- Format python
     use {'simrat39/rust-tools.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
@@ -132,8 +131,6 @@ require('packer').startup(function()
     use 'chrisbra/Recover.vim' -- Managing swap
     -- use 'rhysd/vim-grammarous' -- Check grammar
     use 'AndrewRadev/linediff.vim' -- Diff 2 parts of file
-    -- tracking
-    -- use 'ActivityWatch/aw-watcher-vim'
 
     ------------------------------------------------------------------------------
     --                            Language specific                             --
