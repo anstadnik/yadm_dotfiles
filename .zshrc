@@ -187,4 +187,4 @@ setopt appendhistory                                            # Immediately ap
 [[ ! -x /usr/bin/yay ]] && [[ -x /usr/bin/paru ]] && alias yay='paru'
 
 ## Run neofetch
-paleofetch
+# neofetch
