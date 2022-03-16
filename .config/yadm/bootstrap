@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+sudo echo
+#sudo add-apt-repository ppa:neovim-ppa/unstable -y
+#sudo add-apt-repository ppa:papirus/papirus -y
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y build-essential papirus-icon-theme zoxide neofetch kitty neovim python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks
+sudo apt autoremove -y
+
+sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
+
+zsh -ic "mkvirtualenv neovim; pip install pynvim"
+
+cd /tmp
+curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+extract JetBrainsMono.zip
+mkdir ~/.fonts
+mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
+fc-cache -fv
+
+curl -LO https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic-v40.tar.xz
+e Nordic-v40.tar.xz
+mkdir ~/.themes
+mv /tmp/Nordic-v40 ~/.themes/
+
+mkdir ~/.icons
+wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+
+git clone https://github.com/Adapta-Projects/Papirus-Nord
+cd Papirus-Nord
+sudo ./papirus-folders -t Papirus-Dark
+sudo ./install
+
+nvim +PackerUpdate +TSUpdate
