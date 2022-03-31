@@ -5,7 +5,8 @@ sudo echo
 #sudo add-apt-repository ppa:papirus/papirus -y
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y build-essential papirus-icon-theme zoxide neofetch kitty neovim python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks
+sudo apt install -y build-essential papirus-icon-theme neofetch kitty neovim python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks
+sudo apt install -y zoxide
 sudo apt autoremove -y
 
 sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
@@ -20,7 +21,7 @@ mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
 fc-cache -fv
 
 curl -LO https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic-v40.tar.xz
-e Nordic-v40.tar.xz
+extract Nordic-v40.tar.xz
 mkdir ~/.themes
 mv /tmp/Nordic-v40 ~/.themes/
 
