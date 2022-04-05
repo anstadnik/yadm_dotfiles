@@ -4,10 +4,8 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Desktop notifications
 exec mako
 
-# GTK3 applications take a long time to start
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+# https://github.com/emersion/xdg-desktop-portal-wlr/issues/117
+include /etc/sway/config.d/*
  
 # Wob
 exec mkfifo $SWAYSOCK.wob

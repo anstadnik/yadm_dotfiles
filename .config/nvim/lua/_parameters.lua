@@ -15,6 +15,8 @@ vim.cmd('set undofile')
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+vim.o.laststatus = 3
+
 vim.o.updatetime = 250 -- Decrease update time
 vim.wo.signcolumn = 'yes'
 

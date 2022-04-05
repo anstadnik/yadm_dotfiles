@@ -50,13 +50,13 @@ function M.in_mathzone()
         local node = get_node_at_cursor()
         while node do
             if MATH_NODES[node:type()] then return true end
-            if node:type() == 'environment' then
+            if node:type() == 'generic_environment' then
                 local begin = node:child(0)
                 local names = begin and begin:field('name')
 
                 if names and names[1] and
                     MATH_ENVIRONMENTS[query.get_node_text(names[1], buf):gsub(
-                        '[%s*]', '')] then return true end
+                        '{(%w+)%s*%*?}', '%1')] then return true end
             end
             node = node:parent()
         end

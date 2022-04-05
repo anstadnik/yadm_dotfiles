@@ -74,7 +74,7 @@ require('packer').startup(function()
     ---------------------------------------------------------------------------------
     --                                 Appearance                                  --
     ---------------------------------------------------------------------------------
-
+    use {"folke/zen-mode.nvim", requires = "folke/twilight.nvim"}
     use 'shaunsingh/nord.nvim'
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'mhinz/vim-startify' -- Starting screen
