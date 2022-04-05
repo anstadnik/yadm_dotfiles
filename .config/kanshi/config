@@ -5,13 +5,19 @@ profile {
 }
 
 profile {
-	output DP-1 enable position 0,0
-	output eDP-1 enable position 2560,1090
+	output DP-5 enable position 0,0 transform 270
+	output DP-6 enable position 1440,470 mode 2560x1440@74.971Hz
 }
 
 profile {
-	output DP-3 enable position 0,0 scale 1.5
-	output eDP-1 enable position 320,1440
+	output DP-7 enable position 0,0 transform 270
+	output DP-6 enable position 1440,470 mode 2560x1440@74.971Hz
+	output eDP-1 enable position 4000,1360
+}
+
+profile {
+	output DP-7 enable position 0,0 transform 270
+	output DP-6 enable position 1440,470 mode 2560x1440@74.971Hz
 }
 
 profile {

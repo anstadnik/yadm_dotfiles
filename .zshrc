@@ -130,7 +130,7 @@ codi() {
 		Codi $syntax"
 	}
 sp() {
-	~/.virtualenvs/repl/bin/ipython -ic "__import__('sympy').init_session(use_unicode=True, auto_symbols=True, auto_int_to_Integer=True)"
+	~/.virtualenvs/repl/bin/ipython -i -c "__import__('sympy').init_session(use_unicode=True, auto_symbols=True, auto_int_to_Integer=True)"
 }
 compdef _directories md
 # ALT-I - Paste the selected entry from locate output into the command line
