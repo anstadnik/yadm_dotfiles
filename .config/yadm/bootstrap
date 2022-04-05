@@ -42,5 +42,8 @@ else
 	sudo yay -Sy --noconfirm --answerdiff=None neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-git nordic-theme phinger-cursors papirus-nord
 fi
 
+gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
+gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+
 zsh -ic "mkvirtualenv neovim; pip install pynvim"
-nvim +PackerUpdate +TSUpdate
+nvim +PackerUpdate +TSUpdateSync +q

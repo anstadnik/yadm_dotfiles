@@ -103,7 +103,6 @@ map('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]],
 
 -- Nvim tree
 require'nvim-tree'.setup({
-    auto_close = 1, -- 0 by default, closes the tree when it's the last window
     quit_on_open = 1, -- 0 by default, closes the tree when you open a file
     follow = 1, -- 0 by default, this option allows the cursor to be updated when entering a buffer
     git_hl = 1, -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
@@ -112,6 +111,8 @@ require'nvim-tree'.setup({
     diagnostics = {enable = true},
     hijack_cursor = 0 -- 1 by default, when moving cursor in the tree, will position the cursor at the start of the file on the current line
 })
+-- autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif;q
+
 map('n', '<C-n>', ':NvimTreeFindFileToggle<CR>', {noremap = true})
 --[[ map('n', '<leader>r', ':NvimTreeRefresh<CR>', {noremap = true})
 map('n', '<C-S-n>', ':NvimTreeFindFile<CR>', {noremap = true}) ]]
