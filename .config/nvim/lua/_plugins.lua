@@ -20,7 +20,7 @@ require("zen-mode").setup {
         options = {
             -- signcolumn = "no", -- disable signcolumn
             number = false, -- disable number column
-            relativenumber = false, -- disable relative numbers
+            relativenumber = false -- disable relative numbers
             -- cursorline = false, -- disable cursorline
             -- cursorcolumn = false, -- disable cursor column
             -- foldcolumn = "0", -- disable fold column
@@ -119,13 +119,16 @@ map('n', '<C-S-n>', ':NvimTreeFindFile<CR>', {noremap = true}) ]]
 -- NvimTreeOpen and NvimTreeClose are also available if you need them
 
 require'lualine'.setup({
-    sections = {lualine_c = {{'filename', file_status = true}}},
+    sections = {
+        lualine_c = {{'filename', file_status = true}},
+        lualine_y = {"require'lsp-status'.status()"}
+    },
     options = {
         theme = 'nord',
         -- theme = 'dracula',
         section_separators = {left = '', right = ''},
         component_separators = {left = '/', right = '/'},
-        extensions = {'nvim-tree'}
+        extensions = {'nvim-tree', 'fugitive'}
     }
 })
 
@@ -283,3 +286,7 @@ map('', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], {noremap = true})
 map('', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], {noremap = true})
 map('', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], {noremap = true})
 map('', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], {noremap = true})
+
+require"fidget".setup {}
+
+require('competitest').setup()

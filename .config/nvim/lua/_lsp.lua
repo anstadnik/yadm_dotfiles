@@ -4,6 +4,8 @@ local map = vim.api.nvim_set_keymap
 -- Use an on_attach function to only map the following keys after the language
 -- server attaches to the current buffer
 local on_attach = function(client, bufnr)
+    require('lsp-status').on_attach(client)
+
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -50,8 +52,8 @@ local on_attach = function(client, bufnr)
                    [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
                    opts)
     -- buf_set_keymap('n', '<leader>l',
-                   -- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
-                   -- opts)
+    -- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
+    -- opts)
 
     if client.config.filetypes[1] == "python" or client.config.filetypes[1] ==
         "lua" then
@@ -76,10 +78,14 @@ end
 -- local keybindings when the language server attaches
 require('_sourcery')
 
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+
 local servers = {"pyright", "ccls", "vimls", "dockerls", "bashls", "sourcery"}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
+        capabilities = lsp_status.capabilities,
         flags = {debounce_text_changes = 150}
     }
 end
@@ -255,15 +261,11 @@ nvim_lsp.texlab.setup {
     }
 }
 
---[[ nvim_lsp.rust_analyzer.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150}
-} ]]
-
 -- require'lspsaga'.init_lsp_saga()
 require('rust-tools').setup({
     server = {
         on_attach = on_attach,
+        capabilities = lsp_status.capabilities,
         flags = {debounce_text_changes = 150},
         settings = {
             ["rust-analyzer"] = {
@@ -272,8 +274,8 @@ require('rust-tools').setup({
             }
         }
     },
-    tools = {inlay_hints = {only_current_line = true}}
 })
+require('crates').setup()
 
 require('nvim-autopairs').setup({enable_check_bracket_line = false})
 -- If you want insert `(` after select function or method item
