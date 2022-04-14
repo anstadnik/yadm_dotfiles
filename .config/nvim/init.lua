@@ -55,11 +55,14 @@ require('packer').startup(function()
     use 'liuchengxu/vista.vim'
     use 'onsails/lspkind-nvim' -- Icons
     use 'ray-x/lsp_signature.nvim' -- Lsp signature
+    use 'nvim-lua/lsp-status.nvim'
     use {"rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"}}
     use 'nvim-telescope/telescope-dap.nvim';
     use 'nvim-telescope/telescope-ui-select.nvim'
     use 'mhartington/formatter.nvim' -- Format python
     use {'simrat39/rust-tools.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use {'Saecki/crates.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use 'j-hui/fidget.nvim'
 
     ---------------------------------------------------------------------------------
     --                                 Treesitter                                  --
@@ -131,6 +134,7 @@ require('packer').startup(function()
     use 'chrisbra/Recover.vim' -- Managing swap
     -- use 'rhysd/vim-grammarous' -- Check grammar
     use 'AndrewRadev/linediff.vim' -- Diff 2 parts of file
+    use {'xeluxee/competitest.nvim', requires = {'MunifTanjim/nui.nvim'}}
 
     ------------------------------------------------------------------------------
     --                            Language specific                             --

@@ -6,6 +6,9 @@
 
 # export TERM=xterm-kitty
 
+# Kitty integration :)
+zstyle ':z4h:' iterm2-integration yes
+
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
 zstyle ':z4h:' auto-update      'ask'
 # Ask whether to auto-update this often; has no effect if auto-update is 'no'.
@@ -183,8 +186,7 @@ setopt appendhistory                                            # Immediately ap
 # setopt pushd_ignore_dups
 # setopt pushdminus
 
-# Replace yay with paru if installed
-[[ ! -x /usr/bin/yay ]] && [[ -x /usr/bin/paru ]] && alias yay='paru'
+unset KITTY_SHELL_INTEGRATION
 
 ## Run neofetch
 # neofetch

@@ -12,7 +12,7 @@ default_border pixel 1
 font pango:Noto Sans Regular 10
 
 # Thin borders:
-smart_borders on
+# smart_borders on
 
 # Set wallpaper:
 # exec ~/.azotebg
