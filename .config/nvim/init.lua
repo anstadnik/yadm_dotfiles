@@ -69,8 +69,9 @@ require('packer').startup(function()
     ---------------------------------------------------------------------------------
 
     use 'nvim-treesitter/nvim-treesitter' -- Highlight, edit, and navigate code using a fast incremental parsing library
+		use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
-    use 'romgrk/nvim-treesitter-context'
+    use 'lewis6991/nvim-treesitter-context'
     use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
     use 'theHamsta/nvim-treesitter-pairs'
 
@@ -95,7 +96,7 @@ require('packer').startup(function()
     ---------------------------------------------------------------------------------
 
     -- use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
-    use 'b3nj5m1n/kommentary'
+    use 'numToStr/Comment.nvim'
     use 'mbbill/undotree'
     use {'https://gitlab.com/astadnik/snippets.git', rtp = '.'}
     use 'SirVer/ultisnips'
