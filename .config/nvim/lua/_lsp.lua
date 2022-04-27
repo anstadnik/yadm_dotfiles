@@ -43,13 +43,13 @@ local on_attach = function(client, bufnr)
                    opts) ]]
 
     buf_set_keymap('n', 'gr',
-                   [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]],
+                   "<cmd>lua require('telescope.builtin').lsp_references()<CR>",
                    opts)
     buf_set_keymap('n', '<leader>ca',
-                   [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]],
+                   '<cmd>lua vim.lsp.buf.code_action()<CR>',
                    opts)
     buf_set_keymap('n', '<leader>l',
-                   [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
+                   "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
                    opts)
     -- buf_set_keymap('n', '<leader>l',
     -- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
