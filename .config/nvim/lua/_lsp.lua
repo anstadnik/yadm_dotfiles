@@ -39,8 +39,8 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<leader>q", "<cmd>Trouble workspace_diagnostics<cr>",
                    {silent = true, noremap = true})
 
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
-                   opts)
+    --[[ buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
+                   opts) ]]
 
     buf_set_keymap('n', 'gr',
                    [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]],
@@ -55,8 +55,7 @@ local on_attach = function(client, bufnr)
     -- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
     -- opts)
 
-    if client.config.filetypes[1] == "python" or client.config.filetypes[1] ==
-        "lua" then
+    if client.config.filetypes[1] == "python" then
         -- if client.config.filetypes[1] == "lua" then
         buf_set_keymap("n", "<leader>f", "<cmd>Format<CR>", opts)
     else
