@@ -42,6 +42,9 @@ set $bindsym bindsym --to-code
     $bindsym $mod+Return exec kitty
 
 		$bindsym $mod+i [title="scratchterm"] scratchpad show
+
+		# Todoist
+		$bindsym $mod+t [class="Todoist"] scratchpad show
           
     # Open the power menu
     $bindsym $mod+Shift+e exec $powermenu

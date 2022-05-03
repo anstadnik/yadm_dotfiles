@@ -42,5 +42,7 @@ exec kanshi
 # Schatchterm
 exec kitty -o remember_window_size=no -o initial_window_width=120c -o initial_window_height=40c -T scratchterm
 
+exec todoist
+
 # Auto mount usb
 exec udiskie

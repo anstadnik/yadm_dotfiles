@@ -4,73 +4,73 @@ local map = vim.api.nvim_set_keymap
 -- Use an on_attach function to only map the following keys after the language
 -- server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    require('lsp-status').on_attach(client)
+	require('lsp-status').on_attach(client)
 
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
 
-    require'lsp_signature'.on_attach({
-        hint_enable = false,
-        hi_parameter = "IncSearch"
-    });
+	require 'lsp_signature'.on_attach({
+		hint_enable = false,
+		hi_parameter = "IncSearch"
+	});
 
-    -- Mappings.
-    local opts = {noremap = true, silent = true}
+	-- Mappings.
+	local opts = { noremap = true, silent = true }
 
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'gp', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', '<leader>k',
-                   '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<leader>D',
-                   '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    --[[ buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+	buf_set_keymap('n', 'gp', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	buf_set_keymap('n', '<leader>k',
+		'<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+	buf_set_keymap('n', '<leader>D',
+		'<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+	--[[ buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
                    opts) ]]
-    -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>',
-                   opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+	-- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+	buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>',
+		opts)
+	buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+	buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
-    buf_set_keymap("n", "<leader>q", "<cmd>Trouble workspace_diagnostics<cr>",
-                   {silent = true, noremap = true})
+	buf_set_keymap("n", "<leader>q", "<cmd>Trouble workspace_diagnostics<cr>",
+		{ silent = true, noremap = true })
 
-    --[[ buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
+	--[[ buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>",
                    opts) ]]
 
-    buf_set_keymap('n', 'gr',
-                   "<cmd>lua require('telescope.builtin').lsp_references()<CR>",
-                   opts)
-    buf_set_keymap('n', '<leader>ca',
-                   '<cmd>lua vim.lsp.buf.code_action()<CR>',
-                   opts)
-    buf_set_keymap('n', '<leader>l',
-                   "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
-                   opts)
-    -- buf_set_keymap('n', '<leader>l',
-    -- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
-    -- opts)
+	buf_set_keymap('n', 'gr',
+		"<cmd>lua require('telescope.builtin').lsp_references()<CR>",
+		opts)
+	buf_set_keymap('n', '<leader>ca',
+		'<cmd>lua vim.lsp.buf.code_action()<CR>',
+		opts)
+	buf_set_keymap('n', '<leader>l',
+		"<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
+		opts)
+	-- buf_set_keymap('n', '<leader>l',
+	-- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
+	-- opts)
 
-    if client.config.filetypes[1] == "python" then
-        -- if client.config.filetypes[1] == "lua" then
-        buf_set_keymap("n", "<leader>f", "<cmd>Format<CR>", opts)
-    else
-        buf_set_keymap("n", "<leader>f",
-                       "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    end
+	if client.config.filetypes[1] == "python" then
+		-- if client.config.filetypes[1] == "lua" then
+		buf_set_keymap("n", "<leader>f", "<cmd>Format<CR>", opts)
+	else
+		buf_set_keymap("n", "<leader>f",
+			"<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	end
 
 end
 
 -- https://github.com/ray-x/lsp_signature.nvim/issues/143
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = opts.border or "rounded"
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or "rounded"
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and map buffer
@@ -80,13 +80,16 @@ require('_sourcery')
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
 
-local servers = {"pyright", "ccls", "vimls", "dockerls", "bashls", "sourcery"}
+local servers = { "pyright", "ccls", "vimls", "dockerls", "bashls", "sourcery" }
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
+
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-        on_attach = on_attach,
-        capabilities = lsp_status.capabilities,
-        flags = {debounce_text_changes = 150}
-    }
+	nvim_lsp[lsp].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		flags = { debounce_text_changes = 150 }
+	}
 end
 
 -- Ultisnips
@@ -101,18 +104,18 @@ vim.g.snips_author = 'astadnik'
 
 -- Vista vim
 vim.g.vista_default_executive = 'nvim_lsp'
-map("n", "<C-g>", ":Vista!!<cr>", {silent = true, noremap = true})
+map("n", "<C-g>", ":Vista!!<cr>", { silent = true, noremap = true })
 
 ------------- CMP  -- -----------
 
 -- Setup nvim-cmp
 
 local function t(keys)
-    vim.api.nvim_feedkeys(
-        vim.api.nvim_replace_termcodes(keys, true, true, true), "m", true)
+	vim.api.nvim_feedkeys(
+		vim.api.nvim_replace_termcodes(keys, true, true, true), "m", true)
 end
 
-require('cmp_nvim_ultisnips').setup {show_snippets = "all"}
+require('cmp_nvim_ultisnips').setup {}
 
 local cmp = require('cmp')
 local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
@@ -139,7 +142,7 @@ cmp.setup {
                         select = true
                     })
                 else
-                    cmp.complete()
+                    cmp.mapping.complete()
                     -- fallback()
                 end
             end,
@@ -187,7 +190,7 @@ cmp.setup {
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({{name = 'cmdline'}}, {{name = 'path'}})
+	sources = cmp.config.sources({ { name = 'cmdline' } }, { { name = 'path' } })
 })
 
 -- Make runtime files discoverable to the server
@@ -196,90 +199,82 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 nvim_lsp.sumneko_lua.setup {
-    cmd = {"/usr/bin/lua-language-server"},
-    on_attach = on_attach,
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most
-                -- likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-                -- Setup your lua path
-                path = runtime_path
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = {'vim'}
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true)
-            },
-            -- Do not send telemetry data containing a randomized but unique
-            -- identifier
-            telemetry = {enable = false}
-        }
-    }
+	cmd = { "/usr/bin/lua-language-server" },
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most
+				-- likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+				-- Setup your lua path
+				path = runtime_path
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { 'vim' }
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true)
+			},
+			-- Do not send telemetry data containing a randomized but unique
+			-- identifier
+			telemetry = { enable = false }
+		}
+	}
 }
 
-require'lspconfig'.sqls.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    settings = {
-        sqls = {
-            connections = {
-                {
-                    driver = 'mysql',
-                    dataSourceName = 'unix(/var/run/mysqld/mysqld.sock)/warehousing'
-                }
-            }
-        }
-    }
+require 'lspconfig'.sqls.setup {
+	on_attach = on_attach,
+	flags = { debounce_text_changes = 150 },
+	settings = {
+		sqls = {
+			connections = {
+				{
+					driver = 'mysql',
+					dataSourceName = 'unix(/var/run/mysqld/mysqld.sock)/warehousing'
+				}
+			}
+		}
+	}
 }
 
 nvim_lsp.texlab.setup {
-    on_attach = on_attach,
-    flags = {debounce_text_changes = 150},
-    settings = {
-        texlab = {
-            build = {
-                forwardSearchAfter = true,
-                onSave = true,
-                args = {
-                    "-pdf", "-xelatex", "-interaction=nonstopmode",
-                    "-synctex=1", "%f"
-                }
-            },
-            -- chktex = {onEdit = true, onOpenAndSave = false},
-            forwardSearch = {
-                executable = "zathura",
-                args = {"--synctex-forward", "%l:1:%f", "%p"}
-            },
-            latexindent = {modifyLineBreaks = true}
-        }
-    }
+	on_attach = on_attach,
+	flags = { debounce_text_changes = 150 },
+	capabilities = capabilities,
+	settings = {
+		texlab = {
+			forwardSearch = {
+				executable = "zathura",
+				args = { "--synctex-forward", "%l:1:%f", "%p" }
+			},
+			latexindent = { modifyLineBreaks = true }
+		}
+	}
 }
 
 -- require'lspsaga'.init_lsp_saga()
 require('rust-tools').setup({
-    server = {
-        on_attach = on_attach,
-        capabilities = lsp_status.capabilities,
-        flags = {debounce_text_changes = 150},
-        settings = {
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {command = "clippy"}
-            }
-        }
-    },
+	server = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		flags = { debounce_text_changes = 150 },
+		settings = {
+			["rust-analyzer"] = {
+				-- enable clippy on save
+				checkOnSave = { command = "clippy" }
+			}
+		}
+	},
 })
 require('crates').setup()
 
-require('nvim-autopairs').setup({enable_check_bracket_line = false})
+require('nvim-autopairs').setup({ enable_check_bracket_line = false })
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on('confirm_done',
-             cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
+	cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
 require("trouble").setup {}
