@@ -34,3 +34,4 @@ for_window [app_id="Chromium"] inhibit_idle fullscreen
 for_window [app_id="google-chrome"] inhibit_idle fullscreen
 
 for_window [title="scratchterm"] move to absolute position center, floating enable, sticky enable, move scratchpad
+for_window [class="Todoist"] move to absolute position center, floating enable, sticky enable, move scratchpad

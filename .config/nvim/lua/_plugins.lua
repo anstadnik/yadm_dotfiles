@@ -1,6 +1,7 @@
 local map = vim.api.nvim_set_keymap
 
 -- Colorscheme
+vim.g.nord_borders = true
 require('nord').set()
 
 -- Map blankline
