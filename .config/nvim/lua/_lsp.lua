@@ -122,67 +122,71 @@ local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 local lspkind = require('lspkind')
 
 cmp.setup {
-    snippet = {expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end},
-    formatting = {
-        format = lspkind.cmp_format({with_text = false, maxwidth = 50})
-    },
-    mapping = {
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
-        ['<C-e>'] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close()
-        }),
-        ["<C-j>"] = cmp.mapping({
-            c = function()
-                if cmp.visible() then
-                    cmp.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = true
-                    })
-                else
-                    cmp.mapping.complete()
-                    -- fallback()
-                end
-            end,
-            i = function(fallback)
-                if cmp.visible() then
-                    cmp.confirm({
-                        behavior = cmp.ConfirmBehavior.Replace,
-                        select = true
-                    })
-                else
-                    fallback()
-                end
-            end,
-            x = function() t("<Plug>(ultisnips_expand)") end
-        }),
-        ["<C-l>"] = cmp.mapping(function(fallback)
-            if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-                return t("<Plug>(ultisnips_jump_forward)")
-            else
-                fallback()
-            end
-        end, {"i", "s"}),
-        ["<C-h>"] = cmp.mapping(function(fallback)
-            if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-                return t("<Plug>(ultisnips_jump_backward)")
-            else
-                fallback()
-            end
-        end, {"i", "s"}),
-        ['<C-n>'] = cmp.mapping(function(fallback)
-            cmp_ultisnips_mappings.compose({"select_next_item"})(fallback)
-        end, {"i", "s"}),
-        ['<C-p>'] = cmp.mapping(function(fallback)
-            cmp_ultisnips_mappings.compose({"select_prev_item"})(fallback)
-        end, {"i", "s"})
-    },
-    sources = cmp.config.sources({
-        {name = 'ultisnips'}, {name = 'nvim_lsp'}, {name = 'tmux'},
-        {name = 'spell'}, {name = 'path'}, {name = 'cmp_tabnine'}
-    })
+	snippet = { expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end },
+	formatting = {
+		format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
+	},
+	mapping = {
+		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+		['<C-e>'] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close()
+		}),
+		["<C-j>"] = cmp.mapping({
+			c = function()
+				if cmp.visible() then
+					cmp.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true
+					})
+				else
+					cmp.mapping.complete()
+					-- fallback()
+				end
+			end,
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true
+					})
+				else
+					fallback()
+				end
+			end,
+			x = function() t("<Plug>(ultisnips_expand)") end
+		}),
+		["<C-l>"] = cmp.mapping(function(fallback)
+			if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+				return t("<Plug>(ultisnips_jump_forward)")
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<C-h>"] = cmp.mapping(function(fallback)
+			if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+				return t("<Plug>(ultisnips_jump_backward)")
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		['<C-n>'] = cmp.mapping(function(fallback)
+			cmp_ultisnips_mappings.compose({ "select_next_item" })(fallback)
+		end, { "i", "s" }),
+		['<C-p>'] = cmp.mapping(function(fallback)
+			cmp_ultisnips_mappings.compose({ "select_prev_item" })(fallback)
+		end, { "i", "s" })
+	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	sources = cmp.config.sources({
+		{ name = 'ultisnips' }, { name = 'nvim_lsp' }, { name = 'tmux' },
+		{ name = 'spell' }, { name = 'path' }, { name = 'cmp_tabnine' }
+	})
 }
 
 -- Use buffer source for `/`.
@@ -246,6 +250,11 @@ nvim_lsp.texlab.setup {
 	capabilities = capabilities,
 	settings = {
 		texlab = {
+		build = {
+			-- args = { "-xelatex", "-pdfxe", "-interaction=nonstopmode", "-synctex=1", "%f" },
+			-- args = { "-pdfxe", "-interaction=nonstopmode", "-synctex=1", "%f" },
+			args = { "-pdf", "-pdflatex=xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
+		},
 			forwardSearch = {
 				executable = "zathura",
 				args = { "--synctex-forward", "%l:1:%f", "%p" }
