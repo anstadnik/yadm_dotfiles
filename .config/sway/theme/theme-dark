@@ -1,0 +1,12 @@
+# set $theme "dark"
+# set $term "XCURSOR_SIZE=32 kitty"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/minimalist-landscape-4k-jt-2560x1600-orange.jpg"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/tape.jpg"
+set $wallpaper "~/Pictures/nord-backgrounds/operating-systems/3840x2160/archlinux.png"
+# set $wallpaper "/home/louis/Dropbox/Wallpapers/tape_nord_darker.jpg"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/engine_schematic_adjusted_scaled_yellow_grey.jpg"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/store-front.gif"
+#set $wallpaper "/home/louis/Dropbox/Wallpapers/3d_terraform_dark.png"
+
+client.focused #5b839a #5b839a #ffffff #7c794e
+client.unfocused #333333 #222222 #888888 #292d2e #222222

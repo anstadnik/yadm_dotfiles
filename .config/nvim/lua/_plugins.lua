@@ -1,8 +1,29 @@
 local map = vim.api.nvim_set_keymap
 
 -- Colorscheme
-vim.g.nord_borders = true
-require('nord').set()
+-- vim.g.nord_borders = true
+-- require('nord').set()
+require('onenord').setup({
+	fade_nc = true, -- Fade non-current windows, making them more distinguishable
+	-- Style that is applied to various groups: see `highlight-args` for options
+	styles = {
+		comments = "italic",
+		strings = "italic",
+		keywords = "bold",
+		functions = "NONE",
+		variables = "NONE",
+		diagnostics = "undercurl",
+	},
+	disable = {
+		background = true, -- Disable setting the background color
+		cursorline = false, -- Disable the cursorline
+		eob_lines = true, -- Hide the end-of-buffer lines
+	},
+	-- Inverse highlight for different groups
+	inverse = {
+		match_paren = true,
+	},
+})
 
 -- Map blankline
 require("indent_blankline").setup { show_current_context = true, show_current_context_start = true }
@@ -101,6 +122,8 @@ map('n', '<leader>sc',
 	"<cmd>lua require('telescope.builtin').command_history()<CR>", opts)
 map('n', '<leader>?', "<cmd>lua require('telescope.builtin').oldfiles()<CR>",
 	opts)
+map('n', '<leader>z', "<cmd>lua require('telescope.builtin').spell_suggest()<CR>",
+	opts)
 
 -- Nvim tree
 require 'nvim-tree'.setup({
@@ -129,8 +152,8 @@ require 'lualine'.setup({
 		lualine_y = { "require'lsp-status'.status()" }
 	},
 	options = {
-		theme = 'nord',
-		-- theme = 'dracula',
+		-- theme = 'nord',
+		theme = 'onenord',
 		section_separators = { left = '', right = '' },
 		component_separators = { left = '/', right = '/' },
 		extensions = { 'nvim-tree', 'fugitive' },
@@ -156,6 +179,7 @@ vim.g.slime_paste_file = "/tmp/.slime_paste"
 vim.g.slime_python_ipython = 1
 
 -- Sandwich
+vim.g.textobj_sandwich_no_default_key_mappings = 1
 map('n', 's', '<Nop>', {})
 map('x', 's', '<Nop>', {})
 
@@ -226,7 +250,7 @@ vim.g.startify_lists = {
 -- vim.g.startify_custom_header = 'map(g:ascii + startify#fortune#boxed(), "\"	 \".v:val")'
 vim.g.startify_custom_header = vim.fn['startify#pad'](vim.fn.split(vim.fn
 	.system(
-	"figlet -w 100 Astadnik"),
+		"figlet -w 100 Astadnik"),
 	'\n'))
 
 vim.g.startify_enable_special = 0
@@ -238,51 +262,44 @@ vim.g.startify_session_before_save = {
 	'silent! bw! term-pane'
 }
 
--- Vim tmuxline
-vim.g.tmuxline_preset = {
-	a = '#S',
-	b = '#W',
-	c = '',
-	win = '#I #W',
-	cwin = '#I #W #F',
-	x = '%a',
-	y = '%R',
-	z = '#H #{prefix_highlight}'
-}
-vim.g.tmuxline_separators = {
-	left = "",
-	left_alt = "/",
-	right = "",
-	right_alt = "/",
-	space = ' '
-}
+-- -- Vim tmuxline
+-- vim.g.tmuxline_preset = {
+-- 	a = '#S',
+-- 	b = '#W',
+-- 	c = '',
+-- 	win = '#I #W',
+-- 	cwin = '#I #W #F',
+-- 	x = '%a',
+-- 	y = '%R',
+-- 	z = '#H #{prefix_highlight}'
+-- }
+-- vim.g.tmuxline_separators = {
+-- 	left = "",
+-- 	left_alt = "/",
+-- 	right = "",
+-- 	right_alt = "/",
+-- 	space = ' '
+-- }
 
 -- require('luatab').setup({})
 
+-- require("tabby").setup({ tabline = require("tabby.presets").tab_with_top_win })
 require("tabby").setup({ tabline = require("tabby.presets").tab_only })
 
-require('hlslens').setup({
-	auto_enable = true,
-	enable_incsearch = true,
-	calm_down = false,
-	nearest_only = false,
-	nearest_float_when = 'auto',
-	float_shadow_blend = 50,
-	virt_priority = 100
-})
-
-vim.cmd([[com! HlSearchLensToggle lua require('hlslens').toggle()]])
-
-map('n', 'n',
-	[[<Cmd>execute('norm! ' . v:count1 . 'nzv')<CR><Cmd>lua require('hlslens').start()<CR>]],
-	{ noremap = true })
-map('n', 'N',
-	[[<Cmd>execute('norm! ' . v:count1 . 'Nzv')<CR><Cmd>lua require('hlslens').start()<CR>]],
-	{ noremap = true })
-map('', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
-map('', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
-map('', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
-map('', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
+-- require('hlslens').setup({ calm_down = true })
+--
+-- -- vim.cmd([[com! HlSearchLensToggle lua require('hlslens').toggle()]])
+--
+-- map('n', 'n',
+-- 	[[<Cmd>execute('norm! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+-- 	{ noremap = true })
+-- map('n', 'N',
+-- 	[[<Cmd>execute('norm! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+-- 	{ noremap = true })
+-- map('', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
+-- map('', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
+-- map('', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
+-- map('', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
 
 require "fidget".setup {}
 

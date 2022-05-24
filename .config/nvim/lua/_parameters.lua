@@ -44,7 +44,11 @@ vim.o.iminsert = 0
 vim.o.completeopt = 'menu,menuone'
 -- vim.o.completeopt = 'menu,menuone,noinsert'
 vim.o.diffopt = 'internal,filler,closeoff,vertical'
--- vim.o.background=light
+if vim.env.THEME == 'light' then
+	vim.o.background = 'light'
+else
+	vim.o.background = 'dark'
+end
 vim.o.background = 'dark'
 
 -- Set colorscheme (order is important here)

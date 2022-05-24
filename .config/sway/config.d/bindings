@@ -1,0 +1,106 @@
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+### Idle configuration
+exec swayidle -w \
+			 timeout 300 'setxkbmap us; swaylock -f --screenshots --effect-pixelate 10' \
+			 timeout 600 'systemctl suspend' \
+			 before-sleep 'setxkbmap us; swaylock -f --screenshots --effect-pixelate 10'
+
+# resume 'swaymsg "output * dpms on"'
+
+# Fix for multiple languages
+			 set $bindsym bindsym --to-code
+
+## Lock Screen
+			 $bindsym $mod+Escape exec swaylock -f --screenshots --effect-pixelate 10
+
+# toggle themes
+$bindsym $mod+p exec ~/.local/bin/theme_switch
+
+### Key bindings
+#
+# Basics:
+#
+# Start a floating terminal
+			 $bindsym $mod+Return exec kitty
+
+			 $bindsym $mod+i [title="scratchterm"] scratchpad show
+
+# Todoist
+			 $bindsym $mod+t [class="Todoist"] scratchpad show
+
+# Open the power menu
+			 $bindsym $mod+Shift+e exec nwgbar
+
+# Kill focused window
+			 $bindsym $mod+q kill
+
+# Start your launcher
+			 $bindsym $mod+d exec ulauncher-toggle
+
+# Find a window
+			 $bindsym $mod+Shift+f exec swayr switch-workspace-container-or-window
+
+# Launcher
+# $bindsym $mod+Shift+d exec $launcher
+
+# Activities
+			 # $bindsym $mod+p exec ~/.config/wofi/windows.py
+
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+			 floating_modifier $mod normal
+
+# Reload the configuration file
+			 $bindsym $mod+Shift+c reload
+
+
+# Move the currently focused window to the scratchpad
+			 $bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+			 $bindsym $mod+minus scratchpad show
+
+			 $bindsym $mod+o exec kitty --class nnn ${HOME}/.local/bin/n
+			 $bindsym $mod+g exec google-chrome-stable
+# $bindsym $mod+g exec google-chrome-beta
+
+#
+# Volume
+#
+			 $bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob
+			 $bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob
+			 $bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
+
+#
+# Player
+#
+			 $bindsym XF86AudioPlay exec playerctl play-pause
+			 $bindsym XF86AudioNext exec playerctl next
+			 $bindsym XF86AudioPrev exec playerctl previous
+#
+# Backlight
+#
+			 $bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+			 $bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+#
+# App shortcuts
+#
+# $bindsym $mod+n exec thunar
+# $bindsym $mod+g exec firedragon
+#
+# Screenshots
+#
+# $bindsym print exec /usr/share/sway/scripts/grimshot --notify save output
+# $bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
+
+# screenshot
+			 bindsym Print exec grimshot --notify save output - | swappy -f -
+			 bindsym Shift+Print exec grimshot --notify save area - | swappy -f -
+			 bindsym Control+Print exec grimshot --notify save window - | swappy -f -

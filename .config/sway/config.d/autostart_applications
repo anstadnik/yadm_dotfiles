@@ -1,30 +1,16 @@
 # Auth with polkit-gnome:
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# Desktop notifications
-exec mako
-
-# https://github.com/emersion/xdg-desktop-portal-wlr/issues/117
-include /etc/sway/config.d/*
- 
-# Wob
-exec mkfifo $SWAYSOCK.wob
-exec tail -f $SWAYSOCK.wob | wob --border-color '#ffdcbb8c' --background-color '#cc3a3a3a' --bar-color '#ffdcbb8c'
+# exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Cool sway stuff
-exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
+# exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
+
+# exec ulauncher
 
 # Workstyle
 exec_always --no-startup-id workstyle &> /tmp/workstyle.log 2>&1
 
 # Wlsunset
-# exec ~/.config/sway/scripts/light.sh
-
-# nm-applet
-# exec nm-applet --indicator
-
-# Welcome
-# exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+exec ~/.config/sway/scripts/light.sh
 
 # Clipman
 # exec clipman restore
@@ -33,16 +19,25 @@ exec_always --no-startup-id workstyle &> /tmp/workstyle.log 2>&1
 # Gnome Keyring
 # exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
 
-# for Touchpad gestures
-# exec libinput-gestures-setup start
-
 # Outputs
-exec kanshi
+exec_always 'killall kanshi; kanshi'
 
 # Schatchterm
-exec kitty -o remember_window_size=no -o initial_window_width=120c -o initial_window_height=40c -T scratchterm
+exec kitty -o background_opacity=0.95 -o remember_window_size=no -o initial_window_width=120c -o initial_window_height=40c -T scratchterm
 
 exec todoist
 
 # Auto mount usb
 exec udiskie
+
+###################
+#  Theme related  #
+###################
+
+# Desktop notifications
+exec_always ~/.config/sway/scripts/mako.sh
+# WOB
+exec_always ~/.config/sway/theme/wob.sh
+
+# https://github.com/emersion/xdg-desktop-portal-wlr/issues/117
+include /etc/sway/config.d/*

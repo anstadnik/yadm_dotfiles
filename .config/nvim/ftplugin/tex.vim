@@ -1,8 +1,10 @@
 let g:tex_flavor='latex'
 let g:tex_conceal='abdmgs' 
 set conceallevel=2
-" setlocal spell
-" set spelllang=en_gb,uk,ru
+setlocal spell
+set spelllang=en_gb,uk,ru
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 nnoremap <silent> <CR> :update<CR>:TexlabBuild<CR>:TexlabForward<CR>
 nnoremap <silent> <leader><CR> :update<CR>:TexlabBuild<CR>
 " Inkscape figures

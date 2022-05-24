@@ -1,24 +1,18 @@
 # Apply gtk theming
-exec_always ~/.config/sway/scripts/import-gsettings
+# exec_always ~/.config/sway/scripts/import-gsettings
 
 # Set inner/outer gaps
 gaps inner 5
-gaps outer 5
+gaps outer 0
+default_border pixel 4
+default_floating_border none
+smart_borders on
+smart_gaps on
 
-# Hide titlebar on windows: 
-default_border pixel 1
-
-# Default Font
-font pango:Noto Sans Regular 10
-
-# Thin borders:
-# smart_borders on
+font Cousine Medium 11
 
 # Set wallpaper:
-# exec ~/.azotebg
 # exec variety
-output "*" bg ~/Pictures/nord-backgrounds/operating-systems/3840x2160/archlinux.png fill
-# output "*" bg ~/Pictures/Background/NordNight.png fill
 
 # Title format for windows
 for_window [shell="xdg_shell"] title_format "%title (%app_id)"
@@ -39,6 +33,13 @@ seat seat0 xcursor_theme phinger-cursors-light
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-   output eDP-1,
-   swaybar_command waybar
+	swaybar_command waybar
 }
+
+# include theme file here, this is a symlink to
+# the current theme.
+# sets $term, $wallpaper, $theme, and $mod+t (theme switch)
+# include ~/.config/sway/theme/theme
+set $wallpaper "~/Pictures/nord-backgrounds/operating-systems/3840x2160/archlinux.png"
+
+output "*" bg $wallpaper fill

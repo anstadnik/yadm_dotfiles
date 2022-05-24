@@ -19,7 +19,7 @@ require 'nvim-treesitter.configs'.setup {
 			-- node_decremental = "grm",		-- decrement to the previous node
 		}
 	},
-	indent = { enable = true },
+	indent = { enable = true, disable = { "python" } },
 	textobjects = { -- syntax-aware textobjects
 		select = {
 			enable = true,
@@ -76,6 +76,8 @@ require 'nvim-treesitter.configs'.setup {
 	pairs = { enable = true },
 	ensure_installed = "all" -- one of "all", "language", or a list of languages
 }
+
+require('spellsitter').setup()
 
 -- vim.o.foldmethod = 'expr'
 -- vim.o.foldexpr = 'nvim_treesitter#foldexpr()'

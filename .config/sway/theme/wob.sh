@@ -1,0 +1,1 @@
+/home/astadnik/.config/sway/theme/wob-light.sh
