@@ -38,16 +38,17 @@ require('packer').startup({ function()
 	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } } -- Add git related info in the signs columns and popups
 	use 'rbong/vim-flog' -- Git log
 
-	---------------------------------------------------------------------------------
-	--                                     LSP                                     --
-	---------------------------------------------------------------------------------
-
+	-- ---------------------------------------------------------------------------------
+	-- --                                     LSP                                     --
+	-- ---------------------------------------------------------------------------------
+	--
 	use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
 	use {
 		'hrsh7th/nvim-cmp',
 		requires = {
 			'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'f3fora/cmp-spell',
-			'quangnguyen30192/cmp-nvim-ultisnips', 'andersevenrud/cmp-tmux', -- Autocompletion from tmux
+			'quangnguyen30192/cmp-nvim-ultisnips',
+			'andersevenrud/cmp-tmux', -- Autocompletion from tmux
 			{ 'tzachar/cmp-tabnine', run = './install.sh' }, 'hrsh7th/cmp-cmdline'
 		}
 	} -- Autocompletion plugin
@@ -60,7 +61,7 @@ require('packer').startup({ function()
 	use 'nvim-telescope/telescope-ui-select.nvim'
 	use 'mhartington/formatter.nvim' -- Format python
 	use { 'simrat39/rust-tools.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-	use { 'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+	use { 'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim', 'jose-elias-alvarez/null-ls.nvim' } }
 	use 'j-hui/fidget.nvim'
 
 	---------------------------------------------------------------------------------
@@ -71,6 +72,7 @@ require('packer').startup({ function()
 	use 'nvim-treesitter/nvim-treesitter-refactor'
 	use 'nvim-treesitter/nvim-treesitter-textobjects' -- Additional textobjects for treesitter
 	use 'lewis6991/nvim-treesitter-context'
+	use 'lewis6991/spellsitter.nvim'
 	use 'p00f/nvim-ts-rainbow' -- Rainbow parentheses
 	use 'theHamsta/nvim-treesitter-pairs'
 
@@ -78,7 +80,8 @@ require('packer').startup({ function()
 	--                                 Appearance                                  --
 	---------------------------------------------------------------------------------
 	use { "folke/zen-mode.nvim", requires = "folke/twilight.nvim" }
-	use 'shaunsingh/nord.nvim'
+	-- use 'shaunsingh/nord.nvim'
+	use 'rmehri01/onenord.nvim'
 	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
 	use 'mhinz/vim-startify' -- Starting screen
 	use {
@@ -88,7 +91,7 @@ require('packer').startup({ function()
 	use "tversteeg/registers.nvim"
 	use "nanozuki/tabby.nvim"
 
-	use { 'kevinhwang91/nvim-hlslens' }
+	use 'kevinhwang91/nvim-hlslens'
 
 	---------------------------------------------------------------------------------
 	--                                Editing misc                                 --

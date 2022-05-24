@@ -45,7 +45,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'gr',
 		"<cmd>lua require('telescope.builtin').lsp_references()<CR>",
 		opts)
-	buf_set_keymap('n', '<leader>ca',
+	buf_set_keymap('n', '<leader>c',
 		'<cmd>lua vim.lsp.buf.code_action()<CR>',
 		opts)
 	buf_set_keymap('n', '<leader>l',
@@ -55,7 +55,7 @@ local on_attach = function(client, bufnr)
 	-- [[<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>]],
 	-- opts)
 
-	if client.config.filetypes[1] == "python" then
+	if client.config.filetypes ~= nil and client.config.filetypes[1] == "python" then
 		-- if client.config.filetypes[1] == "lua" then
 		buf_set_keymap("n", "<leader>f", "<cmd>Format<CR>", opts)
 	else
@@ -124,7 +124,15 @@ local lspkind = require('lspkind')
 cmp.setup {
 	snippet = { expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end },
 	formatting = {
-		format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
+		format = lspkind.cmp_format({ with_text = true,
+			menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				latex_symbols = "[Latex]",
+			})
+		})
 	},
 	mapping = {
 		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -185,7 +193,7 @@ cmp.setup {
 	},
 	sources = cmp.config.sources({
 		{ name = 'ultisnips' }, { name = 'nvim_lsp' }, { name = 'tmux' },
-		{ name = 'spell' }, { name = 'path' }, { name = 'cmp_tabnine' }
+		{ name = 'spell' }, { name = 'path' }, { name = 'cmp_tabnine' }, { name = 'crates' }
 	})
 }
 
@@ -250,11 +258,11 @@ nvim_lsp.texlab.setup {
 	capabilities = capabilities,
 	settings = {
 		texlab = {
-		build = {
-			-- args = { "-xelatex", "-pdfxe", "-interaction=nonstopmode", "-synctex=1", "%f" },
-			-- args = { "-pdfxe", "-interaction=nonstopmode", "-synctex=1", "%f" },
-			args = { "-pdf", "-pdflatex=xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
-		},
+			build = {
+				-- args = { "-xelatex", "-pdfxe", "-interaction=nonstopmode", "-synctex=1", "%f" },
+				-- args = { "-pdfxe", "-interaction=nonstopmode", "-synctex=1", "%f" },
+				args = { "-pdf", "-pdflatex=xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
+			},
 			forwardSearch = {
 				executable = "zathura",
 				args = { "--synctex-forward", "%l:1:%f", "%p" }
@@ -278,7 +286,13 @@ require('rust-tools').setup({
 		}
 	},
 })
-require('crates').setup()
+
+local null_ls = require('null-ls')
+require('crates').setup {
+	null_ls = {
+		enabled = true,
+	},
+}
 
 require('nvim-autopairs').setup({ enable_check_bracket_line = false })
 -- If you want insert `(` after select function or method item

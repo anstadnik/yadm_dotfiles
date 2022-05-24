@@ -7,7 +7,7 @@
 # export TERM=xterm-kitty
 
 # Kitty integration :)
-zstyle ':z4h:' iterm2-integration yes
+# zstyle ':z4h:' iterm2-integration yes
 
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
 zstyle ':z4h:' auto-update      'ask'
@@ -16,10 +16,11 @@ zstyle ':z4h:' auto-update-days '28'
 
 # Automaticaly wrap TTY with a transparent tmux ('integrated'), or start a
 # full-fledged tmux ('system'), or disable features that require tmux ('no').
-zstyle ':z4h:' start-tmux       'no'
+zstyle ':z4h:' start-tmux       'integrated'
+# zstyle ':z4h:' start-tmux       'no'
 # Move prompt to the bottom when zsh starts up so that it's always in the
 # same position. Has no effect if start-tmux is 'no'.
-zstyle ':z4h:' prompt-at-bottom 'no'
+zstyle ':z4h:' prompt-at-bottom 'yes'
 
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard  'pc'
@@ -187,6 +188,17 @@ setopt appendhistory                                            # Immediately ap
 # setopt pushdminus
 
 unset KITTY_SHELL_INTEGRATION
+
+export LESS='-iRXMx4'
+
+export EDITOR=/usr/bin/nvim
+export BROWSER=/usr/bin/google-chrome-stable
+# export TERM=kitty
+export TERMINAL=kitty
+export MAIL=geary
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel {$_JAVA_OPTIONS}"
 
 ## Run neofetch
 # neofetch
