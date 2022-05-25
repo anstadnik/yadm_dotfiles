@@ -1,7 +1,6 @@
 vim.o.tabstop = 2
-vim.g.noexpandtab = true
+vim.o.expandtab = true
 vim.o.shiftwidth = 2
-vim.o.tabstop = 2
 vim.o.inccommand = 'split' -- Incremental live completion
 vim.o.hlsearch = true -- Set highlight on search
 vim.o.number = true -- Make line numbers default
@@ -46,20 +45,20 @@ vim.o.completeopt = 'menu,menuone'
 vim.o.diffopt = 'internal,filler,closeoff,vertical'
 
 local function readAll(file)
-	local f = assert(io.open(file, "rb"))
-	local content = f:read("*all")
-	f:close()
-	return content
+  local f = assert(io.open(file, "rb"))
+  local content = f:read("*all")
+  f:close()
+  return content
 end
 
 local function trim(s)
-   return (s:gsub("^%s*(.-)%s*$", "%1"))
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
 if trim(readAll(os.getenv("HOME") .. '/.config/theme.txt')) == 'light' then
-	vim.o.background = 'light'
+  vim.o.background = 'light'
 else
-	vim.o.background = 'dark'
+  vim.o.background = 'dark'
 end
 
 -- Set colorscheme (order is important here)
