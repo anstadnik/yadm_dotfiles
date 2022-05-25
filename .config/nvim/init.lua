@@ -49,20 +49,21 @@ require('packer').startup({ function()
 			'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'f3fora/cmp-spell',
 			'quangnguyen30192/cmp-nvim-ultisnips',
 			'andersevenrud/cmp-tmux', -- Autocompletion from tmux
-			{ 'tzachar/cmp-tabnine', run = './install.sh' }, 'hrsh7th/cmp-cmdline'
+			{ 'tzachar/cmp-tabnine', run = './install.sh' }, 'hrsh7th/cmp-cmdline',
+			'hrsh7th/cmp-nvim-lsp-document-symbol'
 		}
 	} -- Autocompletion plugin
 	use 'liuchengxu/vista.vim'
 	use 'onsails/lspkind-nvim' -- Icons
 	use 'ray-x/lsp_signature.nvim' -- Lsp signature
-	use 'nvim-lua/lsp-status.nvim'
-	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+	-- use 'nvim-lua/lsp-status.nvim'
+	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", "rcarriga/cmp-dap" } }
 	use 'nvim-telescope/telescope-dap.nvim';
 	use 'nvim-telescope/telescope-ui-select.nvim'
 	use 'mhartington/formatter.nvim' -- Format python
 	use { 'simrat39/rust-tools.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 	use { 'Saecki/crates.nvim', requires = { 'nvim-lua/plenary.nvim', 'jose-elias-alvarez/null-ls.nvim' } }
-	use 'j-hui/fidget.nvim'
+	-- use 'j-hui/fidget.nvim'
 
 	---------------------------------------------------------------------------------
 	--                                 Treesitter                                  --
@@ -92,6 +93,7 @@ require('packer').startup({ function()
 	use "nanozuki/tabby.nvim"
 
 	use 'kevinhwang91/nvim-hlslens'
+	use "rcarriga/nvim-notify"
 
 	---------------------------------------------------------------------------------
 	--                                Editing misc                                 --
