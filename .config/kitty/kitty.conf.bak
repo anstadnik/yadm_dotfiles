@@ -2077,6 +2077,6 @@ map opt+cmd+,    debug_config
 
 
 # BEGIN_KITTY_THEME
-# Onenord Light
+# Onenord Dark
 include current-theme.conf
 # END_KITTY_THEME

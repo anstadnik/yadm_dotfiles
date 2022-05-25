@@ -4,7 +4,7 @@
 # Cool sway stuff
 # exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 
-# exec ulauncher
+exec ulauncher --hide-window
 
 # Workstyle
 exec_always --no-startup-id workstyle &> /tmp/workstyle.log 2>&1
@@ -35,9 +35,6 @@ exec udiskie
 ###################
 
 # Desktop notifications
-exec_always ~/.config/sway/scripts/mako.sh
+# exec_always ~/.config/sway/scripts/mako.sh
 # WOB
 exec_always ~/.config/sway/theme/wob.sh
-
-# https://github.com/emersion/xdg-desktop-portal-wlr/issues/117
-include /etc/sway/config.d/*

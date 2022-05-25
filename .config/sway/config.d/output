@@ -26,5 +26,3 @@ workspace 10 output DP-6 DP-3 DP-1 eDP-1
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-
-exec_always ~/.config/sway/scripts/clamshell.sh
