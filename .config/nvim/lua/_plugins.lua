@@ -15,7 +15,7 @@ require('onenord').setup({
 		diagnostics = "undercurl",
 	},
 	disable = {
-		background = true, -- Disable setting the background color
+		background = false, -- Disable setting the background color
 		cursorline = false, -- Disable the cursorline
 		eob_lines = true, -- Hide the end-of-buffer lines
 	},
@@ -301,7 +301,7 @@ require("tabby").setup({ tabline = require("tabby.presets").tab_only })
 -- map('', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
 -- map('', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], { noremap = true })
 
-require "fidget".setup {}
+-- require "fidget".setup {}
 
 require 'Comment'.setup()
 

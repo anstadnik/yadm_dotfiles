@@ -4,7 +4,7 @@ local map = vim.api.nvim_set_keymap
 -- Use an on_attach function to only map the following keys after the language
 -- server attaches to the current buffer
 local on_attach = function(client, bufnr)
-	require('lsp-status').on_attach(client)
+	-- require('lsp-status').on_attach(client)
 
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -77,12 +77,11 @@ end
 -- local keybindings when the language server attaches
 require('_sourcery')
 
-local lsp_status = require('lsp-status')
-lsp_status.register_progress()
+-- local lsp_status = require('lsp-status')
+-- lsp_status.register_progress()
 
 local servers = { "pyright", "ccls", "vimls", "dockerls", "bashls", "sourcery" }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
 
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
@@ -191,14 +190,25 @@ cmp.setup {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
+	enabled = function()
+		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+				or require("cmp_dap").is_dap_buffer()
+	end,
 	sources = cmp.config.sources({
 		{ name = 'ultisnips' }, { name = 'nvim_lsp' }, { name = 'tmux' },
-		{ name = 'spell' }, { name = 'path' }, { name = 'cmp_tabnine' }, { name = 'crates' }
+		{ name = 'spell' }, { name = 'path' }, { name = 'cmp_tabnine' }, { name = 'crates' },
+		{ name = 'dap' }
 	})
 }
 
 -- Use buffer source for `/`.
--- cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+require'cmp'.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
+    { name = 'buffer' }
+  })
+})
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
@@ -287,7 +297,7 @@ require('rust-tools').setup({
 	},
 })
 
-local null_ls = require('null-ls')
+require('null-ls')
 require('crates').setup {
 	null_ls = {
 		enabled = true,
@@ -301,3 +311,5 @@ cmp.event:on('confirm_done',
 	cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 
 require("trouble").setup {}
+
+require '_notify'

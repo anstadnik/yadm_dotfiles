@@ -44,12 +44,23 @@ vim.o.iminsert = 0
 vim.o.completeopt = 'menu,menuone'
 -- vim.o.completeopt = 'menu,menuone,noinsert'
 vim.o.diffopt = 'internal,filler,closeoff,vertical'
-if vim.env.THEME == 'light' then
+
+local function readAll(file)
+	local f = assert(io.open(file, "rb"))
+	local content = f:read("*all")
+	f:close()
+	return content
+end
+
+local function trim(s)
+   return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+if trim(readAll(os.getenv("HOME") .. '/.config/theme.txt')) == 'light' then
 	vim.o.background = 'light'
 else
 	vim.o.background = 'dark'
 end
-vim.o.background = 'dark'
 
 -- Set colorscheme (order is important here)
 vim.o.termguicolors = true
