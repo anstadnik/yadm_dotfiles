@@ -10,7 +10,7 @@
 		"modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
 		"modules-right": ["custom/pacman", "backlight", "sway/language", "cpu",
 		"memory", "battery", "network", "pulseaudio","tray", "idle_inhibitor",
-		"temperature","custom/theme", "clock","custom/power"], 
+		"custom/theme", "clock","custom/power"], 
 
 		// Modules configuration
 

@@ -17,7 +17,9 @@ exec ~/.config/sway/scripts/light.sh
 # exec wl-paste -t text --watch clipman store
 
 # Gnome Keyring
-# exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
+exec gnome-keyring-daemon --daemonize --start
+# exec eval $(gnome-keyring-daemon --start)
+# exec export SSH_AUTH_SOCK
 
 # Outputs
 exec_always 'killall kanshi; kanshi'
