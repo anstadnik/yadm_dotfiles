@@ -58,6 +58,10 @@ require('packer').startup({ function()
       require 'plugins.configs.dap'
     end
   }
+  use { 'kosayoda/nvim-lightbulb',
+    config = function()
+      require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
+    end }
   use 'nvim-telescope/telescope-ui-select.nvim'
   use { 'mhartington/formatter.nvim',
     config = function() require 'plugins.configs.formatter' end }
@@ -98,7 +102,7 @@ require('packer').startup({ function()
   }
   use "tversteeg/registers.nvim"
   -- use { "nanozuki/tabby.nvim",
-  --   after = 'rmehri01/onenord.nvim',
+  --   -- after = 'rmehri01/onenord.nvim',
   --   config = function()
   --     require("tabby").setup({ tabline = require("tabby.presets").tab_only })
   --   end }

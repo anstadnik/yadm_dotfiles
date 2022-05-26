@@ -48,6 +48,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>c',
     '<cmd>lua vim.lsp.buf.code_action()<CR>',
     opts)
+  buf_set_keymap('x', '<leader>c',
+    '<cmd>lua vim.lsp.buf.range_code_action()<CR>',
+    opts)
   buf_set_keymap('n', '<leader>l',
     "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
     opts)
@@ -203,6 +206,7 @@ cmp.setup {
 
 -- Use buffer source for `/`.
 require 'cmp'.setup.cmdline('/', {
+  mappings = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = 'nvim_lsp_document_symbol' }
   }, {
@@ -212,6 +216,7 @@ require 'cmp'.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
+  mappings = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({ { name = 'cmdline' } }, { { name = 'path' } })
 })
 
