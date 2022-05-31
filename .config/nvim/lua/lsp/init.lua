@@ -123,19 +123,54 @@ local cmp = require('cmp')
 local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 local lspkind = require('lspkind')
 
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "ﰠ",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "塞",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "פּ",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
+
 cmp.setup {
+  experimental = {
+    native_menu = false,
+    ghost_text = false,
+  },
   snippet = { expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end },
   formatting = {
-    format = lspkind.cmp_format({ with_text = true,
-      menu = ({
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[LuaSnip]",
-        nvim_lua = "[Lua]",
-        latex_symbols = "[Latex]",
-      })
-    })
+    fields = { "kind", "abbr", "menu" },
+    format = function(_, vim_item)
+      vim_item.menu = vim_item.kind
+      vim_item.kind = kind_icons[vim_item.kind]
+
+      return vim_item
+    end,
   },
+  -- formatting = {
+  --   format = lspkind.cmp_format({ mode = 'symbol_text',
+  --     preset = 'default',
+  --   })
+  -- },
   mapping = {
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),

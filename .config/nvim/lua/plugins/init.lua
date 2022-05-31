@@ -101,11 +101,11 @@ require('packer').startup({ function()
     config = function() require 'plugins.configs.lualine' end
   }
   use "tversteeg/registers.nvim"
-  -- use { "nanozuki/tabby.nvim",
-  --   -- after = 'rmehri01/onenord.nvim',
-  --   config = function()
-  --     require("tabby").setup({ tabline = require("tabby.presets").tab_only })
-  --   end }
+  use { "nanozuki/tabby.nvim",
+    commit = 'fcbd6ee548e8e8ce0e409d0727bd198d2ff17098',
+    config = function()
+      require("tabby").setup({ tabline = require("tabby.presets").tab_only })
+    end }
   use 'kevinhwang91/nvim-hlslens'
   use { "rcarriga/nvim-notify",
     config = function()

@@ -1,3 +1,4 @@
+-- TODO: https://github.com/thanhvule0310/dotfiles <26-05-22, astadnik> --
 require 'settings'
 require 'plugins'
 require 'lsp'

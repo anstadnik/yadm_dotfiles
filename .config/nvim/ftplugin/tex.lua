@@ -3,20 +3,32 @@ local _, query = pcall(require, 'vim.treesitter.query')
 
 -- local M = {}
 
-local MATH_ENVIRONMENTS = {
-  -- math = true,
-  displaymath = true,
-  equation = true,
-  multline = true,
-  eqnarray = true,
-  align = true,
-  array = true,
-  split = true,
-  alignat = true,
-  gather = true,
-  flalign = true
+-- local MATH_ENVIRONMENTS = {
+--   -- math = true,
+--   displaymath = true,
+--   equation = true,
+--   multline = true,
+--   eqnarray = true,
+--   align = true,
+--   array = true,
+--   split = true,
+--   alignat = true,
+--   gather = true,
+--   flalign = true
+-- }
+
+local MATH_NODES = {
+  displayed_equation = true,
+  inline_formula = true,
+  math_environment = true,
 }
-local MATH_NODES = { displayed_equation = true, inline_formula = true }
+
+local COMMENT = {
+  ['comment'] = true,
+  ['line_comment'] = true,
+  ['block_comment'] = true,
+  ['comment_environment'] = true,
+}
 
 local function get_node_at_cursor()
   local cursor = vim.api.nvim_win_get_cursor(0)
@@ -43,38 +55,32 @@ local COMMENT = {
   comment_environment = true,
 }
 
-function In_comment()
-  local node = get_node_at_cursor()
-  while node do
-    if COMMENT[node:type()] then
-      return true
-    end
-    node = node:parent()
+
+local function get_node_at_cursor()
+  local buf = vim.api.nvim_get_current_buf()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  row = row - 1
+  col = col - 1
+
+  local ok, parser = pcall(ts.get_parser, buf, 'latex')
+  if not ok or not parser then return end
+
+  local root_tree = parser:parse()[1]
+  local root = root_tree and root_tree:root()
+
+  if not root then
+    return
   end
-  return false
+
+  return root:named_descendant_for_range(row, col, row, col)
 end
 
-function In_mathzone()
+function In_comment()
   if has_treesitter then
-    local buf = vim.api.nvim_get_current_buf()
     local node = get_node_at_cursor()
     while node do
-      if node:type() == "text_mode" then
-        return false
-      end
-      if MATH_NODES[node:type()] then
+      if COMMENT[node:type()] then
         return true
-      end
-      if node:type() == "generic_environment" then
-        local begin = node:child(0)
-        local names = begin and begin:field("name")
-
-        if names
-            and names[1]
-            and MATH_ENVIRONMENTS[query.get_node_text(names[1], buf):gsub("{(%w+)%s*%*?}", "%1")]
-        then
-          return true
-        end
       end
       node = node:parent()
     end
@@ -82,4 +88,17 @@ function In_mathzone()
   end
 end
 
--- return M
+function In_mathzone()
+  if has_treesitter then
+    local node = get_node_at_cursor()
+    while node do
+      if node:type() == 'text_mode' then
+        return false
+      elseif MATH_NODES[node:type()] then
+        return true
+      end
+      node = node:parent()
+    end
+    return false
+  end
+end
