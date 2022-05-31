@@ -1,5 +1,5 @@
 # Auth with polkit-gnome:
-# exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Cool sway stuff
 # exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
@@ -39,4 +39,5 @@ exec udiskie
 # Desktop notifications
 # exec_always ~/.config/sway/scripts/mako.sh
 # WOB
+exec "XDG_CURRENT_DESKTOP=sway systemctl --user import-environment"
 exec_always ~/.config/sway/theme/wob.sh
