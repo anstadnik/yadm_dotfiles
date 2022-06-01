@@ -14,7 +14,7 @@ require('packer').startup({ function(use)
   ---------------------------------------------------------------------------------
 
   use 'tpope/vim-fugitive' -- Git commands in nvim
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
+  use { 'lewis6991/gitsigns.nvim',
     config = [[require 'plugins.gitsigns']] }
   use 'rbong/vim-flog' -- Git log
 

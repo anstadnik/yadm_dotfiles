@@ -6,24 +6,24 @@ local MATH_NODES = {
   inline_formula = true,
   math_environment = true,
 }
-local ALIGN_ENVIRONMENTS = {
-  ['{multline}']  = true,
-  ['{multline*}'] = true,
-  ['{eqnarray}']  = true,
-  ['{eqnarray*}'] = true,
-  ['{align}']     = true,
-  ['{align*}']    = true,
-  ['{array}']     = true,
-  ['{array*}']    = true,
-  ['{split}']     = true,
-  ['{split*}']    = true,
-  ['{alignat}']   = true,
-  ['{alignat*}']  = true,
-  ['[gather]']    = true,
-  ['[gather*]']   = true,
-  ['{flalign}']   = true,
-  ['{flalign*}']  = true,
-}
+-- local ALIGN_ENVIRONMENTS = {
+--   ['{multline}']  = true,
+--   ['{multline*}'] = true,
+--   ['{eqnarray}']  = true,
+--   ['{eqnarray*}'] = true,
+--   ['{align}']     = true,
+--   ['{align*}']    = true,
+--   ['{array}']     = true,
+--   ['{array*}']    = true,
+--   ['{split}']     = true,
+--   ['{split*}']    = true,
+--   ['{alignat}']   = true,
+--   ['{alignat*}']  = true,
+--   ['[gather]']    = true,
+--   ['[gather*]']   = true,
+--   ['{flalign}']   = true,
+--   ['{flalign*}']  = true,
+-- }
 
 local function get_node_at_cursor()
   local buf = vim.api.nvim_get_current_buf()
@@ -60,6 +60,7 @@ end
 
 function In_mathzone()
   local node = get_node_at_cursor()
+  print("HELLO")
   while node do
     if node:type() == 'text_mode' then
       return false
@@ -71,37 +72,37 @@ function In_mathzone()
   return false
 end
 
-function In_align()
-  local buf = vim.api.nvim_get_current_buf()
-  local node = get_node_at_cursor()
-  while node do
-    if node:type() == 'math_environment' then
-      local begin = node:child(0)
-      local names = begin and begin:field 'name'
+-- function In_align()
+--   local buf = vim.api.nvim_get_current_buf()
+--   local node = get_node_at_cursor()
+--   while node do
+--     if node:type() == 'math_environment' then
+--       local begin = node:child(0)
+--       local names = begin and begin:field 'name'
+--
+--       if names and names[1] and ALIGN_ENVIRONMENTS[query.get_node_text(names[1], buf)] then
+--         return true
+--       end
+--     end
+--     node = node:parent()
+--   end
+--   return false
+-- end
 
-      if names and names[1] and ALIGN_ENVIRONMENTS[query.get_node_text(names[1], buf)] then
-        return true
-      end
-    end
-    node = node:parent()
-  end
-  return false
-end
-
-function In_xymatrix()
-  local buf = vim.api.nvim_get_current_buf()
-  local node = get_node_at_cursor()
-  while node do
-    if node:type() == 'generic_command' then
-      local names = node:child(0)
-      if names and query.get_node_text(names, buf) == '\\xymatrix' then
-        return true
-      end
-    end
-    node = node:parent()
-  end
-  return false
-end
+-- function In_xymatrix()
+--   local buf = vim.api.nvim_get_current_buf()
+--   local node = get_node_at_cursor()
+--   while node do
+--     if node:type() == 'generic_command' then
+--       local names = node:child(0)
+--       if names and query.get_node_text(names, buf) == '\\xymatrix' then
+--         return true
+--       end
+--     end
+--     node = node:parent()
+--   end
+--   return false
+-- end
 
 vim.g.tex_comment_nospell = 1
 vim.wo.conceallevel = 2
