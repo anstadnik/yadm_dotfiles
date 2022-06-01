@@ -7,10 +7,6 @@ set sw=2
 set expandtab
 set cscopetag
 
-let g:termdebug_map_K = 0
-let g:termdebug_wide = 1
-packadd termdebug
-
 nnoremap <leader>A :ClangdSwitchSourceHeader<CR>
 
 if expand("%:p:h") =~ '/home/astadnik/edu/competitive/*'
