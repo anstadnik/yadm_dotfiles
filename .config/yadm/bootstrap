@@ -37,14 +37,33 @@ if [ "$OS" = "Ubuntu" ]; then
 	sudo ./papirus-folders -t Papirus-Dark
 	sudo ./install
 else
-	sudo pacman -Syu
-	pacman -S --noconfirm --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-	sudo yay -Sy --noconfirm --answerdiff=None neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-git nordic-theme phinger-cursors papirus-nord
+  sudo pacman -Syu --noconfirm --needed git base-devel
+  git clone https://aur.archlinux.org/yay.git
+  cd yay
+  makepkg -sri --needed --noconfirm
+  cd ..
+  rm -rf .cache yay
+
+	sudo yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-git nordic-theme phinger-cursors papirus-nord bat pyright rustup rust-analyzer
 fi
 
 gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
-gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
-gsettings set org.gnome.desktop.interface icon-theme "Papirus"
+gsettings set org.gnome.desktop.wm.preferences theme "Nordic" gsettings set org.gnome.desktop.interface icon-theme "Papirus"
+
+git config --global user.email "stadnikandriy1@gmail.com"
+git config --global user.name "Stadnik Andrii"
+
+ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519 \
 
 zsh -ic "mkvirtualenv neovim; pip install pynvim"
-nvim +PackerUpdate +TSUpdateSync +q
+
+pip install sourcery-cli
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+
+rustup default nightly
+
+# Install Packer
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+nvim --headless -c 'TSInstallSync' -c 'qa'

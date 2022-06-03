@@ -1,43 +1,7 @@
 #!/bin/bash
 
-if [[ $(< ~/.config/theme.txt) == "light" ]]
+if [[ $(< ~/.config/theme.txt) == "dark" ]]
 then
-	echo "dark" > ~/.config/theme.txt
-
-	unlink ~/.config/sway/theme/theme
-	ln -s ~/.config/sway/theme/theme-light ~/.config/sway/theme/theme
-
-	unlink ~/.config/sway/theme/wob.sh
-	ln -s ~/.config/sway/theme/wob-light.sh ~/.config/sway/theme/wob.sh
-
-	# unlink ~/.config/waybar/style.css
-	# ln -s ~/.config/waybar/style-single-bar-light.css ~/.config/waybar/style.css
-
-	unlink ~/.config/gtk-4.0/settings.ini
-	ln -s ~/.config/gtk-4.0/settings-light.ini ~/.config/gtk-4.0/settings.ini
-
-	unlink ~/.config/gtk-3.0/settings.ini
-	ln -s ~/.config/gtk-3.0/settings-light.ini ~/.config/gtk-3.0/settings.ini
-
-	unlink ~/.config/wofi/style.css
-	ln -s ~/.config/wofi/style-light.css ~/.config/wofi/style.css
-
-	# unlink ~/.config/swaync/style.css
-	# ln -s ~/.config/swaync/style-light.css ~/.config/swaync/style.css
-	# swaync-client -rs
-
-	# gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
-
-	kitty +kitten themes --reload-in=all Onenord Dark
-
-	for socket in $(nvr --serverlist); do
-		nvr --servername $socket --nostart -cc 'set background=dark'&
-	done
-	sway reload
-	sleep 4
-	ps aux | grep nvr | cut -f 5 -d " " | xargs kill -SIGKILL
-	exit
-else
 	echo "light" > ~/.config/theme.txt
 
 	unlink ~/.config/sway/theme/theme
@@ -70,6 +34,42 @@ else
 		nvr --servername $socket --nostart -cc 'set background=light'&
 	done
 
+	sway reload
+	sleep 4
+	ps aux | grep nvr | cut -f 5 -d " " | xargs kill -SIGKILL
+	exit
+else
+	echo "dark" > ~/.config/theme.txt
+
+	unlink ~/.config/sway/theme/theme
+	ln -s ~/.config/sway/theme/theme-light ~/.config/sway/theme/theme
+
+	unlink ~/.config/sway/theme/wob.sh
+	ln -s ~/.config/sway/theme/wob-light.sh ~/.config/sway/theme/wob.sh
+
+	# unlink ~/.config/waybar/style.css
+	# ln -s ~/.config/waybar/style-single-bar-light.css ~/.config/waybar/style.css
+
+	unlink ~/.config/gtk-4.0/settings.ini
+	ln -s ~/.config/gtk-4.0/settings-light.ini ~/.config/gtk-4.0/settings.ini
+
+	unlink ~/.config/gtk-3.0/settings.ini
+	ln -s ~/.config/gtk-3.0/settings-light.ini ~/.config/gtk-3.0/settings.ini
+
+	unlink ~/.config/wofi/style.css
+	ln -s ~/.config/wofi/style-light.css ~/.config/wofi/style.css
+
+	# unlink ~/.config/swaync/style.css
+	# ln -s ~/.config/swaync/style-light.css ~/.config/swaync/style.css
+	# swaync-client -rs
+
+	# gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light-compact'
+
+	kitty +kitten themes --reload-in=all Onenord Dark
+
+	for socket in $(nvr --serverlist); do
+		nvr --servername $socket --nostart -cc 'set background=dark'&
+	done
 	sway reload
 	sleep 4
 	ps aux | grep nvr | cut -f 5 -d " " | xargs kill -SIGKILL
