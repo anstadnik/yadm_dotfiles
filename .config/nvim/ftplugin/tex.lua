@@ -60,7 +60,6 @@ end
 
 function In_mathzone()
   local node = get_node_at_cursor()
-  print("HELLO")
   while node do
     if node:type() == 'text_mode' then
       return false
@@ -112,7 +111,7 @@ vim.opt_local.spelllang = { "en_gb", "uk", "ru" }
 -- SPELL
 vim.opt_local.spell = true
 vim.bo.spelllang = 'en_gb'
-vim.keymap.set('i', '<M-l>', '<C-g>u<Esc>[s1z=`]a<C-g>u', { buffer = true, desc = 'Fix Last Miss-Spelling' })
+vim.keymap.set('i', '<M-l>', '<C-g>u<Esc>[s1z=`]a<C-g>u', { buffer = true, desc = 'Fix Last Miss-Spelling', remap = true })
 
 vim.keymap.set('n', '<CR>', '<Cmd>update<CR><Cmd>TexlabBuild<CR><Cmd>TexlabForward<CR>',
   { buffer = true, desc = 'Compile LaTeX' })

@@ -99,7 +99,7 @@ require('packer').startup({ function(use)
   }
   use "tversteeg/registers.nvim"
   use { "nanozuki/tabby.nvim",
-    config = [[require("tabby").setup({ tabline = require("tabby.presets").tab_only })]] }
+    config = [[require("tabby").setup({ tabline = require("tabby.presets").active_tab_with_wins })]] }
   use 'kevinhwang91/nvim-hlslens'
   use { "rcarriga/nvim-notify",
     config = [[require 'plugins.notify']]
