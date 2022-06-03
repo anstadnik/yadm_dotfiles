@@ -7,7 +7,11 @@
 # export TERM=xterm-kitty
 
 # Kitty integration :)
-# zstyle ':z4h:' iterm2-integration yes
+zstyle ':z4h:' iterm2-integration yes
+
+# zstyle :z4h:terminfo:     term xterm-kitty
+# zstyle :z4h:terminfo:ssh  term xterm-kitty
+# zstyle :z4h:terminfo:sudo term xterm-kitty
 
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
 zstyle ':z4h:' auto-update      'ask'
