@@ -1,12 +1,12 @@
 local nvim_lsp = require('lspconfig')
-local map = vim.api.nvim_set_keymap
 
 -- Use an on_attach function to only map the following keys after the language
 -- server attaches to the current buffer
-vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>')
-vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-vim.keymap.set("n", "<leader>q", "<cmd>Trouble workspace_diagnostics<cr>")
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.keymap.set('n', '<leader>q', '<cmd>Trouble workspace_diagnostics<cr>', opts)
 
 local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gd', "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", { buffer = bufnr })
