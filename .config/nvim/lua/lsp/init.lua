@@ -22,11 +22,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('v', '<leader>c', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', { buffer = bufnr })
   vim.keymap.set('n', '<leader>l', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", { buffer = bufnr })
 
-  if client.supports_method "textDocument/formatting" and client.config.filetypes[1] ~= "lua" then
-    vim.keymap.set("n", "<leader>f", "<cmd>Format<CR>", { buffer = bufnr })
+  if client.supports_method "textDocument/formatting" or client.config.filetypes[1] == "lua" then
+    vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", { buffer = bufnr })
   else
-    vim.keymap.set("n", "<leader>f",
-      "<cmd>lua vim.lsp.buf.formatting()<CR>", { buffer = bufnr })
+    vim.keymap.set("n", "<leader>f", "<cmd>Format<CR>", { buffer = bufnr })
   end
 
   require 'lsp_signature'.on_attach({ hint_enable = true });
