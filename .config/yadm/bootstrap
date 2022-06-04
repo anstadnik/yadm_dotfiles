@@ -46,7 +46,7 @@ else
   cd ..
   rm -rf .cache yay
 
-	sudo yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-git nordic-theme phinger-cursors papirus-nord bat pyright rustup rust-analyzer openssh python-virtualenvwrapper python-pip
+	yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-git nordic-theme phinger-cursors papirus-nord bat pyright rustup rust-analyzer openssh python-virtualenvwrapper python-pip
 fi
 
 gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
