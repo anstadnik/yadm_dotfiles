@@ -49,7 +49,7 @@ else
 	yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-jetbrains-mono phinger-cursors papirus-nord bat pyright rustup rust-analyzer openssh python-virtualenvwrapper python-pip gtk3 gtk4 neovim-remote
 fi
 
-~/.local/bin/switch_theme || true
+~/.local/bin/theme_switch || true
 
 git config --global user.email "stadnikandriy1@gmail.com"
 git config --global user.name "Stadnik Andrii"
