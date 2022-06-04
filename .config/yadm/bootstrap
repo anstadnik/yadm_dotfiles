@@ -69,4 +69,4 @@ rustup default nightly
 # Install Packer
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-nvim --headless -c 'TSUpdateSync' -c 'sleep 10000' -c 'qa'
+nvim --headless -c 'TSUpdateSync' -c 'sleep 300' -c 'qa'
