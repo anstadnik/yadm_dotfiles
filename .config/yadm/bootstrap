@@ -67,5 +67,10 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 rustup default nightly
 
 # Install Packer
+echo HEHE1
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+echo HEHE2
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+echo HEHE3
 nvim --headless -c 'TSInstallSync' -c 'qa'
+echo HEHE4
