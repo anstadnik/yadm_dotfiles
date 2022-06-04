@@ -46,7 +46,7 @@ else
   cd ..
   rm -rf .cache yay
 
-	yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-jetbrains-mono phinger-cursors papirus-nord bat pyright rustup rust-analyzer openssh python-pip gtk3 gtk4 neovim-remote unzip npm
+	yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-jetbrains-mono phinger-cursors papirus-nord bat pyright rustup rust-analyzer openssh python-pip gtk3 gtk4 neovim-remote unzip npm figlet
 fi
 
 ~/.local/bin/theme_switch || true
