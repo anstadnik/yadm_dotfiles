@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 OS="${OS%\"}"
 OS="${OS#\"}"
@@ -44,7 +46,7 @@ else
   cd ..
   rm -rf .cache yay
 
-	sudo yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-git nordic-theme phinger-cursors papirus-nord bat pyright rustup rust-analyzer
+	sudo yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-git nordic-theme phinger-cursors papirus-nord bat pyright rustup rust-analyzer ssh python-virtualenvwrapper python-pip
 fi
 
 gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
