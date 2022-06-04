@@ -74,7 +74,8 @@ require 'nvim-treesitter.configs'.setup {
     extended_mode = true -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
   },
   pairs = { enable = true },
-  ensure_installed = "maintained" -- one of "all", "language", or a list of languages
+  ensure_installed = "all", -- one of "all", "language", or a list of languages
+  ignore_install = { "phpdoc" }
 
 }
 
