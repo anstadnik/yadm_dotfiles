@@ -67,6 +67,5 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 rustup default nightly
 
 # Install Packer
-# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'autocmd VimEnter * PackerSync'
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 nvim --headless -c 'TSInstallSync' -c 'qa'
