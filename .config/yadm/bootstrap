@@ -14,29 +14,36 @@ if [ "$OS" = "Ubuntu" ]; then
 	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
 	sudo apt upgrade -y
-	sudo apt install -y build-essential papirus-icon-theme neofetch kitty neovim python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh zoxide
+	sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh zoxide exa bat unar
+  sudo add-apt-repository ppa:neovim-ppa/stable -y
+  sudo apt-get update
+  sudo apt-get install neovim
 	sudo apt autoremove -y
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 	sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 
 	cd /tmp
 	curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
-	extract JetBrainsMono.zip
-	mkdir ~/.fonts
+	unar JetBrainsMono.zip
+	rm -rf  ~/.fonts
+  mkdir ~/.fonts
 	mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
 	fc-cache -fv
 
 	curl -LO https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic-v40.tar.xz
-	extract Nordic-v40.tar.xz
-	mkdir ~/.themes
+	unar Nordic-v40.tar.xz
+	rm -rf  ~/.themes
+  mkdir ~/.themes
 	mv /tmp/Nordic-v40 ~/.themes/
 
-	mkdir ~/.icons
+	rm -rf  ~/.icons
+  mkdir ~/.icons
 	wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
 
 	git clone https://github.com/Adapta-Projects/Papirus-Nord
 	cd Papirus-Nord
-	sudo ./papirus-folders -t Papirus-Dark
+	sudo sh -c "yes | ./papirus-folders -t Papirus-Dark"
 	sudo ./install
 else
   sudo pacman -Syu --noconfirm --needed git base-devel
