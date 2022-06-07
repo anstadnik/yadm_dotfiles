@@ -14,7 +14,7 @@ if [ "$OS" = "Ubuntu" ]; then
 	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
 	sudo apt upgrade -y
-	sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh zoxide exa bat unar
+	sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh zoxide exa bat unar neovim unzip
 	sudo apt autoremove -y
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
