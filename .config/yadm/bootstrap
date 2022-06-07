@@ -40,8 +40,8 @@ if [ "$OS" = "Ubuntu" ]; then
 
 	git clone https://github.com/Adapta-Projects/Papirus-Nord
 	cd Papirus-Nord
-	sudo sh -c "yes | ./papirus-folders -t Papirus-Dark"
-	sudo ./install
+	sudo ./papirus-folders -t Papirus-Dark
+	sudo sh -c "yes | ./install"
 else
   sudo pacman -Syu --noconfirm --needed git base-devel
   git clone https://aur.archlinux.org/yay.git
