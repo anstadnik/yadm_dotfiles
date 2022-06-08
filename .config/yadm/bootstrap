@@ -14,12 +14,14 @@ if [ "$OS" = "Ubuntu" ]; then
 	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
 	sudo apt upgrade -y
+  # TODO: Check for ubuntu version, if 20 then no exa and zoxide <07-06-22, astadnik> #
 	sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh zoxide exa bat unar neovim unzip
 	sudo apt autoremove -y
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 	sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 
+  # TODO: Check if folder exists <07-06-22, astadnik> #
 	cd /tmp
 	curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
 	unar JetBrainsMono.zip
@@ -68,7 +70,7 @@ export TMUX_PLUGIN_MANAGER_PATH='$HOME/.tmux/plugins/'
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
 
-rustup default nightly
+/home/astadnik/.cargo/bin/rustup default nightly
 
 # Install Packer
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'

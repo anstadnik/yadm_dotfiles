@@ -43,7 +43,7 @@ end
 -- local keybindings when the language server attaches
 require('lsp.servers.sourcery')
 
-local servers = { "pyright", "ccls", "vimls", "dockerls", "bashls", "sourcery" }
+local servers = { "pyright", "clangd", --[[ "ccls", ]] "vimls", "dockerls", "bashls", "sourcery" }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 for _, lsp in ipairs(servers) do
