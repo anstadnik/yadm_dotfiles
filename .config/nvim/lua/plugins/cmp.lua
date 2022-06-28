@@ -54,6 +54,7 @@ cmp.setup {
       vim.fn["UltiSnips#Anon"](args.body)
     end
   },
+  preselect = cmp.PreselectMode.None,
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(_, vim_item)
