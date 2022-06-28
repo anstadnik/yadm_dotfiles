@@ -20,7 +20,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", { buffer = bufnr })
   vim.keymap.set('n', '<leader>c', '<cmd>lua vim.lsp.buf.code_action()<CR>', { buffer = bufnr })
   vim.keymap.set('v', '<leader>c', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', { buffer = bufnr })
-  vim.keymap.set('n', '<leader>l', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", { buffer = bufnr })
+  vim.keymap.set('n', '<leader>l', "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>",
+    { buffer = bufnr })
 
   if client.supports_method "textDocument/formatting" or client.config.filetypes[1] == "lua" then
     vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", { buffer = bufnr })
@@ -43,7 +44,7 @@ end
 -- local keybindings when the language server attaches
 require('lsp.servers.sourcery')
 
-local servers = { "pyright", "clangd", --[[ "ccls", ]] "vimls", "dockerls", "bashls", "sourcery" }
+local servers = { "pyright", "clangd", --[[ "ccls", ]] "vimls", "dockerls", "bashls", "sourcery", --[[ "ltex" ]] }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 for _, lsp in ipairs(servers) do
