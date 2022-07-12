@@ -125,6 +125,13 @@ nvim_lsp.texlab.setup {
 
 -- require'lspsaga'.init_lsp_saga()
 require('rust-tools').setup({
+  tools = {
+    autoSetHints = false,
+    -- inlay_hints = {
+    --   -- Only show inlay hints for the current line
+    --   only_current_line = true,
+    -- }
+  },
   server = {
     on_attach = on_attach,
     capabilities = capabilities,

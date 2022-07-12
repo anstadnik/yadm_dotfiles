@@ -185,8 +185,8 @@ require('packer').startup({ function(use)
     require('packer').sync()
   end
 end,
-config = {
-  display = {
-    open_fn = require('packer.util').float,
-  } } }
+  config = {
+    display = {
+      open_fn = require('packer.util').float,
+    } } }
 )
