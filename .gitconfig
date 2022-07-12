@@ -31,3 +31,4 @@
     colorMoved = default
 [diff]
 	colorMoved = default
+	external = difft
