@@ -19,15 +19,15 @@ input type:keyboard {
     xkb_options grp:win_space_toggle,ctrl:swapcaps_hyper,grp_led:caps
 }
 
-# input 1452:591:Keychron_Keychron_K3 {
-#     xkb_layout us,ru,ua
-#     xkb_options grp:win_space_toggle,ctrl:swapcaps_hyper,grp_led:caps,altwin:swap_lalt_lwin
-# }
-#
-# input 1452:591:Keychron_K3 {
-#     xkb_layout us,ru,ua
-#     xkb_options grp:win_space_toggle,ctrl:swapcaps_hyper,grp_led:caps,altwin:swap_lalt_lwin
-# }
+input 1452:591:Keychron_Keychron_K3 {
+    xkb_layout us,ru,ua
+    xkb_options grp:win_space_toggle,ctrl:swapcaps_hyper,grp_led:caps,altwin:swap_lalt_lwin
+}
+
+input 1452:591:Keychron_K3 {
+    xkb_layout us,ru,ua
+    xkb_options grp:win_space_toggle,ctrl:swapcaps_hyper,grp_led:caps,altwin:swap_lalt_lwin
+}
 
 
 # exec_always {

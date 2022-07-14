@@ -1,1 +1,1 @@
-/home/astadnik/.config/sway/theme/wob-light.sh
+/home/astadnik/.config/sway/theme/wob-dark.sh
