@@ -30,7 +30,7 @@ then
 
    kitty +kitten themes --reload-in=all Onenord Light
 
-   sed -i -e 's/theme = "onenord",/theme = "onenord_light",/'
+   # sed -i -e 's/theme = "onenord",/theme = "onenord_light",/'
    for socket in $(nvr --serverlist); do
       nvr --servername $socket --nostart -cc 'lua require("base46").toggle_theme()' &
    done
@@ -68,7 +68,7 @@ else
 
    kitty +kitten themes --reload-in=all Onenord Dark
 
-   sed -i -e 's/theme = "onenord_light",/theme = "onenord",/'
+   # sed -i -e 's/theme = "onenord_light",/theme = "onenord",/'
    for socket in $(nvr --serverlist); do
       nvr --servername $socket --nostart -cc 'lua require("base46").toggle_theme()' &
    done
