@@ -10,7 +10,8 @@ exec ulauncher --hide-window
 exec_always --no-startup-id workstyle &> /tmp/workstyle.log 2>&1
 
 # Wlsunset
-exec ~/.config/sway/scripts/light.sh
+# exec ~/.config/sway/scripts/light.sh
+exec clight
 
 # Clipman
 # exec clipman restore
