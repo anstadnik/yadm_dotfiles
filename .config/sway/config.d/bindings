@@ -86,8 +86,10 @@ exec swayidle -w \
 #
 # Backlight
 #
-       $bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
-       $bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+       # $bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+       # $bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+       $bindsym XF86MonBrightnessUp exec brightnessctl -e s 5%+ && brightnessctl -P g > $SWAYSOCK.wob
+       $bindsym XF86MonBrightnessDown exec brightnessctl -e s 5%- && brightnessctl -P g > $SWAYSOCK.wob
 #
 # App shortcuts
 #
