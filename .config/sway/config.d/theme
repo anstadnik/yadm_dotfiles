@@ -40,7 +40,7 @@ bar {
 # the current theme.
 # sets $term, $wallpaper, $theme, and $mod+t (theme switch)
 # include ~/.config/sway/theme/theme
-set $wallpaper "~/Pictures/nord-backgrounds/operating-systems/3840x2160/archlinux.png"
+set $wallpaper "~/Pictures/watchtower.jpg"
 # set $wallpaper "~/.config/sway/theme/wallpaper.jpg"
 
 output "*" bg $wallpaper fill
