@@ -32,3 +32,5 @@
 [diff]
 	colorMoved = default
 	external = difft
+[safe]
+	directory = /opt/flutter
