@@ -15,14 +15,19 @@ if [[ "$OS" = "Ubuntu" ]]; then
 	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
 	sudo apt upgrade -y
+
 	if [[ "$VERSION" = "20.04" ]]; then
-		sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh bat unar neovim unzip topgrade
+		sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh bat unar neovim unzip
 	elif [[ "$VERSION" = "22.04" || "$VERSION" = "22.10" ]]; then
-		sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh zoxide exa bat unar neovim unzip topgrade
+		sudo apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh zoxide exa bat unar neovim unzip
 	else
 		echo "Unknown Ubuntu"
 		exit 1
 	fi
+
+  curl -LO https://github.com/r-darwish/topgrade/releases/latest/download/topgrade-v9.0.1-x86_64-unknown-linux-gnu.tar.gz
+  tar xf topgrade-*
+  sudo mv topgrade /usr/local/bin
 
 	sudo apt autoremove -y
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
