@@ -1,0 +1,36 @@
+FROM ubuntu
+
+ARG UNAME=astadnik
+ARG UID=1000
+ARG GID=1000
+WORKDIR /tmp
+
+# Load mecessary tools for installing yay
+RUN apt install --yes zsh yadm build-essential
+
+# Manage users and permissions
+RUN echo "root:Docker!" | chpasswd \
+  && groupadd -g ${GID} -o ${UNAME} \
+  && useradd -lm -u ${UID} -g ${GID} -s /usr/bin/zsh ${UNAME} \
+  && echo "${UNAME} ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
+  && echo "${UNAME}:potato" | chpasswd
+
+USER ${UNAME}
+WORKDIR /home/${UNAME}
+
+# Set up the volume
+RUN mkdir /home/${UNAME}/host \
+  && chown -R ${UNAME}:${UNAME} /home/${UNAME}/host
+# VOLUME /home/${UNAME}/projects
+# VOLUME /mnt
+
+##############
+#  Settings  #
+##############
+
+RUN yadm clone --bootstrap https://gitlab.com/astadnik/yadm_dotfiles
+
+# Clear
+RUN sudo apt-get clean
+
+ENTRYPOINT /usr/bin/zsh
