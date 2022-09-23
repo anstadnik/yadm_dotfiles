@@ -10,7 +10,7 @@ sudo echo
 if [[ "$OS" = "Ubuntu" ]]; then
 	VERSION=$(cut -f2 <<<$(lsb_release -r))
 
-  sudo apt install software-properties-common
+  sudo apt install -y software-properties-common
 	sudo add-apt-repository ppa:neovim-ppa/unstable -y
 	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
@@ -29,35 +29,35 @@ if [[ "$OS" = "Ubuntu" ]]; then
 
 	sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 
-	# TODO: Check if folder exists <07-06-22, astadnik> #
-	if [[ ! -d ~/.fonts ]]; then
-		cd /tmp
-		curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
-		unar JetBrainsMono.zip
-		rm -rf ~/.fonts
-		mkdir ~/.fonts
-		mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
-		fc-cache -fv
-	fi
-
-	if [[ ! -d ~/.themes ]]; then
-		curl -LO https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic-v40.tar.xz
-		unar Nordic-v40.tar.xz
-		rm -rf ~/.themes
-		mkdir ~/.themes
-		mv /tmp/Nordic-v40 ~/.themes/
-	fi
-
-	if [[ ! -d ~/.icons ]]; then
-		rm -rf ~/.icons
-		mkdir ~/.icons
-		wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
-	fi
-
-	git clone https://github.com/Adapta-Projects/Papirus-Nord
-	cd Papirus-Nord
-	sudo ./papirus-folders -t Papirus-Dark
-	sudo sh -c "yes | ./install"
+	# # TODO: Check if folder exists <07-06-22, astadnik> #
+	# if [[ ! -d ~/.fonts ]]; then
+	# 	cd /tmp
+	# 	curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+	# 	unar JetBrainsMono.zip
+	# 	rm -rf ~/.fonts
+	# 	mkdir ~/.fonts
+	# 	mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
+	# 	fc-cache -fv
+	# fi
+	#
+	# if [[ ! -d ~/.themes ]]; then
+	# 	curl -LO https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic-v40.tar.xz
+	# 	unar Nordic-v40.tar.xz
+	# 	rm -rf ~/.themes
+	# 	mkdir ~/.themes
+	# 	mv /tmp/Nordic-v40 ~/.themes/
+	# fi
+	#
+	# if [[ ! -d ~/.icons ]]; then
+	# 	rm -rf ~/.icons
+	# 	mkdir ~/.icons
+	# 	wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+	# fi
+	#
+	# git clone https://github.com/Adapta-Projects/Papirus-Nord
+	# cd Papirus-Nord
+	# sudo ./papirus-folders -t Papirus-Dark
+	# sudo sh -c "yes | ./install"
 elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	sudo pacman -Syu --noconfirm --needed git base-devel
 	git clone https://aur.archlinux.org/yay.git
