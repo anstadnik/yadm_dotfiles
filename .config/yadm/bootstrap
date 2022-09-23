@@ -10,7 +10,7 @@ sudo echo
 if [[ "$OS" = "Ubuntu" ]]; then
 	VERSION=$(cut -f2 <<<$(lsb_release -r))
 
-  sudo apt install -y software-properties-common
+	sudo apt install -y software-properties-common
 	sudo add-apt-repository ppa:neovim-ppa/unstable -y
 	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
@@ -25,12 +25,14 @@ if [[ "$OS" = "Ubuntu" ]]; then
 		exit 1
 	fi
 
-  curl -LO https://github.com/r-darwish/topgrade/releases/latest/download/topgrade-v9.0.1-x86_64-unknown-linux-gnu.tar.gz
-  tar xf topgrade-*
-  sudo mv topgrade /usr/local/bin
-
 	sudo apt autoremove -y
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+	/home/astadnik/.cargo/bin/rustup default stable
+
+	curl -LO https://github.com/r-darwish/topgrade/releases/latest/download/topgrade-v9.0.1-x86_64-unknown-linux-gnu.tar.gz
+	tar xf topgrade-*
+	sudo mv topgrade /usr/local/bin
 
 	sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 
@@ -71,7 +73,10 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	cd ..
 	rm -rf .cache yay
 
-	yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-jetbrains-mono phinger-cursors papirus-nord bat pyright rustup rust-analyzer openssh python-pip gtk3 gtk4 neovim-remote unzip npm figlet topgrade
+  yay -Sy --noconfirm --answerdiff=None rustup
+	rustup default stable
+
+	yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-jetbrains-mono phinger-cursors papirus-nord bat pyright rust-analyzer openssh python-pip gtk3 gtk4 neovim-remote unzip npm figlet topgrade
 else
 	echo "Unknown distro"
 	exit 1
@@ -87,8 +92,6 @@ ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519
 export TMUX_PLUGIN_MANAGER_PATH='$HOME/.tmux/plugins/'
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # ~/.tmux/plugins/tpm/bin/install_plugins
-
-/home/astadnik/.cargo/bin/rustup default nightly
 
 # Install Packer
 topgrade -y
