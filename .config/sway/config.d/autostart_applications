@@ -7,11 +7,14 @@ exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
 exec ulauncher --hide-window
 
 # Workstyle
-exec_always --no-startup-id workstyle &> /tmp/workstyle.log 2>&1
+exec_always --no-startup-id sworkstyle &> /tmp/workstyle.log 2>&1
 
 # Wlsunset
 # exec ~/.config/sway/scripts/light.sh
 exec clight
+
+exec aw-server-rust > /tmp/aw-server-rust.txt 2&>1
+exec aw-watcher-window-wayland > /tmp/aw-watcher-window-wayland.txt 2&>1
 
 # Clipman
 # exec clipman restore
