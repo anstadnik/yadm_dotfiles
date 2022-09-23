@@ -10,6 +10,7 @@ sudo echo
 if [[ "$OS" = "Ubuntu" ]]; then
 	VERSION=$(cut -f2 <<<$(lsb_release -r))
 
+  sudo apt install software-properties-common
 	sudo add-apt-repository ppa:neovim-ppa/unstable -y
 	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
