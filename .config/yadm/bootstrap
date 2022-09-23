@@ -58,7 +58,7 @@ if [[ "$OS" = "Ubuntu" ]]; then
   cd Papirus-Nord
   sudo ./papirus-folders -t Papirus-Dark
   sudo sh -c "yes | ./install"
-else
+elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
   sudo pacman -Syu --noconfirm --needed git base-devel
   git clone https://aur.archlinux.org/yay.git
   cd yay
@@ -67,6 +67,8 @@ else
   rm -rf .cache yay
 
   yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-jetbrains-mono phinger-cursors papirus-nord bat pyright rustup rust-analyzer openssh python-pip gtk3 gtk4 neovim-remote unzip npm figlet topgrade
+else
+  return 1
 fi
 
 ~/.local/bin/theme_switch || true
