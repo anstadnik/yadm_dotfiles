@@ -6,7 +6,7 @@ ARG GID=1000
 WORKDIR /tmp
 
 # Load necessary tools for installing yay
-RUN pacman --noconfirm -Syu zsh yadm base-devel
+RUN pacman --noconfirm -Syu zsh yadm base-devel lsp-release
 
 # Manage users and permissions
 RUN echo "root:Docker!" | chpasswd \

@@ -6,7 +6,7 @@ on:
       - "master"
 
 jobs:
-  build_ubuntu:
+  build:
     strategy:
       fail-fast: false
       matrix:
