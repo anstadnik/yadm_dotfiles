@@ -8,6 +8,7 @@ on:
 jobs:
   build_ubuntu:
     strategy:
+      fail-fast: false
       matrix:
         OS:
           - ubuntu
