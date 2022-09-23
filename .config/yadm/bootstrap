@@ -24,6 +24,7 @@ if [[ "$OS" = "Ubuntu" ]]; then
 
   if [[ "$VERSION" = "22.04" || "$VERSION" = "22.10" ]]; then
     sudo apt install -y zoxide exa
+  fi
 
 	sudo apt autoremove -y
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
