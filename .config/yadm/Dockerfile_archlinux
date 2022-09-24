@@ -28,10 +28,8 @@ RUN mkdir /home/${UNAME}/host \
 #  Settings  #
 ##############
 
-RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles
-
-# Clear
-RUN yes | yay -Scc \
+RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
+  && yes | yay -Scc \
   && sudo sh -c 'yes | pacman -Scc'
 
 ENTRYPOINT /usr/bin/zsh
