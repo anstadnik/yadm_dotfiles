@@ -88,9 +88,11 @@ yadm submodule update --init --recursive
 git config --global user.email "stadnikandriy1@gmail.com"
 git config --global user.name "Stadnik Andrii"
 
+sudo chsh --shell $(which zsh) $USER
+
 # ~/.local/bin/theme_switch || true
 
 yes n | ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519
 
-yes | nvim -Ec "autocmd User PackerComplete quitall"
+nvim -Ec "autocmd User PackerComplete quitall"
 yes | topgrade -y --disable git_repos
