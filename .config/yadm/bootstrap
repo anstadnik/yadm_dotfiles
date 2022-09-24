@@ -45,7 +45,11 @@ if [[ "$OS" = "Ubuntu" ]]; then
 		run_in_background install_icons_ubuntu
 		run_in_background install_fonts_ubuntu
 		run_in_background install_cursors_ubuntu
-		run_in_background install_chrome_ubuntu
+	
+	cd /tmp
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo apt install ./google-chrome-stable_current_amd64.deb
+	rm -rf ./google-chrome-stable_current_amd64.deb
 
 		sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
@@ -85,7 +89,7 @@ git config --global user.name "Stadnik Andrii"
 
 # ~/.local/bin/theme_switch || true
 
-ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519
+yes n | ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519
 
 yes | nvim -c "autocmd User PackerComplete quitall"
 yes | topgrade -y --disable git_repos
