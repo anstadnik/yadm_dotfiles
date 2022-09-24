@@ -91,5 +91,5 @@ git config --global user.name "Stadnik Andrii"
 
 yes n | ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519
 
-yes | nvim -c "autocmd User PackerComplete quitall"
+yes | nvim -Ec "autocmd User PackerComplete quitall"
 yes | topgrade -y --disable git_repos
