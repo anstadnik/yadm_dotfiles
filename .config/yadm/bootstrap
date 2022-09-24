@@ -8,65 +8,81 @@ sudo echo
 
 if [[ "$OS" = "Ubuntu" ]]; then
 	VERSION=$(cut -f2 <<<$(lsb_release -r))
-  export DEBIAN_FRONTEND=noninteractive 
+	export DEBIAN_FRONTEND=noninteractive
 
 	sudo apt install -y software-properties-common
 	sudo add-apt-repository ppa:neovim-ppa/unstable -y
-	#sudo add-apt-repository ppa:papirus/papirus -y
 	sudo apt update
 	sudo apt upgrade -y
 
 	if [[ "$VERSION" = "20.04" || "$VERSION" = "22.04" || "$VERSION" = "22.10" ]]; then
-		sudo -E apt install -y build-essential papirus-icon-theme neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump gnome-tweaks zsh bat unar neovim unzip
+		sudo -E apt install -y build-essential neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump zsh bat unar neovim unzip
 	else
 		echo "Unknown Ubuntu"
 		exit 1
 	fi
 
-  if [[ "$VERSION" = "22.04" || "$VERSION" = "22.10" ]]; then
-    sudo apt install -y zoxide exa
-  fi
+	if [[ "$VERSION" = "22.04" || "$VERSION" = "22.10" ]]; then
+		sudo apt install -y zoxide exa
+	fi
 
 	sudo apt autoremove -y
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
 	/home/astadnik/.cargo/bin/rustup default stable
 
+	cd /tmp
 	curl -LO https://github.com/r-darwish/topgrade/releases/latest/download/topgrade-v9.0.1-x86_64-unknown-linux-gnu.tar.gz
 	tar xf topgrade-*
 	sudo mv topgrade /usr/local/bin
+	rm -rf topgrade-*
 
 	sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 
-	# # TODO: Check if folder exists <07-06-22, astadnik> #
-	# if [[ ! -d ~/.fonts ]]; then
-	# 	cd /tmp
-	# 	curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
-	# 	unar JetBrainsMono.zip
-	# 	rm -rf ~/.fonts
-	# 	mkdir ~/.fonts
-	# 	mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
-	# 	fc-cache -fv
-	# fi
-	#
-	# if [[ ! -d ~/.themes ]]; then
-	# 	curl -LO https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic-v40.tar.xz
-	# 	unar Nordic-v40.tar.xz
-	# 	rm -rf ~/.themes
-	# 	mkdir ~/.themes
-	# 	mv /tmp/Nordic-v40 ~/.themes/
-	# fi
-	#
-	# if [[ ! -d ~/.icons ]]; then
-	# 	rm -rf ~/.icons
-	# 	mkdir ~/.icons
-	# 	wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
-	# fi
-	#
-	# git clone https://github.com/Adapta-Projects/Papirus-Nord
-	# cd Papirus-Nord
-	# sudo ./papirus-folders -t Papirus-Dark
-	# sudo sh -c "yes | ./install"
+	if [[ "$(command -v gnome-shell)" ]]; then
+		sudo -E apt install -y gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
+
+		cd /tmp
+		wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+		chmod +x gnome-shell-extension-installer
+		sudo mv gnome-shell-extension-installer /usr/bin/
+
+		gnome-shell-extension-installer 19 307 3193
+
+		if [[ ! -d ~/.themes ]]; then
+			cd /tmp
+			git clone https://github.com/vinceliuice/Colloid-icon-theme
+			cd Colloid-icon-theme/
+			./install.sh -s nord
+		fi
+
+		if [[ ! -d ~/.icons ]]; then
+			cd /tmp
+			git clone https://github.com/vinceliuice/Colloid-gtk-theme
+			cd Colloid-gtk-theme/
+			./install.sh --tweaks nord
+		fi
+
+		if [[ ! -d ~/.fonts ]]; then
+			cd /tmp
+			curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+			unar JetBrainsMono.zip
+			rm -rf ~/.fonts
+			mkdir ~/.fonts
+			mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
+			fc-cache -fv
+		fi
+
+		cd /tmp
+		wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+
+		cd /tmp
+		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+		sudo apt install ./google-chrome-stable_current_amd64.deb
+		rm -rf ./google-chrome-stable_current_amd64.deb
+
+		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
+	fi
+
 elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	sudo pacman -Syu --noconfirm --needed git base-devel
 	git clone https://aur.archlinux.org/yay.git
@@ -78,7 +94,14 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	yay -Sy --noconfirm --answerdiff=None rustup
 	rustup default stable
 
-	yay -Sy --noconfirm --answerdiff=None git neofetch kitty neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide papirus-nord nerd-fonts-jetbrains-mono phinger-cursors papirus-nord bat pyright rust-analyzer openssh python-pip gtk3 gtk4 neovim-remote unzip npm figlet topgrade
+	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide bat pyright rust-analyzer openssh python-pip neovim-remote unzip npm figlet topgrade
+
+	if [[ "$(command -v gnome-shell)" ]]; then
+		yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono
+
+		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
+	fi
+
 else
 	echo "Unknown distro"
 	exit 1
@@ -97,6 +120,3 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install Packer
 topgrade -y
-# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-# nvim --headless -c 'TSUpdateSync' -c 'sleep 300' -c 'qa'
