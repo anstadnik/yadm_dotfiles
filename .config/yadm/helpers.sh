@@ -10,7 +10,7 @@ install_gnome_extension_ubuntu() {
 	cd /tmp
 	wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
 	chmod +x gnome-shell-extension-installer
-	./gnome-shell-extension-installer 19 307 3193
+	./gnome-shell-extension-installer --yes 19 307 3193
 	rm -rf ./gnome-shell-extension-installer
 }
 
