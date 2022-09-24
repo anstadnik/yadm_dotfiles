@@ -11,6 +11,7 @@ install_gnome_extension_ubuntu() {
 	wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
 	chmod +x gnome-shell-extension-installer
 	./gnome-shell-extension-installer 19 307 3193
+  rm -rf ./gnome-shell-extension-installer
 }
 
 install_theme_ubuntu() {
@@ -19,6 +20,7 @@ install_theme_ubuntu() {
 		git clone https://github.com/vinceliuice/Colloid-icon-theme
 		cd Colloid-icon-theme/
 		./install.sh -s nord
+    rm -rf /tmp/Colloid-icon-theme
 	fi
 
 }
@@ -29,6 +31,7 @@ install_icons_ubuntu() {
 		git clone https://github.com/vinceliuice/Colloid-gtk-theme
 		cd Colloid-gtk-theme/
 		./install.sh --tweaks nord
+    rm -rf /tmp/Colloid-gtk-theme
 	fi
 }
 
@@ -37,10 +40,10 @@ install_fonst_ubuntu() {
 		cd /tmp
 		curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
 		unar JetBrainsMono.zip
-		rm -rf ~/.fonts
 		mkdir ~/.fonts
 		mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
 		fc-cache -fv
+    rm -rf /tmp/JetBrainsMono.zip /tmp/JetBrainsMono
 	fi
 }
 
