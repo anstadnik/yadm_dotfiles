@@ -10,7 +10,7 @@ if [[ ! "$OS" =~ ^(Ubuntu|EndeavourOS|Arch)$ ]]; then
 	exit 1
 fi
 
-source ./helpers.sh
+source ./.config/yadm/helpers.sh
 
 # Confirm sudo
 sudo echo
@@ -76,6 +76,7 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 
 fi
 
+cd "$HOME"
 git config --global url."https://github.com/".insteadOf 'git@github.com:'
 yadm submodule update --init --recursive
 git config --global user.email "stadnikandriy1@gmail.com"
