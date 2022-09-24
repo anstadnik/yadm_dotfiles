@@ -15,23 +15,20 @@ install_gnome_extension_ubuntu() {
 }
 
 install_theme_ubuntu() {
-	if [[ ! -d ~/.icons ]]; then
-		cd /tmp
-		git clone https://github.com/vinceliuice/Colloid-icon-theme
-		cd Colloid-icon-theme/
-		./install.sh -s nord
-		rm -rf /tmp/Colloid-icon-theme
-	fi
+	cd /tmp
+	git clone https://github.com/vinceliuice/Colloid-icon-theme
+	cd Colloid-icon-theme/
+	./install.sh -s nord
+	rm -rf /tmp/Colloid-icon-theme
 }
 
 install_icons_ubuntu() {
-	if [[ ! -d ~/.themes ]]; then
-		cd /tmp
-		git clone https://github.com/vinceliuice/Colloid-gtk-theme
-		cd Colloid-gtk-theme/
-		./install.sh --tweaks nord
-		rm -rf /tmp/Colloid-gtk-theme
-	fi
+	cd /tmp
+	git clone https://github.com/vinceliuice/Colloid-gtk-theme
+	cd Colloid-gtk-theme/
+	./install.sh --tweaks nord
+	rm -rf /tmp/Colloid-gtk-theme
+	wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
 }
 
 install_fonts_ubuntu() {
@@ -46,11 +43,6 @@ install_fonts_ubuntu() {
 	fi
 }
 
-install_cursors_ubuntu() {
-	cd /tmp
-	wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
-}
-
 install_rustup_ubuntu() {
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 	/home/astadnik/.cargo/bin/rustup default stable
@@ -60,4 +52,4 @@ install_gnome_deps_arch() {
 	yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono
 }
 
-export -f install_gnome_extension_ubuntu install_theme_ubuntu install_icons_ubuntu install_fonts_ubuntu install_cursors_ubuntu install_rustup_ubuntu install_gnome_deps_arch
+export -f install_gnome_extension_ubuntu install_theme_ubuntu install_icons_ubuntu install_fonts_ubuntu install_rustup_ubuntu install_gnome_deps_arch

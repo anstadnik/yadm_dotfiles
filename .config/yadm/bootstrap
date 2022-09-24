@@ -44,7 +44,6 @@ if [[ "$OS" = "Ubuntu" ]]; then
 		run_in_background install_theme_ubuntu
 		run_in_background install_icons_ubuntu
 		run_in_background install_fonts_ubuntu
-		run_in_background install_cursors_ubuntu
 
 		cd /tmp
 		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
