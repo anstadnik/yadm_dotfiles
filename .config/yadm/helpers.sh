@@ -67,3 +67,5 @@ install_rustup_ubuntu() {
 install_gnome_deps_arch() {
 	yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono
 }
+
+export -f install_gnome_extension_ubuntu install_theme_ubuntu install_icons_ubuntu install_fonts_ubuntu install_cursors_ubuntu install_chrome_ubuntu install_rustup_ubuntu install_gnome_deps_arch
