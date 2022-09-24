@@ -40,8 +40,6 @@ if [[ "$OS" = "Ubuntu" ]]; then
 	sudo mv topgrade /usr/local/bin
 	rm -rf topgrade-*
 
-	sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
-
 	if [[ "$(command -v gnome-shell)" ]]; then
 		sudo -E apt install -y kitty gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
 
@@ -52,6 +50,7 @@ if [[ "$OS" = "Ubuntu" ]]; then
 		run_in_background install_cursors_ubuntu
 		run_in_background install_chrome_ubuntu
 
+		sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
 	fi
 
@@ -71,6 +70,7 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	if [[ "$(command -v gnome-shell)" ]]; then
 		run_in_background install_gnome_deps_arch
 
+		sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
 	fi
 
