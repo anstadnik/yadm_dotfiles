@@ -1,6 +1,6 @@
 run_in_background() {
 	if [[ -x $(command -v gnome-shell) && -x $(command -v kitty) ]]; then
-		kitty $@ &
+		kitty bash -c $@ &
 	else
 		$@ &
 	fi
