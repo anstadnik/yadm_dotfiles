@@ -2,6 +2,15 @@
 set -e
 
 OS=$(cut -f2 <<<$(lsb_release -i))
+! [[ -x $(command -v gnome-shell) ]]
+GUI=$?
+
+if [[ ! "$OS" =~ ^(Ubuntu|EndeavourOS|Arch)$ ]]; then
+	echo "Unknown distro"
+	exit 1
+fi
+
+source ./helpers.sh
 
 # Confirm sudo
 sudo echo
@@ -15,20 +24,15 @@ if [[ "$OS" = "Ubuntu" ]]; then
 	sudo apt update
 	sudo apt upgrade -y
 
-	if [[ "$VERSION" = "20.04" || "$VERSION" = "22.04" || "$VERSION" = "22.10" ]]; then
-		sudo -E apt install -y build-essential neofetch kitty python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump zsh bat unar neovim unzip
-	else
-		echo "Unknown Ubuntu"
-		exit 1
-	fi
+	sudo -E apt install -y build-essential neofetch python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump zsh bat unar neovim unzip
 
-	if [[ "$VERSION" = "22.04" || "$VERSION" = "22.10" ]]; then
+	if [[ "$VERSION" =~ ^(22.04|22.10)$ ]]; then
 		sudo apt install -y zoxide exa
 	fi
 
 	sudo apt autoremove -y
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-	/home/astadnik/.cargo/bin/rustup default stable
+
+	run_in_background install_rustup_ubuntu
 
 	cd /tmp
 	curl -LO https://github.com/r-darwish/topgrade/releases/latest/download/topgrade-v9.0.1-x86_64-unknown-linux-gnu.tar.gz
@@ -39,46 +43,14 @@ if [[ "$OS" = "Ubuntu" ]]; then
 	sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 
 	if [[ "$(command -v gnome-shell)" ]]; then
-		sudo -E apt install -y gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
+		sudo -E apt install -y kitty gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
 
-		cd /tmp
-		wget -O gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
-		chmod +x gnome-shell-extension-installer
-		sudo mv gnome-shell-extension-installer /usr/bin/
-
-		gnome-shell-extension-installer 19 307 3193
-
-		if [[ ! -d ~/.themes ]]; then
-			cd /tmp
-			git clone https://github.com/vinceliuice/Colloid-icon-theme
-			cd Colloid-icon-theme/
-			./install.sh -s nord
-		fi
-
-		if [[ ! -d ~/.icons ]]; then
-			cd /tmp
-			git clone https://github.com/vinceliuice/Colloid-gtk-theme
-			cd Colloid-gtk-theme/
-			./install.sh --tweaks nord
-		fi
-
-		if [[ ! -d ~/.fonts ]]; then
-			cd /tmp
-			curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
-			unar JetBrainsMono.zip
-			rm -rf ~/.fonts
-			mkdir ~/.fonts
-			mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
-			fc-cache -fv
-		fi
-
-		cd /tmp
-		wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
-
-		cd /tmp
-		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-		sudo apt install ./google-chrome-stable_current_amd64.deb
-		rm -rf ./google-chrome-stable_current_amd64.deb
+		run_in_background install_gnome_extension_ubuntu
+		run_in_background install_theme_ubuntu
+		run_in_background install_icons_ubuntu
+		run_in_background install_fonts_ubuntu
+		run_in_background install_cursors_ubuntu
+		run_in_background install_chrome_ubuntu
 
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
 	fi
@@ -97,14 +69,11 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide bat pyright rust-analyzer openssh python-pip neovim-remote unzip npm figlet topgrade
 
 	if [[ "$(command -v gnome-shell)" ]]; then
-		yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono
+		run_in_background install_gnome_deps_arch
 
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
 	fi
 
-else
-	echo "Unknown distro"
-	exit 1
 fi
 
 git config --global url."https://github.com/".insteadOf 'git@github.com:'
