@@ -72,7 +72,8 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide bat pyright rust-analyzer openssh python-pip neovim-remote unzip npm figlet topgrade nnn
 
 	if [[ "$(command -v gnome-shell)" ]]; then
-		run_in_background install_gnome_deps_arch
+		yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono gnome-browser-connector
+		gnome-shell-extension-installer 19 307 3193
 
 		sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
