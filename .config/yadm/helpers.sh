@@ -22,7 +22,6 @@ install_theme_ubuntu() {
 		./install.sh -s nord
 		rm -rf /tmp/Colloid-icon-theme
 	fi
-
 }
 
 install_icons_ubuntu() {
@@ -50,13 +49,6 @@ install_fonts_ubuntu() {
 install_cursors_ubuntu() {
 	cd /tmp
 	wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
-}
-
-install_chrome_ubuntu() {
-	cd /tmp
-	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-	sudo apt install ./google-chrome-stable_current_amd64.deb
-	rm -rf ./google-chrome-stable_current_amd64.deb
 }
 
 install_rustup_ubuntu() {
