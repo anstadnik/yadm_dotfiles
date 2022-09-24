@@ -28,9 +28,7 @@ RUN mkdir /home/${UNAME}/host \
 #  Settings  #
 ##############
 
-RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles
-
-# Clear
-RUN sudo apt-get clean
+RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
+  && sudo apt-get clean
 
 ENTRYPOINT /usr/bin/zsh
