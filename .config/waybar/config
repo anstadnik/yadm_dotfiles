@@ -2,27 +2,24 @@
 	"layer": "top", // Waybar at top layer
 		"position": "top", // Waybar position (top|bottom|left|right)
 		"height": "10 px",
-		"mode": "hide",
-		"ipc": true,
+		"mode": "dock",
+		// "ipc": true,
 		"output": ["DP-6", "eDP-1"],
 		//"width": 1350, // Waybar width
 		// Choose the order of the modules idle_inhibitor
-		"modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-		"modules-right": ["custom/pacman", "backlight", "sway/language", "cpu",
+		"modules-left": ["wlr/workspaces", "hyprland/window"],
+		"modules-right": ["custom/pacman", "backlight", "hyprland/language", "cpu",
 		"memory", "battery", "network", "pulseaudio","tray", "idle_inhibitor",
 		"custom/theme", "clock","custom/power"], 
 
 		// Modules configuration
 
-		"sway/workspaces": {
+		"wlr/workspaces": {
 			"disable-scroll": true,
 			"all-outputs": true,
 			"format": "{icon}",
 		},
-		"sway/mode": {
-			"format": "<span style=\"italic\">{}</span>"
-		},
-		"sway/window": {
+		"hyprland/window": {
 			"format": "{}"
 		},
 		"idle_inhibitor": {
@@ -113,7 +110,7 @@
 			"on-click": "nwgbar",
 			"tooltip": false,
 		},
-		"sway/language": {
+		"hyprland/language": {
 			"format": "  {}",
 		},
 		"custom/theme": {
@@ -121,11 +118,11 @@
 			"on-click": "~/.local/bin/theme_switch"
 		}
 		//    "custom/keyboard-layout": {
-		//       	"exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+		//       	"exec": "hyprlandmsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
 		//       	// Interval set only as a fallback, as the value is updated by signal
 		//       	"interval": 30,
 		//       	"format": "  {}", // Icon: keyboard
-		//       	// Signal sent by Sway key binding (~/.config/sway/key-bindings)
+		//       	// Signal sent by hyprland key binding (~/.config/hyprland/key-bindings)
 		//       	"signal": 1, // SIGHUP
 		//       	"tooltip": false,
 		//         "on-click": "~/.config/waybar/scripts/keyhint.sh",
