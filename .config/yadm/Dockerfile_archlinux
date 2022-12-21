@@ -1,0 +1,35 @@
+FROM archlinux
+
+ARG UNAME=astadnik
+ARG UID=1000
+ARG GID=1000
+WORKDIR /tmp
+
+# Load necessary tools for installing yay
+RUN pacman --noconfirm -Syu zsh yadm base-devel lsb-release
+
+# Manage users and permissions
+RUN echo "root:Docker!" | chpasswd \
+  && groupadd -g ${GID} -o ${UNAME} \
+  && useradd -lm -u ${UID} -g ${GID} -s /usr/bin/zsh ${UNAME} \
+  && echo "${UNAME} ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
+  && echo "${UNAME}:potato" | chpasswd
+
+USER ${UNAME}
+WORKDIR /home/${UNAME}
+
+# Set up the volume
+RUN mkdir /home/${UNAME}/host \
+  && chown -R ${UNAME}:${UNAME} /home/${UNAME}/host
+# VOLUME /home/${UNAME}/projects
+# VOLUME /mnt
+
+##############
+#  Settings  #
+##############
+
+RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
+  && yes | yay -Scc \
+  && sudo sh -c 'yes | pacman -Scc'
+
+ENTRYPOINT /usr/bin/zsh
