@@ -69,7 +69,6 @@ z4h init || return
 
 # Extend PATH.
 path=(~/bin $path)
-path=(/usr/local/share/python $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
