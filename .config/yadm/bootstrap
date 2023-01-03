@@ -94,7 +94,6 @@ sudo chsh --shell $(which zsh) $USER
 
 yes n | ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519
 
-nvim --headless +"autocmd User PackerComplete quitall"
-ls ~/.local/share/nvim/site/pack/packer/start
+nvim --headless "+Lazy! sync" +qa
 
 yes | topgrade -y --disable git_repos

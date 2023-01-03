@@ -33,3 +33,5 @@ RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
   && sudo sh -c 'yes | pacman -Scc'
 
 ENTRYPOINT /usr/bin/zsh
+
+# vim: set ft=dockerfile:
