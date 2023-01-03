@@ -43,6 +43,6 @@ fi
 . "$Z4H"/z4h.zsh || return
 
 setopt rcs
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ -f  "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
 fi
