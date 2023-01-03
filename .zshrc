@@ -90,10 +90,14 @@ z4h source ~/.env.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/lib/git.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/extract/extract.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git/git.plugin.zsh
-z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+if [[ "$(uname)" == 'Linux' ]] then
+    z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+fi
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/archlinux/archlinux.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/common-aliases/common-aliases.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git-flow-avh/git-flow-avh.plugin.zsh
+# z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/docker/_docker
+# z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/docker-compose/_docker-compose
 z4h source $Z4H/ohmyzsh/ohmyzsh/lib/directories.zsh
 z4h source $Z4H/MichaelAquilina/zsh-auto-notify/auto-notify.plugin.zsh
 eval "$(zoxide init zsh)"
@@ -134,7 +138,7 @@ function sudo () {
         fi
     fi
     command sudo "$@"
-  }
+}
 compdef _directories md
 
 # Define named directories: ~w <=> Windows home directory on WSL.
