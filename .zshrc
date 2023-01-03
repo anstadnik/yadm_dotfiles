@@ -4,24 +4,18 @@
 #
 # Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
 
-# export TERM=xterm-kitty
-
 # Kitty integration :)
 zstyle ':z4h:' iterm2-integration yes
-
-# zstyle :z4h:terminfo:     term xterm-kitty
-# zstyle :z4h:terminfo:ssh  term xterm-kitty
-# zstyle :z4h:terminfo:sudo term xterm-kitty
-
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
-zstyle ':z4h:' auto-update      'ask'
+# You can manually run `z4h update` to update everything.
+zstyle ':z4h:' auto-update      'no'
 # Ask whether to auto-update this often; has no effect if auto-update is 'no'.
 zstyle ':z4h:' auto-update-days '28'
 
 # Automaticaly wrap TTY with a transparent tmux ('integrated'), or start a
 # full-fledged tmux ('system'), or disable features that require tmux ('no').
 zstyle ':z4h:' start-tmux       'integrated'
-# zstyle ':z4h:' start-tmux       'no'
+zstyle ':z4h:' start-tmux       'no'
 # Move prompt to the bottom when zsh starts up so that it's always in the
 # same position. Has no effect if start-tmux is 'no'.
 zstyle ':z4h:' prompt-at-bottom 'yes'
@@ -32,6 +26,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     zstyle ':z4h:bindkey' keyboard  'pc'
 fi
+
+# Mark up shell's output with semantic information.
+zstyle ':z4h:' term-shell-integration 'yes'
 
 # Right-arrow key accepts one character ('partial-accept') from
 # command autosuggestions or the whole thing ('accept')?
@@ -80,16 +77,8 @@ z4h install ohmyzsh/ohmyzsh || return
 z4h init || return
 
 # Extend PATH.
-path=(/opt/cisco/anyconnect/bin/ /usr/bin ~/.cargo/bin $path)
-
-export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
-export PATH=$JAVA_HOME/bin:$PATH
-
-export ANDROID_HOME='/opt/android-sdk'
-export PATH=$PATH:$ANDROID_HOME/platform-tools/
-export PATH=$PATH:$ANDROID_HOME/tools/bin/
-export PATH=$PATH:$ANDROID_ROOT/emulator
-export PATH=$PATH:$ANDROID_HOME/tools/
+path=(~/bin $path)
+path=(/usr/local/share/python $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
@@ -109,24 +98,16 @@ z4h source $Z4H/ohmyzsh/ohmyzsh/lib/directories.zsh
 z4h source $Z4H/MichaelAquilina/zsh-auto-notify/auto-notify.plugin.zsh
 eval "$(zoxide init zsh)"
 
-# fpath+=($Z4H/ohmyzsh/ohmyzsh/plugins/supervisor)
-
-
 # Define key bindings.
-z4h bindkey z4h-backward-kill-word  Ctrl+Backspace Ctrl+H
-z4h bindkey z4h-backward-kill-zword Ctrl+Alt+Backspace
-
-z4h bindkey undo Ctrl+/  # undo the last command line change
-z4h bindkey redo Alt+/   # redo the last undone command line change
-
-z4h bindkey z4h-cd-back    Alt+Left   # cd into the previous directory
-z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
-z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
-z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
+z4h bindkey undo Ctrl+/   Shift+Tab  # undo the last command line change
+z4h bindkey redo Option+/            # redo the last undone command line change
 
 z4h bindkey z4h-forward-word    Ctrl+Space   # cd into a child directory
+z4h bindkey z4h-cd-back    Shift+Left   # cd into the previous directory
+z4h bindkey z4h-cd-forward Shift+Right  # cd into the next directory
+z4h bindkey z4h-cd-up      Shift+Up     # cd into the parent directory
+z4h bindkey z4h-cd-down    Shift+Down   # cd into a child directory
 
-bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
 
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
@@ -139,47 +120,32 @@ autoload -Uz zmv
 # Define functions and completions.
 unalias md
 function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
-# Usage: codi [filetype]
-codi() {
-    local syntax="${1:-python}"
-    nvim -c \
-        "let g:startify_disable_at_vimenter = 1 |\
-		set bt=nofile ls=0 noru nonu nornu |\
-		hi ColorColumn guibg=bg |\
-		hi VertSplit guifg=bg |\
-		hi NonText guifg=bg |\
-        Codi $syntax"
-}
-sp() {
-    ~/.virtualenvs/repl/bin/ipython -i -c "__import__('sympy').init_session(use_unicode=True, auto_symbols=True, auto_int_to_Integer=True)"
-}
-compdef _directories md
-# ALT-I - Paste the selected entry from locate output into the command line
-fzf-locate-widget() {
-    local selected
-    if selected=$(locate / | fzf -q "$LBUFFER" --preview 'bat --style=numbers --color=always --line-range :500 {}'); then
-        LBUFFER=$selected
+function sudo () {
+    unset -f sudo
+    if [[ "$(uname)" == 'Darwin' ]]
+    then
+        if ! command grep 'pam_tid.so' /etc/pam.d/sudo --silent
+        then
+            command sudo sed -i -e '1s;^;auth       sufficient     pam_tid.so\n;' /etc/pam.d/sudo
+        fi
+        if ! command grep '/opt/homebrew/lib/pam/pam_reattach.so' /etc/pam.d/sudo --silent
+        then
+            command sudo sed -i -e '1s;^;auth     optional     /opt/homebrew/lib/pam/pam_reattach.so ignore_ssh\n;' /etc/pam.d/sudo
+        fi
     fi
-    zle redisplay
-}
-zle     -N    fzf-locate-widget
-bindkey '\ei' fzf-locate-widget
+    command sudo "$@"
+  }
+compdef _directories md
 
 # Define named directories: ~w <=> Windows home directory on WSL.
 [[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
 
 # Define aliases.
-alias tree='exa --tree --long'
-
-# Arch Linux command-not-found support, you must have package pkgfile installed
-# https://wiki.archlinux.org/index.php/Pkgfile#.22Command_not_found.22_hook
-[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
-
-# Advanced command-not-found hook
-[[ -e /usr/share/doc/find-the-command/ftc.zsh ]] && source /usr/share/doc/find-the-command/ftc.zsh
+alias tree='tree -a -I .git'
 
 # Add flags to existing aliases.
 # alias ls="${aliases[ls]:-ls} -A"
+alias ls=exa
 
 alias v="nvim"
 
@@ -189,33 +155,13 @@ alias _='sudo '
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
-# # Changing/making/removing directory
-setopt correct                                                  # Auto correct mistakes
-# setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
-# setopt nocaseglob                                               # Case insensitive globbing
-# setopt rcexpandparam                                            # Array expension with parameters
-setopt nocheckjobs                                              # Don't warn about running processes when exiting
-# setopt numericglobsort                                          # Sort filenames numerically when it makes sense
-# setopt nobeep                                                   # No beep
 setopt appendhistory                                            # Immediately append history instead of overwriting
-# setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
-# setopt autocd                                                   # if only directory path is entered, cd there.
-# setopt auto_pushd
-# setopt pushd_ignore_dups
-# setopt pushdminus
 
-unset KITTY_SHELL_INTEGRATION
+export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
 
-export LESS='-iRXMx4'
-
-export EDITOR=/usr/bin/nvim
-export BROWSER=/usr/bin/google-chrome-stable
-# export TERM=kitty
-export TERMINAL=kitty
-export MAIL=geary
-# export QT_QPA_PLATFORMTHEME="qt5ct"
-# export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-# export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel {$_JAVA_OPTIONS}"
-
-## Run neofetch
-# neofetch
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# source /opt/homebrew/bin/virtualenvwrapper.sh
+# source /Users/username/.local/bin/virtualenvwrapper.sh

@@ -32,3 +32,5 @@ RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
   && sudo apt-get clean
 
 ENTRYPOINT /usr/bin/zsh
+
+# vim: set ft=dockerfile:
