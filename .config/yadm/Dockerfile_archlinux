@@ -30,7 +30,8 @@ RUN mkdir /home/${UNAME}/host \
 
 RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
   && yes | yay -Scc \
-  && sudo sh -c 'yes | pacman -Scc'
+  && sudo sh -c 'yes | pacman -Scc' \
+  && script -qec 'zsh -is </dev/null' /dev/null
 
 ENTRYPOINT /usr/bin/zsh
 

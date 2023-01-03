@@ -15,7 +15,6 @@ zstyle ':z4h:' auto-update-days '28'
 # Automaticaly wrap TTY with a transparent tmux ('integrated'), or start a
 # full-fledged tmux ('system'), or disable features that require tmux ('no').
 zstyle ':z4h:' start-tmux       'integrated'
-zstyle ':z4h:' start-tmux       'no'
 # Move prompt to the bottom when zsh starts up so that it's always in the
 # same position. Has no effect if start-tmux is 'no'.
 zstyle ':z4h:' prompt-at-bottom 'yes'
@@ -87,15 +86,15 @@ export GPG_TTY=$TTY
 z4h source ~/.env.zsh
 
 # Use additional Git repositories pulled in with `z4h install`.
-z4h source $Z4H/ohmyzsh/ohmyzsh/lib/git.zsh
+# z4h source $Z4H/ohmyzsh/ohmyzsh/lib/git.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/extract/extract.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git/git.plugin.zsh
+z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 if [[ "$(uname)" == 'Linux' ]] then
-    z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+    z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/archlinux/archlinux.plugin.zsh
 fi
-z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/archlinux/archlinux.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/common-aliases/common-aliases.plugin.zsh
-z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git-flow-avh/git-flow-avh.plugin.zsh
+# z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git-flow-avh/git-flow-avh.plugin.zsh
 # z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/docker/_docker
 # z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/docker-compose/_docker-compose
 z4h source $Z4H/ohmyzsh/ohmyzsh/lib/directories.zsh
@@ -103,14 +102,7 @@ z4h source $Z4H/MichaelAquilina/zsh-auto-notify/auto-notify.plugin.zsh
 eval "$(zoxide init zsh)"
 
 # Define key bindings.
-z4h bindkey undo Ctrl+/   Shift+Tab  # undo the last command line change
-z4h bindkey redo Option+/            # redo the last undone command line change
-
 z4h bindkey z4h-forward-word    Ctrl+Space   # cd into a child directory
-z4h bindkey z4h-cd-back    Shift+Left   # cd into the previous directory
-z4h bindkey z4h-cd-forward Shift+Right  # cd into the next directory
-z4h bindkey z4h-cd-up      Shift+Up     # cd into the parent directory
-z4h bindkey z4h-cd-down    Shift+Down   # cd into a child directory
 
 
 # Edit the current command line in $EDITOR
@@ -157,15 +149,11 @@ alias py="python3"
 alias _='sudo '
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots     # no special treatment for file names with a leading dot
-setopt no_auto_menu  # require an extra TAB press to open the completion menu
-
+# setopt no_auto_menu  # require an extra TAB press to open the completion menu
+setopt auto_menu
 setopt appendhistory                                            # Immediately append history instead of overwriting
 
 export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# source /opt/homebrew/bin/virtualenvwrapper.sh
-# source /Users/username/.local/bin/virtualenvwrapper.sh
