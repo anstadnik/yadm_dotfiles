@@ -69,10 +69,10 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	yay -Sy --noconfirm --answerdiff=None rustup
 	rustup default stable
 
-	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd exa telegram-desktop htop zsh zoxide bat pyright rust-analyzer openssh python-pip neovim-remote unzip npm figlet topgrade nnn
+	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd exa htop zsh zoxide bat pyright rust-analyzer openssh python-pip unzip npm figlet topgrade nnn
 
 	if [[ "$(command -v gnome-shell)" ]]; then
-		yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono gnome-browser-connector
+		yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono gnome-browser-connector telegram-desktop 
 		gnome-shell-extension-installer --yes 19 307 3193
 
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
