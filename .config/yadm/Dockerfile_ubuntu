@@ -29,7 +29,8 @@ RUN mkdir /home/${UNAME}/host \
 ##############
 
 RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
-  && sudo apt-get clean
+  && sudo apt-get clean \
+  && script -qec 'zsh -is </dev/null' /dev/null
 
 ENTRYPOINT /usr/bin/zsh
 
