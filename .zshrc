@@ -14,7 +14,8 @@ zstyle ':z4h:' auto-update-days '28'
 
 # Automaticaly wrap TTY with a transparent tmux ('integrated'), or start a
 # full-fledged tmux ('system'), or disable features that require tmux ('no').
-zstyle ':z4h:' start-tmux       'integrated'
+# zstyle ':z4h:' start-tmux       'integrated'
+zstyle ':z4h:' start-tmux       'no'
 # Move prompt to the bottom when zsh starts up so that it's always in the
 # same position. Has no effect if start-tmux is 'no'.
 zstyle ':z4h:' prompt-at-bottom 'yes'
@@ -86,7 +87,7 @@ export GPG_TTY=$TTY
 z4h source ~/.env.zsh
 
 # Use additional Git repositories pulled in with `z4h install`.
-# z4h source $Z4H/ohmyzsh/ohmyzsh/lib/git.zsh
+z4h source $Z4H/ohmyzsh/ohmyzsh/lib/git.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/extract/extract.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git/git.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
