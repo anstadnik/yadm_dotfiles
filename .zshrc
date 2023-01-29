@@ -155,6 +155,7 @@ setopt auto_menu
 setopt appendhistory                                            # Immediately append history instead of overwriting
 
 export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+export JULIA_NUM_THREADS=auto
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
