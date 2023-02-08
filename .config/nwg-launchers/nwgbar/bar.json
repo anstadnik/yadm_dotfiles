@@ -1,22 +1,27 @@
 [
   {
     "name": "Lock screen",
-    "exec": "swaylock -f -c 000000",
-    "icon": "system-lock-screen"
+    "exec": "swaylock -C ~/.config/swaylock/config",
+    "icon": "/home/astadnik/.config/nwg-launchers/nwgbar/images/lock.svg"
+  },
+  {
+  	"name": "Suspend",
+  	"exec": "systemctl suspend;swaylock -C ~/.config/swaylock/config",
+  	"icon": "/home/astadnik/.config/nwg-launchers/nwgbar/images/suspend.svg"
   },
   {
     "name": "Logout",
-    "exec": "swaymsg exit",
-    "icon": "system-log-out"
+    "exec": "loginctl terminate-user astadnik",
+    "icon": "/home/astadnik/.config/nwg-launchers/nwgbar/images/logout.svg"
   },
   {
     "name": "Reboot",
     "exec": "systemctl reboot",
-    "icon": "system-reboot"
+    "icon": "/home/astadnik/.config/nwg-launchers/nwgbar/images/reboot.svg"
   },
   {
     "name": "Shutdown",
     "exec": "systemctl -i poweroff",
-    "icon": "system-shutdown"
+    "icon": "/home/astadnik/.config/nwg-launchers/nwgbar/images/shutdown.svg"
   }
 ]
