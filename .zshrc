@@ -156,7 +156,9 @@ setopt auto_menu
 setopt appendhistory                                            # Immediately append history instead of overwriting
 
 # export VIRTUALENVWRAPPER_PYTHON=$HOMEBREW_PREFIX/opt/python@3.11/libexec/bin/python3
-export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+fi
 # export path=($HOMEBREW_PREFIX/opt/python@3.11/libexec/bin $path)
 export JULIA_NUM_THREADS=auto
 
