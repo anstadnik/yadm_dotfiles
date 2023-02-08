@@ -77,8 +77,9 @@ z4h install ohmyzsh/ohmyzsh || return
 z4h init || return
 
 # Extend PATH.
-path=(~/bin $path)
-path=(/usr/local/share/python $path)
+export path=(~/bin $path)
+export path=(/usr/local/share/python $path)
+# export path=($HOMEBREW_PREFIX/opt/python@3.11/libexec/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY
@@ -142,7 +143,7 @@ alias tree='tree -a -I .git'
 
 # Add flags to existing aliases.
 # alias ls="${aliases[ls]:-ls} -A"
-alias ls=exa
+alias ls=lsd
 
 alias v="nvim"
 
@@ -154,8 +155,11 @@ setopt glob_dots     # no special treatment for file names with a leading dot
 setopt auto_menu
 setopt appendhistory                                            # Immediately append history instead of overwriting
 
+# export VIRTUALENVWRAPPER_PYTHON=$HOMEBREW_PREFIX/opt/python@3.11/libexec/bin/python3
 export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+# export path=($HOMEBREW_PREFIX/opt/python@3.11/libexec/bin $path)
 export JULIA_NUM_THREADS=auto
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+macchina
