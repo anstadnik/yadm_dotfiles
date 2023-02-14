@@ -159,7 +159,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
 fi
 export JULIA_NUM_THREADS=auto
-if [[ -d "/home/astadnik/work/floorplan-graph" ]]
+if [[ -d "/home/astadnik/work/floorplan-graph" ]]; then
     export PYTHONPATH=/home/astadnik/work/floorplan-graph
 fi
 
