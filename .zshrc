@@ -92,7 +92,7 @@ z4h source $Z4H/ohmyzsh/ohmyzsh/lib/git.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/extract/extract.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git/git.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
-if [[ "$(uname)" == 'Linux' ]] then
+if [[ "$(uname)" == 'Linux' ]]; then
     z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/archlinux/archlinux.plugin.zsh
 fi
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/common-aliases/common-aliases.plugin.zsh
@@ -117,7 +117,7 @@ autoload -Uz zmv
 
 # Define functions and completions.
 unalias md
-function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" || exit; }
 function sudo () {
     unset -f sudo
     if [[ "$(uname)" == 'Darwin' ]]
@@ -165,4 +165,12 @@ fi
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# Check if /opt/ros/humble/setup.zsh is a file
+if [[ -f /opt/ros/humble/setup.zsh ]]; then
+    export ROS_DOMAIN_ID=42
+    # source /opt/ros/humble/setup.zsh
+    source /opt/ros/noetic/setup.zsh
+fi
+
 macchina
