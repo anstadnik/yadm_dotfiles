@@ -4,7 +4,7 @@
 		"height": "10 px",
 		"mode": "dock",
 		// "ipc": true,
-		"output": ["DP-6", "eDP-1"],
+		"output": ["eDP-1"],
 		//"width": 1350, // Waybar width
 		// Choose the order of the modules idle_inhibitor
 		"modules-left": ["wlr/workspaces", "hyprland/window"],
