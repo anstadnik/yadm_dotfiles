@@ -1,4 +1,3 @@
-# usually you don't wanna change those
 [sys]
 categories = [
     'algorithms',
@@ -6,47 +5,45 @@ categories = [
     'database',
     'shell',
 ]
-
 langs = [
     'python',
     'rust',
 ]
 
 [sys.urls]
-base = "https://leetcode.com"
-graphql = "https://leetcode.com/graphql"
-login = "https://leetcode.com/accounts/login/"
-problems = "https://leetcode.com/api/problems/$category/"
-problem = "https://leetcode.com/problems/$slug/description/"
-tag = "https://leetcode.com/tag/$slug/"
-test = "https://leetcode.com/problems/$slug/interpret_solution/"
-session = "https://leetcode.com/session/"
-submit = "https://leetcode.com/problems/$slug/submit/"
-submissions = "https://leetcode.com/api/submissions/$slug"
-submission = "https://leetcode.com/submissions/detail/$id/"
-verify = "https://leetcode.com/submissions/detail/$id/check/"
-favorites = "https://leetcode.com/list/api/questions"
-favorite_delete = "https://leetcode.com/list/api/questions/$hash/$id"
+favorite_delete = 'https://leetcode.com/list/api/questions/$hash/$id'
+favorites = 'https://leetcode.com/list/api/questions'
+submissions = 'https://leetcode.com/api/submissions/$slug'
+submit = 'https://leetcode.com/problems/$slug/submit/'
+problem = 'https://leetcode.com/problems/$slug/description/'
+submission = 'https://leetcode.com/submissions/detail/$id/'
+tag = 'https://leetcode.com/tag/$slug/'
+base = 'https://leetcode.com'
+login = 'https://leetcode.com/accounts/login/'
+problems = 'https://leetcode.com/api/problems/$category/'
+session = 'https://leetcode.com/session/'
+graphql = 'https://leetcode.com/graphql'
+test = 'https://leetcode.com/problems/$slug/interpret_solution/'
+verify = 'https://leetcode.com/submissions/detail/$id/check/'
 
 [code]
 editor = 'nvim'
-lang = "rust"
 edit_code_marker = false
+start_marker = '@lc code=start'
+end_marker = '@lc code=start'
 comment_problem_desc = false
-comment_leading = "///"
-start_marker = "@lc code=start"
-end_marker = "@lc code=start"
+comment_leading = '///'
 test = true
-pick = "${fid}.${slug}"
-submission = "${fid}.${slug}.${sid}.${ac}"
+lang = 'rust'
+pick = '${fid}.${slug}'
+submission = '${fid}.${slug}.${sid}.${ac}'
 
 [cookies]
-csrf = ""
-session = ""
+csrf = ''
+session = ''
 
 [storage]
-root = "~/.leetcode"
-scripts = "scripts"
-code = "code"
-# absolutely path for the cache, other use root as parent dir
-cache = "cache"
+cache = 'cache'
+code = 'code'
+root = '~/.leetcode'
+scripts = 'scripts'
