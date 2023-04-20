@@ -26,10 +26,12 @@ if [[ "$OS" = "Ubuntu" ]]; then
 	sudo -E apt install -y build-essential neofetch python3-pip tmux curl python3-virtualenvwrapper fd-find telegram-desktop htop systemd-coredump zsh bat unar neovim unzip nnn nodejs
 
 	if [[ "$VERSION" =~ ^(22.04|22.10)$ ]]; then
-		sudo apt install -y zoxide exa
+		sudo apt install -y zoxide
 	fi
 
-	run_in_background install_rustup_ubuntu
+	install_rustup_ubuntu
+  cargo install maccina
+
 
 	cd /tmp
 	curl -LO https://github.com/r-darwish/topgrade/releases/latest/download/topgrade-v9.0.1-x86_64-unknown-linux-gnu.tar.gz
@@ -55,9 +57,6 @@ if [[ "$OS" = "Ubuntu" ]]; then
 		gsettings set org.gnome.desktop.background picture-uri file:///home/astadnik/Pictures/watchtower.jpg
 	fi
 
-	rustup default stable
-  cargo install maccina
-
 	sudo apt autoremove -y
 	sudo apt clean -y
 
@@ -69,7 +68,7 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	cd ..
 	rm -rf .cache yay
 
-	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd exa htop zsh zoxide bat pyright rust-analyzer openssh python-pip unzip npm figlet topgrade nnn lsd macchina thefuck rustup
+	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd htop zsh zoxide bat pyright rust-analyzer openssh python-pip unzip npm figlet topgrade nnn lsd macchina thefuck rustup
 	rustup default stable
 
 	if [[ "$(command -v gnome-shell)" ]]; then
