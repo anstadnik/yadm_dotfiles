@@ -11,20 +11,20 @@ langs = [
 ]
 
 [sys.urls]
-test = 'https://leetcode.com/problems/$slug/interpret_solution/'
-tag = 'https://leetcode.com/tag/$slug/'
-base = 'https://leetcode.com'
-verify = 'https://leetcode.com/submissions/detail/$id/check/'
-login = 'https://leetcode.com/accounts/login/'
-graphql = 'https://leetcode.com/graphql'
-session = 'https://leetcode.com/session/'
-submit = 'https://leetcode.com/problems/$slug/submit/'
-submission = 'https://leetcode.com/submissions/detail/$id/'
-favorites = 'https://leetcode.com/list/api/questions'
-problem = 'https://leetcode.com/problems/$slug/description/'
-problems = 'https://leetcode.com/api/problems/$category/'
-submissions = 'https://leetcode.com/api/submissions/$slug'
 favorite_delete = 'https://leetcode.com/list/api/questions/$hash/$id'
+favorites = 'https://leetcode.com/list/api/questions'
+verify = 'https://leetcode.com/submissions/detail/$id/check/'
+problem = 'https://leetcode.com/problems/$slug/description/'
+test = 'https://leetcode.com/problems/$slug/interpret_solution/'
+base = 'https://leetcode.com'
+problems = 'https://leetcode.com/api/problems/$category/'
+graphql = 'https://leetcode.com/graphql'
+submission = 'https://leetcode.com/submissions/detail/$id/'
+submissions = 'https://leetcode.com/api/submissions/$slug'
+tag = 'https://leetcode.com/tag/$slug/'
+session = 'https://leetcode.com/session/'
+login = 'https://leetcode.com/accounts/login/'
+submit = 'https://leetcode.com/problems/$slug/submit/'
 
 [code]
 editor = 'nvim'
