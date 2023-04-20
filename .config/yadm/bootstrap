@@ -31,7 +31,7 @@ if [[ "$OS" = "Ubuntu" ]]; then
 
 	install_rustup_ubuntu
   export PATH="$HOME/.cargo/bin:$PATH"
-  cargo install maccina
+  cargo install macchina
 
 
 	cd /tmp
