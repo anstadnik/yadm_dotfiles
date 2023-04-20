@@ -30,6 +30,7 @@ if [[ "$OS" = "Ubuntu" ]]; then
 	fi
 
 	install_rustup_ubuntu
+  export PATH="$HOME/.cargo/bin:$PATH"
   cargo install maccina
 
 
@@ -68,8 +69,10 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
 	cd ..
 	rm -rf .cache yay
 
-	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd htop zsh zoxide bat pyright rust-analyzer openssh python-pip unzip npm figlet topgrade nnn lsd macchina thefuck rustup
+  yay -Sy --noconfirm --answerdiff=None rustup
 	rustup default stable
+
+	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd htop zsh zoxide bat pyright rust-analyzer openssh python-pip unzip npm figlet topgrade nnn lsd macchina thefuck
 
 	if [[ "$(command -v gnome-shell)" ]]; then
 		yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono gnome-browser-connector telegram-desktop 
