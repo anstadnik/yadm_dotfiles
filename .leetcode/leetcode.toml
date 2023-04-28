@@ -11,20 +11,20 @@ langs = [
 ]
 
 [sys.urls]
-favorite_delete = 'https://leetcode.com/list/api/questions/$hash/$id'
-favorites = 'https://leetcode.com/list/api/questions'
-verify = 'https://leetcode.com/submissions/detail/$id/check/'
-problem = 'https://leetcode.com/problems/$slug/description/'
-test = 'https://leetcode.com/problems/$slug/interpret_solution/'
-base = 'https://leetcode.com'
-problems = 'https://leetcode.com/api/problems/$category/'
 graphql = 'https://leetcode.com/graphql'
+submit = 'https://leetcode.com/problems/$slug/submit/'
 submission = 'https://leetcode.com/submissions/detail/$id/'
+problem = 'https://leetcode.com/problems/$slug/description/'
+favorites = 'https://leetcode.com/list/api/questions'
+problems = 'https://leetcode.com/api/problems/$category/'
+base = 'https://leetcode.com'
 submissions = 'https://leetcode.com/api/submissions/$slug'
 tag = 'https://leetcode.com/tag/$slug/'
+test = 'https://leetcode.com/problems/$slug/interpret_solution/'
+favorite_delete = 'https://leetcode.com/list/api/questions/$hash/$id'
 session = 'https://leetcode.com/session/'
 login = 'https://leetcode.com/accounts/login/'
-submit = 'https://leetcode.com/problems/$slug/submit/'
+verify = 'https://leetcode.com/submissions/detail/$id/check/'
 
 [code]
 editor = 'nvim'
