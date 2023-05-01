@@ -79,6 +79,7 @@ z4h init || return
 # Extend PATH.
 export path=(~/bin $path)
 export path=(/usr/local/share/python $path)
+export path=(~/.npm-global/bin $path)
 # export path=($HOMEBREW_PREFIX/opt/python@3.11/libexec/bin $path)
 
 # Export environment variables.
@@ -174,6 +175,7 @@ if [[ -f /opt/ros/humble/setup.zsh ]]; then
     source /opt/ros/noetic/setup.zsh
 fi
 
+
 if [[ -f $HOME/.profile ]]; then
     source $HOME/.profile
 fi
@@ -181,18 +183,36 @@ fi
 macchina
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+
     # >>> mamba initialize >>>
     # !! Contents within this block are managed by 'mamba init' !!
-    export MAMBA_EXE="/opt/homebrew/opt/micromamba/bin/micromamba";
-    export MAMBA_ROOT_PREFIX="/Users/astadnik/micromamba";
+    export MAMBA_EXE="/usr/bin/micromamba";
+    export MAMBA_ROOT_PREFIX="/home/astadnik/micromamba";
     __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__mamba_setup"
     else
-        if [ -f "/Users/astadnik/micromamba/etc/profile.d/micromamba.sh" ]; then
-            . "/Users/astadnik/micromamba/etc/profile.d/micromamba.sh"
+        if [ -f "/home/astadnik/micromamba/etc/profile.d/micromamba.sh" ]; then
+            . "/home/astadnik/micromamba/etc/profile.d/micromamba.sh"
         else
-            export  PATH="/Users/astadnik/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+            export  PATH="/home/astadnik/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+        fi
+    fi
+    unset __mamba_setup
+    # <<< mamba initialize <<<
+else
+    # >>> mamba initialize >>>
+    # !! Contents within this block are managed by 'mamba init' !!
+    export MAMBA_EXE="/usr/bin/micromamba";
+    export MAMBA_ROOT_PREFIX="/home/astadnik/micromamba";
+    __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__mamba_setup"
+    else
+        if [ -f "/home/astadnik/micromamba/etc/profile.d/micromamba.sh" ]; then
+            . "/home/astadnik/micromamba/etc/profile.d/micromamba.sh"
+        else
+            export  PATH="/home/astadnik/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
         fi
     fi
     unset __mamba_setup
