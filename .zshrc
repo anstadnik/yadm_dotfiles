@@ -91,7 +91,7 @@ z4h source ~/.env.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/lib/git.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/extract/extract.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/git/git.plugin.zsh
-z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+# z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
 if [[ "$(uname)" == 'Linux' ]]; then
     z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/archlinux/archlinux.plugin.zsh
 fi
@@ -148,7 +148,7 @@ alias ls=lsd
 
 alias v="nvim"
 
-alias py="python3"
+alias py="python"
 alias _='sudo '
 # Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
 setopt glob_dots     # no special treatment for file names with a leading dot
@@ -156,9 +156,9 @@ setopt glob_dots     # no special treatment for file names with a leading dot
 setopt auto_menu
 setopt appendhistory                                            # Immediately append history instead of overwriting
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
-fi
+# if [[ "$OSTYPE" == "darwin"* ]]; then
+#     export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+# fi
 export JULIA_NUM_THREADS=auto
 if [[ -d "/home/astadnik/work/floorplan-graph" ]]; then
     export PYTHONPATH=/home/astadnik/work/floorplan-graph
@@ -175,7 +175,26 @@ if [[ -f /opt/ros/humble/setup.zsh ]]; then
 fi
 
 if [[ -f $HOME/.profile ]]; then
-  source $HOME/.profile
+    source $HOME/.profile
 fi
 
 macchina
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # >>> mamba initialize >>>
+    # !! Contents within this block are managed by 'mamba init' !!
+    export MAMBA_EXE="/opt/homebrew/opt/micromamba/bin/micromamba";
+    export MAMBA_ROOT_PREFIX="/Users/astadnik/micromamba";
+    __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__mamba_setup"
+    else
+        if [ -f "/Users/astadnik/micromamba/etc/profile.d/micromamba.sh" ]; then
+            . "/Users/astadnik/micromamba/etc/profile.d/micromamba.sh"
+        else
+            export  PATH="/Users/astadnik/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+        fi
+    fi
+    unset __mamba_setup
+    # <<< mamba initialize <<<
+fi
