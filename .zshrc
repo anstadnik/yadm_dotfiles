@@ -141,7 +141,7 @@ compdef _directories md
 [[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
 
 # Define aliases.
-alias tree='tree -a -I .git'
+alias tree='ls --tree'
 
 # Add flags to existing aliases.
 # alias ls="${aliases[ls]:-ls} -A"
@@ -169,7 +169,7 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # Check if /opt/ros/humble/setup.zsh is a file
-if [[ -f /opt/ros/humble/setup.zsh ]]; then
+if [[ -f /opt/ros/noetic/setup.zsh ]]; then
     export ROS_DOMAIN_ID=42
     # source /opt/ros/humble/setup.zsh
     source /opt/ros/noetic/setup.zsh
