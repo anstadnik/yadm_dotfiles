@@ -1,49 +1,15 @@
-[sys]
-categories = [
-    'algorithms',
-    'concurrency',
-    'database',
-    'shell',
-]
-langs = [
-    'python',
-    'rust',
-]
-
-[sys.urls]
-verify = 'https://leetcode.com/submissions/detail/$id/check/'
-problem = 'https://leetcode.com/problems/$slug/description/'
-submissions = 'https://leetcode.com/api/submissions/$slug'
-problems = 'https://leetcode.com/api/problems/$category/'
-favorite_delete = 'https://leetcode.com/list/api/questions/$hash/$id'
-test = 'https://leetcode.com/problems/$slug/interpret_solution/'
-submission = 'https://leetcode.com/submissions/detail/$id/'
-tag = 'https://leetcode.com/tag/$slug/'
-session = 'https://leetcode.com/session/'
-submit = 'https://leetcode.com/problems/$slug/submit/'
-favorites = 'https://leetcode.com/list/api/questions'
-login = 'https://leetcode.com/accounts/login/'
-graphql = 'https://leetcode.com/graphql'
-base = 'https://leetcode.com'
-
 [code]
 editor = 'nvim'
-edit_code_marker = false
-start_marker = '@lc code=start'
-end_marker = '@lc code=start'
-comment_problem_desc = false
-comment_leading = '///'
-test = true
+# Optional parameter
+# editor-args = ['-nw']
 lang = 'rust'
-pick = '${fid}.${slug}'
-submission = '${fid}.${slug}.${sid}.${ac}'
 
 [cookies]
 csrf = ''
 session = ''
 
 [storage]
-cache = 'cache'
+cache = 'Problems'
 code = 'code'
 root = '~/.leetcode'
 scripts = 'scripts'

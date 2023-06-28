@@ -103,7 +103,7 @@ z4h source $Z4H/ohmyzsh/ohmyzsh/plugins/common-aliases/common-aliases.plugin.zsh
 z4h source $Z4H/ohmyzsh/ohmyzsh/lib/directories.zsh
 z4h source $Z4H/MichaelAquilina/zsh-auto-notify/auto-notify.plugin.zsh
 eval "$(zoxide init zsh)"
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # Define key bindings.
 z4h bindkey z4h-forward-word    Ctrl+Space   # cd into a child directory
