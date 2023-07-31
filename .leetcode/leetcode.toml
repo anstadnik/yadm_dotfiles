@@ -1,8 +1,6 @@
 [code]
 editor = 'nvim'
-# Optional parameter
-# editor-args = ['-nw']
-lang = 'rust'
+lang = 'python3'
 
 [cookies]
 csrf = ''
