@@ -1,6 +1,6 @@
 [code]
 editor = 'nvim'
-lang = 'python3'
+lang = 'rust'
 
 [cookies]
 csrf = ''

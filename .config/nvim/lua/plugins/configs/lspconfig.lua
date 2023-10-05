@@ -89,6 +89,11 @@ return function()
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
     capabilities = capabilities,
   }
+  -- lspconfig["pylyzer"].setup {
+  --   on_attach = on_attach,
+  --   root_dir = lspconfig.util.root_pattern(unpack(root_files)),
+  --   capabilities = capabilities,
+  -- }
   lspconfig["ruff_lsp"].setup {
     on_attach = on_attach,
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
@@ -155,7 +160,9 @@ return function()
         type = "executable",
         command = (
           vim.fn.executable "lldb-vscode" == 1 and "lldb-vscode"
-          or "/opt/homebrew/Cellar/llvm/16.0.0/bin/lldb-vscode"
+          -- or "/opt/homebrew/Cellar/llvm/*/bin/lldb-vscode"
+          -- use lua to expand it
+          or vim.fn.expand "~/opt/llvm/*/bin/lldb-vscode"
         ),
         name = "rt_lldb",
       },

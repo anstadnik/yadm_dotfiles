@@ -51,24 +51,6 @@ return {
       vim.cmd.colorscheme "catppuccin"
     end,
   },
-  -- {
-  --   "rmehri01/onenord.nvim",
-  --   depended = "f-person/auto-dark-mode.nvim",
-  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   config = function()
-  --     require("onenord").setup {
-  --       styles = {
-  --         comments = "italic",
-  --         keywords = "none",
-  --         functions = "bold",
-  --         strings = "none",
-  --         variables = "none",
-  --       },
-  --       disable = { background = true },
-  --     }
-  --   end,
-  -- },
   {
     "f-person/auto-dark-mode.nvim",
     enabled = function()
@@ -122,12 +104,6 @@ return {
       }
     end,
   },
-  -- {
-  --   "nanozuki/tabby.nvim",
-  --   config = function()
-  --     require("tabby.tabline").use_preset("active_tab_with_wins", {})
-  --   end,
-  -- },
   {
     "akinsho/bufferline.nvim",
     dependencies = {
@@ -241,12 +217,85 @@ return {
     end,
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
+    "HiPhish/rainbow-delimiters.nvim",
+    dependencies = "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("indent_blankline").setup {
-        show_current_context = true,
-        show_current_context_start = true,
+      local highlight = {
+        "RainbowRed",
+        "RainbowYellow",
+        "RainbowBlue",
+        "RainbowOrange",
+        "RainbowGreen",
+        "RainbowViolet",
+        "RainbowCyan",
       }
+      local hooks = require "ibl.hooks"
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+
+      -- vim.g.rainbow_delimiters = { highlight = highlight }
+
+      -- Rainbow delimiters setup
+      -- This module contains a number of default definitions
+      local rainbow_delimiters = require "rainbow-delimiters"
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [""] = rainbow_delimiters.strategy["global"],
+          vim = rainbow_delimiters.strategy["local"],
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+      --     latex = "rainbow-blocks",
+        },
+        highlight = highlight,
+      }
+
+      -- Indent blankline setup
+      require("ibl").setup { scope = { highlight = highlight } }
+
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+      -- local rainbow_delimiters = require "rainbow-delimiters"
+      -- require "rainbow-delimiters.setup" {
+      --   strategy = {
+      --     [""] = rainbow_delimiters.strategy["global"],
+      --     commonlisp = rainbow_delimiters.strategy["local"],
+      --   },
+      --   query = {
+      --     [""] = "rainbow-delimiters",
+      --     latex = "rainbow-blocks",
+      --   },
+      --   highlight = {
+      --     "RainbowDelimiterRed",
+      --     "RainbowDelimiterYellow",
+      --     "RainbowDelimiterBlue",
+      --     "RainbowDelimiterOrange",
+      --     "RainbowDelimiterGreen",
+      --     "RainbowDelimiterViolet",
+      --     "RainbowDelimiterCyan",
+      --   },
+      --   -- blacklist = {'c', 'cpp'},
+      --   -- extended_mode = true,
+      --   -- max_file_lines = nil,
+      -- }
     end,
   },
+  -- {
+  -- ,
+  --     config = function()
+  --       require("ibl").setup {
+  --         show_current_context = true,
+  --         show_current_context_start = true,
+  --       }
+  --     end,
+  --   },
 }
