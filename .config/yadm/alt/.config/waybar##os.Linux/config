@@ -4,7 +4,8 @@
 		"height": "10 px",
 		"mode": "dock",
 		// "ipc": true,
-		"output": ["eDP-1"],
+		"output": "eDP-1",
+		// "output": "DP-6",
 		//"width": 1350, // Waybar width
 		// Choose the order of the modules idle_inhibitor
 		"modules-left": ["wlr/workspaces", "hyprland/window"],
@@ -16,7 +17,7 @@
 
 		"wlr/workspaces": {
 			"disable-scroll": true,
-			"all-outputs": true,
+			"all-outputs": false,
 			"format": "{icon}",
 		},
 		"hyprland/window": {
@@ -25,8 +26,8 @@
 		"idle_inhibitor": {
 			"format": "{icon}",
 			"format-icons": {
-				"activated": "",
-				"deactivated": ""
+				"activated": " ",
+				"deactivated": " "
 			}
 		},
 		"tray": {
@@ -35,19 +36,19 @@
 		},
 		"clock": {
 			"tooltip-format": "{:%A %B %d %Y | %H:%M}",
-			"format": " {:%a %d %b  %I:%M %p}",	//12 hour format
-																						//"format": " {:%a %d %b  %H:%M}",	//24 hour format
-			"format-alt": " {:%d/%m/%Y  %H:%M:%S}",
+			"format": "  {:%a %d %b  %I:%M %p}",	//12 hour format
+																						//"format": "  {:%a %d %b  %H:%M}",	//24 hour format
+			"format-alt": "  {:%d/%m/%Y  %H:%M:%S}",
 			//"timezones": [ "Kolkata" ],
 			//"max-length": 200
 			"interval": 1
 		},
 		"cpu": {
-			"format": "﬙ {usage}%",
+			"format": "󰻠 {usage}%",
 			"on-click": "kitty -e htop"
 		},
 		"memory": {
-			"format": " {}%",
+			"format": "󰍛 {}%",
 			"on-click": "kitty -e htop"
 		},
 		"temperature": {
@@ -57,7 +58,7 @@
 		"backlight": {
 			// "device": "acpi_video1",
 			"format": "{icon} {percent}%",
-			"format-icons": ["", ""],
+			"format-icons": [" ", " "],
 			"on-scroll-down": "brightnessctl -c backlight set 5%",
 			"on-scroll-up": "brightnessctl -c backlight set +5%"
 		},
@@ -67,38 +68,38 @@
 				"warning": 30,
 				"critical": 15
 			},
-			"format": "{icon} {capacity}%",
+			"format": "{icon}  {capacity}%",
 			// "format-good": "", // An empty format will hide the module
 			// "format-full": "",
-			"format-icons": ["", "", "", "", ""]
-				//"format-icons": ["", "", "", "", "", "", "", "", "", ""]
+			"format-icons": [" ", " ", " ", " ", " "]
+				//"format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
 		},
 		"network": {
 			// "interface": "wlp2s0", // (Optional) To force the use of this interface
 			"format": "⚠ Disabled",
-			"format-wifi": " {essid}",
-			"format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+			"format-wifi": "   {essid}",
+			"format-ethernet": "   {ifname}: {ipaddr}/{cidr}",
 			"format-disconnected": "⚠ Disconnected",
 			"on-click": "kitty -e nmtui"
 		},
 		"pulseaudio": {
 			"scroll-step": 5,
 			"format": "{icon} {volume}%",
-			"format-muted": "",
+			"format-muted": "  ",
 			"format-icons": {
-				"bluetooth": "",
-				"headphones": "",
-				"handsfree": "",
-				"headset": "",
-				"phone": "",
-				"portable": "",
-				"car": "",
-				"default": ["", ""]
+				"bluetooth": " ",
+				"headphones": " ",
+				"handsfree": " ",
+				"headset": " ",
+				"phone": " ",
+				"portable": " ",
+				"car": " ",
+				"default": [" ", " "]
 			},
 			"on-click": "pavucontrol"
 		},
 		"custom/pacman": {
-			"format": " {}",
+			"format": "  {}",
 			"interval": 7200,                     // every two hours
 			"exec": "checkupdates | wc -l",       // # of updates
 			"exec-if": "exit 0",                  // always run; consider advanced run conditions
@@ -111,7 +112,7 @@
 			"tooltip": false,
 		},
 		"hyprland/language": {
-			"format": "  {}",
+			"format": "   {}",
 		},
 		"custom/theme": {
 			"format": "",
@@ -121,14 +122,14 @@
 		//       	"exec": "hyprlandmsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
 		//       	// Interval set only as a fallback, as the value is updated by signal
 		//       	"interval": 30,
-		//       	"format": "  {}", // Icon: keyboard
+		//       	"format": "   {}", // Icon: keyboard
 		//       	// Signal sent by hyprland key binding (~/.config/hyprland/key-bindings)
 		//       	"signal": 1, // SIGHUP
 		//       	"tooltip": false,
 		//         "on-click": "~/.config/waybar/scripts/keyhint.sh",
 		// },
 		//      "custom/launcher": {
-		//     	"format":" ",
+		//     	"format":"  ",
 		//     	"on-click": "exec nwg-drawer -c 7 -is 70 -spacing 23",
 		//     	"tooltip": false,
 		// },

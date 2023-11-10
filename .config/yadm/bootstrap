@@ -62,27 +62,28 @@ if [[ "$OS" = "Ubuntu" ]]; then
 	sudo apt clean -y
 
 elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
-	sudo pacman -Syu --noconfirm --needed git base-devel
-	git clone https://aur.archlinux.org/yay.git
-	cd yay
-	makepkg -sri --needed --noconfirm
-	cd ..
-	rm -rf .cache yay
+  sudo pacman -S --needed base-devel
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
+  makepkg -si
 
-  yay -Sy --noconfirm --answerdiff=None rustup
+	cd ..
+	rm -rf .cache paru
+
+  paru -Sy --noconfirm --answerdiff=None rustup
 	rustup default stable
 
-	yay -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd htop zsh zoxide bat pyright rust-analyzer openssh python-pip unzip npm figlet topgrade nnn lsd macchina thefuck
+	paru -Sy --noconfirm --answerdiff=None git neofetch neovim python-pip tmux curl python-virtualenvwrapper fd htop zsh zoxide bat pyright rust-analyzer openssh python-pip unzip npm figlet topgrade nnn lsd macchina thefuck
 
 	if [[ "$(command -v gnome-shell)" ]]; then
-		yay -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono gnome-browser-connector telegram-desktop 
+		paru -Sy --noconfirm --answerdiff=None gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono gnome-browser-connector telegram-desktop 
 		gnome-shell-extension-installer --yes 19 307 3193
 
 		gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
 		gsettings set org.gnome.desktop.background picture-uri file:///home/astadnik/Pictures/watchtower.jpg
 	fi
 
-	run_in_background yay -Scc
+	run_in_background paru -Scc
 fi
 
 cd "$HOME"
