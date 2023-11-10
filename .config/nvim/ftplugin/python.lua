@@ -49,6 +49,7 @@ else
 
     vim.api.nvim_command "write"
     vim.fn.system { "tmux", "send-keys", "-t", target_pane, "clear\n" }
-    vim.fn.system { "tmux", "send-keys", "-t", target_pane, "python -m unittest\n" }
+    -- vim.fn.system { "tmux", "send-keys", "-t", target_pane, "python -m unittest\n" }
+    vim.fn.system { "tmux", "send-keys", "-t", target_pane, "pytest\n" }
   end, { buffer = true })
 end

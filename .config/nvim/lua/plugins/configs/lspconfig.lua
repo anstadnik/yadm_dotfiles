@@ -75,6 +75,11 @@ return function()
   -- lspservers with default config
   -- local servers = { "pyright" }
 
+  lspconfig["taplo"].setup {
+    on_attach = on_attach_with_format,
+    capabilities = capabilities,
+  }
+
   local root_files = {
     "pyproject.toml",
     "setup.py",
@@ -89,13 +94,14 @@ return function()
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
     capabilities = capabilities,
   }
+  -- https://github.com/mtshiba/pylyzer/issues/55
   -- lspconfig["pylyzer"].setup {
   --   on_attach = on_attach,
-  --   root_dir = lspconfig.util.root_pattern(unpack(root_files)),
+  --   -- root_dir = lspconfig.util.root_pattern(unpack(root_files)),
   --   capabilities = capabilities,
   -- }
   lspconfig["ruff_lsp"].setup {
-    on_attach = on_attach,
+    on_attach = on_attach_with_format,
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
     capabilities = capabilities,
   }

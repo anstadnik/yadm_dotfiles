@@ -18,9 +18,9 @@ return {
           },
           -- require "neotest-rust",
           require "neotest-python" {
-            -- is_test_file = function(file_path)
-            --   return vim.endswith(file_path, ".py")
-            -- end,
+            is_test_file = function(file_path)
+              return vim.endswith(file_path, ".py")
+            end,
           },
         },
       }

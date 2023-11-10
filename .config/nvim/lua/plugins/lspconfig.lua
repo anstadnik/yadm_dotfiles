@@ -76,9 +76,9 @@ return {
           end, { buffer = bufnr })
         end,
         sources = {
-          require("null-ls").builtins.formatting.black.with {
-            filetypes = { "python", "sage" },
-          },
+          -- require("null-ls").builtins.formatting.black.with {
+          --   filetypes = { "python", "sage" },
+          -- },
           -- require("null-ls").builtins.formatting.ruff,
           -- require("null-ls").builtins.diagnostics.ruff,
           require("null-ls").builtins.formatting.stylua,
