@@ -10,6 +10,8 @@ if status is-interactive
     export VISUAL=nvim
     export EDITOR="$VISUAL"
 
+    bind -k nul forward-word
+
     abbr -a ls lsd
     abbr -a v nvim
 
