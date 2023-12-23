@@ -34,8 +34,9 @@ else
     end
 
     vim.api.nvim_command "write"
-    vim.fn.system { "tmux", "send-keys", "-t", target_pane, "clear\n" }
-    vim.fn.system { "tmux", "send-keys", "-t", target_pane, "ipython " .. main_py .. "\n" }
+    vim.fn.system { "tmux", "send-keys", "-t", target_pane, "clear", "Enter" }
+    -- vim.fn.system { "tmux", "send-keys", "-t", target_pane, "ipython " .. main_py, "Enter" }
+    vim.fn.system { "tmux", "send-keys", "-t", target_pane, "ipython " .. main_py, "Enter" }
   end, { buffer = true })
 
   vim.keymap.set("n", "<leader><CR>", function()

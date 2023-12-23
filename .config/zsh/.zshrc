@@ -76,6 +76,8 @@ z4h install ohmyzsh/ohmyzsh || return
 # perform network I/O must be done above. Everything else is best done below.
 z4h init || return
 
+export HISTFILE="${XDG_STATE_HOME:=$HOME/.config}/zsh/history"
+
 # Extend PATH.
 export path=(~/bin $path)
 export path=(/usr/local/share/python $path)

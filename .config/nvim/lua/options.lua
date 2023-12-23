@@ -35,6 +35,8 @@ vim.diagnostic.config {
   severity_sort = true,
 }
 
+opt.tabpagemax = 200
+
 opt.termguicolors = true
 opt.textwidth = 80
 

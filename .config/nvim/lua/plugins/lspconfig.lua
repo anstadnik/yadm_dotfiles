@@ -21,7 +21,7 @@ return {
   },
   {
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    ft = { "rust", "py" },
+    ft = { "rust", "python" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require("lsp_lines").setup {

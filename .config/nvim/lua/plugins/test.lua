@@ -21,6 +21,7 @@ return {
             is_test_file = function(file_path)
               return vim.endswith(file_path, ".py")
             end,
+        pytest_discover_instances = true,
           },
         },
       }

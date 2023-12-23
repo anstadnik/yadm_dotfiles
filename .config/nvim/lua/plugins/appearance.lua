@@ -65,10 +65,16 @@ return {
         set_dark_mode = function()
           vim.api.nvim_set_option("background", "dark")
           vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Mocha" }
+          vim.fn.system { "zellij", "options", "--theme", "catppuccin-mocha" }
+          vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "mocha" }
+          vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
           vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Latte" }
+          vim.fn.system { "zellij", "options", "--theme", "catppuccin-latte" }
+          vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "latte" }
+          vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
         end,
       }
       auto_dark_mode.init()
