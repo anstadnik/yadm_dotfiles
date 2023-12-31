@@ -1,5 +1,5 @@
-command_exists(command) {
-  [[ -x $(command -v $command) ]]
+command_exists(cmd) {
+  [[ -x $(command -v $cmd) ]]
 }
 
 run_in_background() {
