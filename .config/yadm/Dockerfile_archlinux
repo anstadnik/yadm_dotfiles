@@ -6,12 +6,12 @@ ARG GID=1000
 WORKDIR /tmp
 
 # Load necessary tools for installing paru
-RUN pacman --noconfirm -Syu zsh yadm base-devel lsb-release
+RUN pacman --noconfirm -Syu fish yadm base-devel lsb-release
 
 # Manage users and permissions
 RUN echo "root:Docker!" | chpasswd \
   && groupadd -g ${GID} -o ${UNAME} \
-  && useradd -lm -u ${UID} -g ${GID} -s /usr/bin/zsh ${UNAME} \
+  && useradd -lm -u ${UID} -g ${GID} ${UNAME} \
   && echo "${UNAME} ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers \
   && echo "${UNAME}:potato" | chpasswd
 
@@ -28,11 +28,8 @@ RUN mkdir /home/${UNAME}/host \
 #  Settings  #
 ##############
 
-RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles \
-  && yes | paru -Scc \
-  && sudo sh -c 'yes | pacman -Scc' \
-  && script -qec 'zsh -is </dev/null' /dev/null
+RUN yadm clone --bootstrap https://github.com/anstadnik/yadm_dotfiles
 
-ENTRYPOINT /usr/bin/zsh
+ENTRYPOINT /usr/bin/fish
 
 # vim: set ft=dockerfile:
