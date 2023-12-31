@@ -5,8 +5,14 @@ if status is-interactive
     starship init fish | source
     zoxide init fish | source
     fzf_configure_bindings --directory=\cf
+    set fzf_fd_opts --hidden
     export MAMBA_ROOT_PREFIX=~/micromamba
     eval "$(micromamba shell hook --shell fish)"
+
+    export NNN_OPENER={$HOME}/.config/nnn/plugins/nuke
+    export NNN_PLUG='s:preview-tui;p:dragdrop;z:autojump;d:diffs;f:fzcd'
+    export NNN_OPTS="ac"
+    abbr -a n nnn
 
     export VISUAL=nvim
     export EDITOR="$VISUAL"
@@ -25,6 +31,8 @@ if status is-interactive
 
     abbr -a ls lsd
     abbr -a v nvim
+    abbr -a -p anywhere G "| grep"
+    abbr -a -p anywhere L "| less"
 
     macchina
 end

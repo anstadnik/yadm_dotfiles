@@ -1,11 +1,13 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "folke/neodev.nvim" },
+    dependencies = { "williamboman/mason-lspconfig.nvim" },
+    event = "BufEnter",
     config = require "plugins.configs.lspconfig",
   },
   {
     "simrat39/symbols-outline.nvim",
+    event = "BufEnter",
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require("symbols-outline").setup()
@@ -13,6 +15,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    lazy = true,
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason").setup()
@@ -29,7 +32,53 @@ return {
       }
     end,
   },
-  "simrat39/rust-tools.nvim",
+  {
+    "simrat39/rust-tools.nvim",
+    ft = { "rust" },
+    config = function()
+      local rt = require "rust-tools"
+      local helpers = require "plugins.configs.lspconfig_helpers"
+      rt.setup {
+        tools = {
+          inlay_hints = {
+            auto = false,
+          },
+        },
+        server = {
+          on_attach = function(client, bufnr)
+            helpers.on_attach_with_format(client, bufnr)
+            vim.keymap.set("n", "K", function()
+              require("rust-tools").hover_actions.hover_actions()
+            end, { buffer = bufnr })
+            -- vim.keymap.set("x", "K", function()
+            --   require("rust-tools").hover_range.hover_range()
+            -- end)
+          end,
+          capabilities = helpers.capabilities,
+          standalone = true,
+          -- flags = { debounce_text_changes = 150 },
+          settings = {
+            ["rust-analyzer"] = {
+              checkOnSave = { command = "clippy" },
+              cargo = { allFeatures = true },
+            },
+          },
+        },
+        dap = {
+          adapter = {
+            type = "executable",
+            command = (
+              vim.fn.executable "lldb-vscode" == 1 and "lldb-vscode"
+              -- or "/opt/homebrew/Cellar/llvm/*/bin/lldb-vscode"
+              -- use lua to expand it
+              or vim.fn.expand "~/opt/llvm/*/bin/lldb-vscode"
+            ),
+            name = "rt_lldb",
+          },
+        },
+      }
+    end,
+  },
   {
     "Saecki/crates.nvim",
     dependencies = {
@@ -55,6 +104,7 @@ return {
   },
   {
     "akinsho/flutter-tools.nvim",
+    ft = "dart",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   -- {
@@ -68,6 +118,7 @@ return {
   -- },
   {
     "jose-elias-alvarez/null-ls.nvim",
+    event = "BufEnter",
     config = function()
       require("null-ls").setup {
         on_attach = function(client, bufnr)
@@ -90,14 +141,18 @@ return {
   },
   {
     "folke/neodev.nvim",
+    event = "BufEnter",
+    dependencies = { "neovim/nvim-lspconfig" },
+    ft = { "lua" },
     config = function()
       require("neodev").setup {}
     end,
   },
-  { "znck/grammarly", dependencies = { "neovim/nvim-lspconfig" } },
+  { "znck/grammarly", event = "BufEnter", dependencies = { "neovim/nvim-lspconfig" } },
   {
     "lvimuser/lsp-inlayhints.nvim",
     branch = "anticonceal",
+    event = "BufEnter",
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require("lsp-inlayhints").setup()

@@ -3,10 +3,9 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      -- "mrjones2014/nvim-ts-rainbow",
       "RRethy/nvim-treesitter-textsubjects",
-      -- "HiPhish/nvim-ts-rainbow2",
     },
+    event = "BufEnter",
     config = function()
       vim.treesitter.language.register("python", "sage")
 
@@ -21,14 +20,13 @@ return {
           "vim",
           "regex",
           "markdown",
+          "vimdoc",
           "dart",
           "markdown_inline",
           "julia",
           "cpp",
         },
-        highlight = {
-          enable = true,
-        },
+        highlight = { enable = true },
         textobjects = {
           move = {
             enable = true,
@@ -131,6 +129,7 @@ return {
   },
   {
     "ziontee113/syntax-tree-surfer",
+    keys = { "vU", "vD", "vd", "vu", "vx", "vn", "J", "K", "H", "L", "<A-j>", "<A-k>" },
     config = function()
       -- Syntax Tree Surfer
       local opts = { noremap = true, silent = true }
@@ -156,12 +155,6 @@ return {
         return "g@l"
       end, { silent = true, expr = true })
 
-      --> If the mappings above don't work, use these instead (no dot repeatable)
-      -- vim.keymap.set("n", "vd", '<cmd>STSSwapCurrentNodeNextNormal<cr>', opts)
-      -- vim.keymap.set("n", "vu", '<cmd>STSSwapCurrentNodePrevNormal<cr>', opts)
-      -- vim.keymap.set("n", "vD", '<cmd>STSSwapDownNormal<cr>', opts)
-      -- vim.keymap.set("n", "vU", '<cmd>STSSwapUpNormal<cr>', opts)
-
       -- Visual Selection from Normal Mode
       vim.keymap.set("n", "vx", "<cmd>STSSelectMasterNode<cr>", opts)
       vim.keymap.set("n", "vn", "<cmd>STSSelectCurrentNode<cr>", opts)
@@ -175,77 +168,6 @@ return {
       -- Swapping Nodes in Visual Mode
       vim.keymap.set("x", "<A-j>", "<cmd>STSSwapNextVisual<cr>", opts)
       vim.keymap.set("x", "<A-k>", "<cmd>STSSwapPrevVisual<cr>", opts)
-
-      -- Syntax Tree Surfer V2 Mappings
-      -- Targeted Jump with virtual_text
-      local sts = require "syntax-tree-surfer"
-      -- vim.keymap.set("n", "gv", function() -- only jump to variable_declarations
-      --   sts.targeted_jump { "variable_declaration" }
-      -- end, opts)
-      vim.keymap.set("n", "gfu", function() -- only jump to functions
-        sts.targeted_jump { "function", "arrrow_function", "function_definition" }
-        --> In this example, the Lua language schema uses "function",
-        --  when the Python language uses "function_definition"
-        --  we include both, so this keymap will work on both languages
-      end, opts)
-      -- vim.keymap.set("n", "gif", function() -- only jump to if_statements
-      --   sts.targeted_jump { "if_statement" }
-      -- end, opts)
-      vim.keymap.set("n", "gfo", function() -- only jump to for_statements
-        sts.targeted_jump { "for_statement" }
-      end, opts)
-      vim.keymap.set("n", "gj", function() -- jump to all that you specify
-        sts.targeted_jump {
-          "function",
-          "if_statement",
-          "else_clause",
-          "else_statement",
-          "elseif_statement",
-          "for_statement",
-          "while_statement",
-          "switch_statement",
-        }
-      end, opts)
-
-      -------------------------------
-      -- filtered_jump --
-      -- "default" means that you jump to the default_desired_types or your lastest jump types
-      vim.keymap.set("n", "<A-n>", function()
-        sts.filtered_jump("default", true) --> true means jump forward
-      end, opts)
-      vim.keymap.set("n", "<A-p>", function()
-        sts.filtered_jump("default", false) --> false means jump backwards
-      end, opts)
-
-      -------------------------------
-      -- -- jump with limited targets --
-      -- -- jump to sibling nodes only
-      -- vim.keymap.set("n", "-", function()
-      --   sts.filtered_jump({
-      --     "if_statement",
-      --     "else_clause",
-      --     "else_statement",
-      --   }, false, { destination = "siblings" })
-      -- end, opts)
-      -- vim.keymap.set("n", "=", function()
-      --   sts.filtered_jump({ "if_statement", "else_clause", "else_statement" }, true, { destination = "siblings" })
-      -- end, opts)
-
-      -- -- jump to parent or child nodes only
-      -- vim.keymap.set("n", "_", function()
-      --   sts.filtered_jump({
-      --     "if_statement",
-      --     "else_clause",
-      --     "else_statement",
-      --   }, false, { destination = "parent" })
-      -- end, opts)
-      -- vim.keymap.set("n", "+", function()
-      --   sts.filtered_jump({
-      --     "if_statement",
-      --     "else_clause",
-      --     "else_statement",
-      --   }, true, { destination = "children" })
-      -- end, opts)
 
       -- Setup Function example:
       -- These are the default options:

@@ -2,51 +2,54 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
-      require("catppuccin").setup {}
-      --   flavour = "mocha", -- latte, frappe, macchiato, mocha
-      --   background = { -- :h background
-      --     light = "latte",
-      --     dark = "mocha",
-      --   },
-      --   transparent_background = false,
-      --   show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-      --   term_colors = false,
-      --   dim_inactive = {
-      --     enabled = false,
-      --     shade = "dark",
-      --     percentage = 0.15,
-      --   },
-      --   no_italic = false, -- Force no italic
-      --   no_bold = false, -- Force no bold
-      --   styles = {
-      --     comments = { "italic" },
-      --     conditionals = { "italic" },
-      --     loops = {},
-      --     functions = {},
-      --     keywords = {},
-      --     strings = {},
-      --     variables = {},
-      --     numbers = {},
-      --     booleans = {},
-      --     properties = {},
-      --     types = {},
-      --     operators = {},
-      --   },
-      --   color_overrides = {},
-      --   custom_highlights = {},
-      --   integrations = {
-      --     cmp = true,
-      --     gitsigns = true,
-      --     nvimtree = true,
-      --     telescope = true,
-      --     notify = false,
-      --     mini = false,
-      --     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-      --   },
-      -- }
+      require("catppuccin").setup {
+        --   flavour = "mocha", -- latte, frappe, macchiato, mocha
+        --   background = { -- :h background
+        --     light = "latte",
+        --     dark = "mocha",
+        --   },
+        transparent_background = true,
+        --   show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+        --   term_colors = false,
+        dim_inactive = {
+          enabled = true,
+          shade = "dark",
+          percentage = 0.15,
+        },
+        --   no_italic = false, -- Force no italic
+        --   no_bold = false, -- Force no bold
+        -- styles = {
+        --   comments = { "italic" },
+        --   conditionals = { "italic" },
+        --   loops = {},
+        --   functions = {},
+        --   keywords = {},
+        --   strings = {},
+        --   variables = {},
+        --   numbers = {},
+        --   booleans = {},
+        --   properties = {},
+        --   types = {},
+        --   operators = {},
+        -- },
+        --   color_overrides = {},
+        --   custom_highlights = {},
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          nvimtree = true,
+          telescope = true,
+          sandwich = true,
+          lsp_trouble = true,
+          octo = true,
+          neotest = true,
+          mason = true,
+          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        },
+      }
       vim.opt.background = "light"
       vim.cmd.colorscheme "catppuccin"
     end,
@@ -56,7 +59,7 @@ return {
     enabled = function()
       return vim.fn.has "macunix"
     end,
-    dependencies = { "catppuccin/nvim" },
+    dependencies = { "catppuccin" },
     config = function()
       local auto_dark_mode = require "auto-dark-mode"
 
@@ -112,18 +115,21 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
+    event = "BufEnter",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       "catppuccin",
+      "f-person/auto-dark-mode.nvim",
     },
     config = function()
       require("bufferline").setup {
         options = {
           mode = "tabs",
           separator_style = "slope",
-          highlights = require("catppuccin.groups.integrations.bufferline").get(),
           diagnostidcs = "nvim_lsp",
+          indicator = { style = "none" },
         },
+        highlights = require("catppuccin.groups.integrations.bufferline").get(),
       }
     end,
   },
@@ -164,6 +170,7 @@ return {
   },
   {
     "kevinhwang91/nvim-ufo",
+    keys = { "zR", "zM", "zr", "zm" },
     dependencies = {
       "kevinhwang91/promise-async",
       "neovim/nvim-lspconfig",
@@ -261,7 +268,7 @@ return {
         },
         query = {
           [""] = "rainbow-delimiters",
-      --     latex = "rainbow-blocks",
+          --     latex = "rainbow-blocks",
         },
         highlight = highlight,
       }

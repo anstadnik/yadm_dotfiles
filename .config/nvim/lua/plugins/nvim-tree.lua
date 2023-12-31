@@ -5,6 +5,7 @@ return {
       "nvim-tree/nvim-web-devicons",
       "jose-elias-alvarez/null-ls.nvim",
     },
+    keys = { "<C-n>" },
     config = function()
       -- local function open_nvim_tree(data)
       --   -- buffer is a [No Name]

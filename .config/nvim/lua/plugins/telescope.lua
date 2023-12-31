@@ -6,6 +6,23 @@ return {
       "debugloop/telescope-undo.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       "aaronhallaert/advanced-git-search.nvim",
+      "nvim-telescope/telescope-bibtex.nvim",
+    },
+    cmd = "Telescope",
+    keys = {
+      "<leader>n",
+      "<leader>/",
+      "<leader>ff",
+      "<leader>fa",
+      -- "<leader>fw",
+      "<leader>fb",
+      "<leader>fh",
+      "<leader>fo",
+      "<leader>tk",
+      "<leader>cm",
+      "<leader>gt",
+      "<leader>fu",
+      "g/",
     },
     config = function()
       vim.keymap.set("n", "<leader>n", "<cmd> Telescope find_files <CR>")
@@ -56,13 +73,8 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope-bibtex.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-  {
     "aaronhallaert/advanced-git-search.nvim",
+    cmd = "AdvancedGitSearch",
     dependencies = {
       "nvim-telescope/telescope.nvim",
       -- to show diff splits and open commits in browser
