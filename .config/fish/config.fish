@@ -1,4 +1,5 @@
 if status is-interactive
+    fish_add_path /opt/homebrew/bin
     set -g fish_greeting
 
     starship init fish | source
