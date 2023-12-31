@@ -61,7 +61,7 @@ elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
     rustup default stable
     git clone https://aur.archlinux.org/paru.git
     cd paru
-    makepkg -si
+    makepkg -si --noconfirm
 
     cd ..
     rm -rf .cache paru
