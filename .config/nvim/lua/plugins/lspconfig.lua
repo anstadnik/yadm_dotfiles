@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = { "williamboman/mason-lspconfig.nvim" },
-    event = "BufEnter",
+    -- event = "BufEnter",
     config = require "plugins.configs.lspconfig",
   },
   {
@@ -106,6 +106,23 @@ return {
     "akinsho/flutter-tools.nvim",
     ft = "dart",
     dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local helpers = require "plugins.configs.lspconfig_helpers"
+      require("flutter-tools").setup {
+        -- experimental = { lsp_derive = true },
+        -- debugger = { enabled = true },
+        -- widget_guides = { enabled = true },
+        -- closing_tags = { highlight = "ErrorMsg", prefix = ">", enabled = true },
+        -- dev_log = { open_cmd = "tabedit" },
+        -- outline = {
+        --   open_cmd = "30vnew",
+        -- },
+        lsp = {
+          on_attach = helpers.on_attach_with_format,
+          capabilities = helpers.capabilities,
+        },
+      }
+    end,
   },
   -- {
   --   "SmiteshP/nvim-navic",

@@ -8,7 +8,8 @@ return {
       "aaronhallaert/advanced-git-search.nvim",
       "nvim-telescope/telescope-bibtex.nvim",
     },
-    cmd = "Telescope",
+    event = "BufEnter",
+    -- cmd = "Telescope",
     keys = {
       "<leader>n",
       "<leader>/",

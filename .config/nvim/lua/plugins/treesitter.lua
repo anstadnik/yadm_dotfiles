@@ -11,16 +11,18 @@ return {
 
       require("nvim-treesitter.configs").setup {
         ensure_installed = {
+          "c",
+          "lua",
+          "vim",
+          "vimdoc",
+          "query",
           "rust",
           "python",
-          "lua",
           "comment",
           "latex",
           "bash",
-          "vim",
           "regex",
           "markdown",
-          "vimdoc",
           "dart",
           "markdown_inline",
           "julia",

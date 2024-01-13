@@ -20,6 +20,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "docker_compose*.yml" },
+  command = "set filetype=yaml.docker-compose",
+})
+
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --   group = augroup "lazy_autoupdate",
 --   callback = function()

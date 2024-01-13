@@ -49,7 +49,7 @@ return function()
     capabilities = helpers.capabilities,
   }
 
-  local servers_with_fmt = { "julials", "yamlls", "dockerls" }
+  local servers_with_fmt = { "julials", "yamlls", "dockerls", "docker_compose_language_service" }
 
   for _, lsp in ipairs(servers_with_fmt) do
     lspconfig[lsp].setup {
@@ -76,21 +76,6 @@ return function()
     --     excludeArgs = { "-frounding-math" },
     --   },
     -- },
-  }
-
-  require("flutter-tools").setup {
-    -- experimental = { lsp_derive = true },
-    -- debugger = { enabled = true },
-    -- widget_guides = { enabled = true },
-    -- closing_tags = { highlight = "ErrorMsg", prefix = ">", enabled = true },
-    -- dev_log = { open_cmd = "tabedit" },
-    -- outline = {
-    --   open_cmd = "30vnew",
-    -- },
-    lsp = {
-      on_attach = helpers.on_attach_with_format,
-      capabilities = helpers.capabilities,
-    },
   }
 
   lspconfig["sourcery"].setup {
