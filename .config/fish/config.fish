@@ -8,6 +8,9 @@ if status is-interactive
     # Set the fish greeting
     set -g fish_greeting
 
+    # Fix typos
+    thefuck --alias | source 
+
     # Initialize starship prompt and other tools
     starship init fish | source
     zoxide init fish | source
