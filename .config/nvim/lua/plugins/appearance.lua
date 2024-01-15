@@ -1,3 +1,19 @@
+local function set_dark_mode()
+  vim.api.nvim_set_option("background", "dark")
+  vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Mocha" }
+  vim.fn.system { "zellij", "options", "--theme", "catppuccin-mocha" }
+  vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "mocha" }
+  vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
+end
+
+local function set_light_mode()
+  vim.api.nvim_set_option("background", "light")
+  vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Latte" }
+  vim.fn.system { "zellij", "options", "--theme", "catppuccin-latte" }
+  vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "latte" }
+  vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
+end
+
 return {
   {
     "catppuccin/nvim",
@@ -50,14 +66,15 @@ return {
           -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
         },
       }
-      vim.opt.background = "light"
+      -- vim.opt.background = "dark"
+      set_light_mode()
       vim.cmd.colorscheme "catppuccin"
     end,
   },
   {
     "f-person/auto-dark-mode.nvim",
     enabled = function()
-      return vim.fn.has "macunix"
+      return vim.fn.has "macunix" == 1
     end,
     dependencies = { "catppuccin" },
     config = function()
@@ -65,22 +82,10 @@ return {
 
       auto_dark_mode.setup {
         update_interval = 1000,
-        set_dark_mode = function()
-          vim.api.nvim_set_option("background", "dark")
-          vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Mocha" }
-          vim.fn.system { "zellij", "options", "--theme", "catppuccin-mocha" }
-          vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "mocha" }
-          vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
-        end,
-        set_light_mode = function()
-          vim.api.nvim_set_option("background", "light")
-          vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Latte" }
-          vim.fn.system { "zellij", "options", "--theme", "catppuccin-latte" }
-          vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "latte" }
-          vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
-        end,
+        set_dark_mode = set_dark_mode,
+        set_light_mode = set_light_mode,
       }
-      auto_dark_mode.init()
+      -- auto_dark_mode.init()
     end,
   },
   {

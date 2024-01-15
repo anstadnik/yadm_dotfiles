@@ -20,3 +20,4 @@ disabled = false
 
 [os.symbols]
 Macos = " "
+EndeavourOS = " "
