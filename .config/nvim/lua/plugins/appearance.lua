@@ -1,17 +1,17 @@
 local function set_dark_mode()
   vim.api.nvim_set_option("background", "dark")
-  vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Mocha" }
-  vim.fn.system { "zellij", "options", "--theme", "catppuccin-mocha" }
-  vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "mocha" }
-  vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
+  vim.system { "kitty", "+kitten", "themes", "Catppuccin-Mocha" }
+  vim.system { "zellij", "options", "--theme", "catppuccin-mocha" }
+  vim.system { "tmux", "set", "-g", "@catppuccin_flavour", "mocha" }
+  vim.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
 end
 
 local function set_light_mode()
   vim.api.nvim_set_option("background", "light")
-  vim.fn.system { "kitty", "+kitten", "themes", "Catppuccin-Latte" }
-  vim.fn.system { "zellij", "options", "--theme", "catppuccin-latte" }
-  vim.fn.system { "tmux", "set", "-g", "@catppuccin_flavour", "latte" }
-  vim.fn.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
+  vim.system { "kitty", "+kitten", "themes", "Catppuccin-Latte" }
+  vim.system { "zellij", "options", "--theme", "catppuccin-latte" }
+  vim.system { "tmux", "set", "-g", "@catppuccin_flavour", "latte" }
+  vim.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
 end
 
 return {

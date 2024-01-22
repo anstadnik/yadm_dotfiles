@@ -5,17 +5,19 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
     },
-    event = "BufEnter",
+    -- event = "BufEnter",
     config = function()
       vim.treesitter.language.register("python", "sage")
 
       require("nvim-treesitter.configs").setup {
         ensure_installed = {
+          -- Required
           "c",
           "lua",
+          "query",
           "vim",
           "vimdoc",
-          "query",
+
           "rust",
           "python",
           "comment",
@@ -25,7 +27,7 @@ return {
           "markdown",
           "dart",
           "markdown_inline",
-          "julia",
+          -- "julia",
           "cpp",
         },
         highlight = { enable = true },

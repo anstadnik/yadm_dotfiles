@@ -39,12 +39,13 @@ function M.load_mapping(bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, { buffer = bufnr })
 
-  vim.keymap.set("n", "<C-f>", require("copilot.suggestion").accept, { buffer = bufnr })
+  -- vim.keymap.set("n", "<C-f>", require("copilot.suggestion").accept, { buffer = bufnr })
 end
 
 function M.on_attach(client, bufnr)
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
+  vim.lsp.inlay_hint.enable(bufnr, true)
   M.load_mapping(bufnr)
 
   -- if client.server_capabilities.documentSymbolProvider then
@@ -53,8 +54,10 @@ function M.on_attach(client, bufnr)
 end
 
 function M.on_attach_with_format(client, bufnr)
+  print("Attaching to " .. client.name .. " on " .. bufnr)
   client.server_capabilities.documentFormattingProvider = true
   client.server_capabilities.documentRangeFormattingProvider = true
+  vim.lsp.inlay_hint.enable(bufnr, true)
   M.load_mapping(bufnr)
 
   -- if client.server_capabilities.documentSymbolProvider then

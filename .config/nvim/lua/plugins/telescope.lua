@@ -2,6 +2,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
+      "nvim-treesitter/nvim-treesitter",
       "nvim-lua/plenary.nvim",
       "debugloop/telescope-undo.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
