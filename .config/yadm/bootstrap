@@ -23,4 +23,4 @@ else
   exit 1
 fi
 
-(source $HOME/.config/yadm/helpers/bootstrap_common.bash)
+(source $HOME/.config/yadm/bootstrap_common.bash)

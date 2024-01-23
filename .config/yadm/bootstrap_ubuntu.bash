@@ -13,16 +13,7 @@ fi
 
 install_rustup_ubuntu
 export PATH="$HOME/.cargo/bin:$PATH"
-cargo install macchina yazi-fm
-
-
-(
-    cd /tmp
-    curl -LO https://github.com/r-darwish/topgrade/releases/latest/download/topgrade-v9.0.1-x86_64-unknown-linux-gnu.tar.gz
-    tar xf topgrade-*
-    sudo mv topgrade /usr/local/bin
-    rm -rf topgrade-*
-)
+cargo install macchina yazi-fm topgrade
 
 if [[ "$(command -v gnome-shell)" ]]; then
     sudo -E apt install -y kitty gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
