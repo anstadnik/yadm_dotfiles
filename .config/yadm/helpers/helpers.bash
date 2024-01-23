@@ -4,6 +4,7 @@ command_exists() {
 
 run_in_background() {
   if command_exists gnome-shell && command_exists kitty; then
+    echo "Running <$*> in bash"
     kitty bash -c "$*" &
   else
     "$@" &
