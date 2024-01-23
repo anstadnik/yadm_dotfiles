@@ -15,9 +15,9 @@ source $HOME/.config/yadm/helpers/ubuntu.bash
 sudo echo
 
 if [[ "$OS" = "Ubuntu" ]]; then
-  (source $HOME/.config/yadm/helpers/bootstrap_ubuntu.bash)
+  (source $HOME/.config/yadm/bootstrap_ubuntu.bash)
 elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
-  (source $HOME/.config/yadm/helpers/bootstrap_arch.bash)
+  (source $HOME/.config/yadm/bootstrap_arch.bash)
 else
   echo "Unknown distro"
   exit 1
