@@ -8,7 +8,7 @@ sudo apt update
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
-sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs thefuck fzf
+sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs thefuck fzf cmake
 
 if [[ "$VERSION" =~ ^(22.04|22.10)$ ]]; then
     sudo apt install -y zoxide
@@ -21,7 +21,7 @@ yes | "${SHELL}" <(curl -L https://micro.mamba.pm/install.sh)
 
 if [[ "$(command -v gnome-shell)" ]]; then
     sudo -E apt install -y kitty gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
-    gnome-shell-extension-installer --yes 19 307 3193
+    # gnome-shell-extension-installer --yes 19 307 3193
 
 
     run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_gnome_extension_ubuntu"
