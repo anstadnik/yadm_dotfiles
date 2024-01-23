@@ -16,6 +16,7 @@ fi
 
 install_rustup_ubuntu
 export PATH="$HOME/.cargo/bin:$PATH"
+fish -c "fish_add_path $HOME/.cargo/bin"
 cargo install macchina yazi-fm topgrade lsd starship
 yes | "${SHELL}" <(curl -L https://micro.mamba.pm/install.sh)
 
@@ -29,8 +30,8 @@ if [[ "$(command -v gnome-shell)" ]]; then
     # run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_chrome_ubuntu"
 
     sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
-    gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/watchtower.jpg
-    gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/watchtower.jpg
+    gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/japan_wallpaper.png
+    gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/japan_wallpaper.png
 fi
 
 sudo apt autoremove -y
