@@ -16,12 +16,13 @@ fi
 
 install_rustup_ubuntu
 export PATH="$HOME/.cargo/bin:$PATH"
-fish -c "fish_add_path $HOME/.cargo/bin"
 cargo install macchina yazi-fm topgrade lsd starship
 yes | "${SHELL}" <(curl -L https://micro.mamba.pm/install.sh)
 
 if [[ "$(command -v gnome-shell)" ]]; then
     sudo -E apt install -y kitty gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
+    gnome-shell-extension-installer --yes 19 307 3193
+
 
     run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_gnome_extension_ubuntu"
     run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_theme_ubuntu"

@@ -9,4 +9,8 @@ yes n | ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/id_ed25519
 
 nvim --headless "+Lazy! sync" +qa
 
+fish -c "fish_add_path $HOME/.cargo/bin"
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install edc/bass
+
 yes | topgrade -y --disable git_repos
