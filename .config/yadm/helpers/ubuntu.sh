@@ -37,7 +37,7 @@ install_fonts_ubuntu() {
 
 install_rustup_ubuntu() {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    /home/astadnik/.cargo/bin/rustup default stable
+    $HOME/.cargo/bin/rustup default stable
 }
 
 install_chrome_ubuntu ()
