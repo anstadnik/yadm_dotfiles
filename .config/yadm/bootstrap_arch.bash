@@ -16,8 +16,8 @@ if [[ "$(command -v gnome-shell)" ]]; then
     paru -Sy --noconfirm gnome-tweaks gnome-shell-extension-installer colloid-icon-theme-git colloid-gtk-theme-git phinger-cursors google-chrome kitty nerd-fonts-jetbrains-mono gnome-browser-connector telegram-desktop
     gnome-shell-extension-installer --yes 19 307 3193
 
-    gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
-    gsettings set org.gnome.desktop.background picture-uri file:///home/astadnik/Pictures/watchtower.jpg
+    gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/watchtower.jpg
+    gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/watchtower.jpg
 fi
 
 run_in_background paru -Scc

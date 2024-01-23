@@ -28,8 +28,8 @@ if [[ "$(command -v gnome-shell)" ]]; then
     run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_chrome_ubuntu"
 
     sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
-    gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
-    gsettings set org.gnome.desktop.background picture-uri file:///home/astadnik/Pictures/watchtower.jpg
+    gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/watchtower.jpg
+    gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/watchtower.jpg
 fi
 
 sudo apt autoremove -y
