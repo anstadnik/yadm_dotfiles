@@ -8,7 +8,7 @@ sudo apt update
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
-sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs thefuck
+sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs thefuck fzf
 
 if [[ "$VERSION" =~ ^(22.04|22.10)$ ]]; then
     sudo apt install -y zoxide
