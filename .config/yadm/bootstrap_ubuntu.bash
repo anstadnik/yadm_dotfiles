@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 # # sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 
-sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
 sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs thefuck
 
@@ -25,7 +25,7 @@ if [[ "$(command -v gnome-shell)" ]]; then
     run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_theme_ubuntu"
     run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_icons_ubuntu"
     run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_fonts_ubuntu"
-    run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_chrome_ubuntu"
+    # run_in_background "source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_chrome_ubuntu"
 
     sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
     gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/Pictures/watchtower.jpg

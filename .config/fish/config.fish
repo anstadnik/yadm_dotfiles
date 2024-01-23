@@ -19,7 +19,7 @@ if status is-interactive
 
     # Set Micromamba environment
     set -x MAMBA_ROOT_PREFIX $HOME/micromamba
-    eval "$(micromamba shell hook --shell fish)"
+    eval "micromamba shell hook --shell fish"
 
     # Configure NNN file manager
     set -x NNN_OPENER $HOME/.config/nnn/plugins/nuke
