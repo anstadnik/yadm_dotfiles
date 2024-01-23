@@ -54,7 +54,6 @@ function M.on_attach(client, bufnr)
 end
 
 function M.on_attach_with_format(client, bufnr)
-  print("Attaching to " .. client.name .. " on " .. bufnr)
   client.server_capabilities.documentFormattingProvider = true
   client.server_capabilities.documentRangeFormattingProvider = true
   vim.lsp.inlay_hint.enable(bufnr, true)
