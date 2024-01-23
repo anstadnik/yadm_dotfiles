@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 # # sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 
-sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
 sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update
 sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs thefuck
