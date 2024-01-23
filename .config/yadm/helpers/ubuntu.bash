@@ -23,15 +23,20 @@ install_icons_ubuntu() {
     wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
 }
 
+install_font() {
+    cd /tmp
+    curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/$1.zip
+    unar $1.zip
+    mv /tmp/$1/*.ttf ~/.fonts/
+    rm -rf /tmp/$1.zip /tmp/$1
+}
+
 install_fonts_ubuntu() {
     if [[ ! -d ~/.fonts ]]; then
-        cd /tmp
-        curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
-        unar JetBrainsMono.zip
         mkdir ~/.fonts
-        mv /tmp/JetBrainsMono/*.ttf ~/.fonts/
+        (install_font JetBrainsMono)
+        (install_font NerdFontsSymbolsOnly)
         fc-cache -fv
-        rm -rf /tmp/JetBrainsMono.zip /tmp/JetBrainsMono
     fi
 }
 
