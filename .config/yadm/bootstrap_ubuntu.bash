@@ -18,11 +18,11 @@ cargo install macchina yazi-fm topgrade
 if [[ "$(command -v gnome-shell)" ]]; then
     sudo -E apt install -y kitty gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
 
-    run_in_background install_gnome_extension_ubuntu
-    run_in_background install_theme_ubuntu
-    run_in_background install_icons_ubuntu
-    run_in_background install_fonts_ubuntu
-    run_in_background install_chrome_ubuntu
+    run_in_background source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_gnome_extension_ubuntu
+    run_in_background source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_theme_ubuntu
+    run_in_background source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_icons_ubuntu
+    run_in_background source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_fonts_ubuntu
+    run_in_background source $HOME/.config/yadm/helpers/helpers.bash && source $HOME/.config/yadm/helpers/ubuntu.bash && install_chrome_ubuntu
 
     sudo update-alternatives --set x-terminal-emulator /usr/bin/kitty
     gsettings set org.gnome.desktop.background picture-uri-dark file:///home/astadnik/Pictures/watchtower.jpg
