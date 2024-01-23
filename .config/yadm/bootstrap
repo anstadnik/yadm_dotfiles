@@ -22,7 +22,7 @@ if [[ "$OS" = "Ubuntu" ]]; then
     # sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt update
 
-    sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip yazi nodejs
+    sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs
 
     if [[ "$VERSION" =~ ^(22.04|22.10)$ ]]; then
         sudo apt install -y zoxide
@@ -30,7 +30,7 @@ if [[ "$OS" = "Ubuntu" ]]; then
 
     install_rustup_ubuntu
     export PATH="$HOME/.cargo/bin:$PATH"
-    cargo install macchina
+    cargo install macchina yazi
 
 
     cd /tmp
