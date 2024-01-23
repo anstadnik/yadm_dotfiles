@@ -5,7 +5,9 @@ export DEBIAN_FRONTEND=noninteractive
 # # sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 
-sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt update
+sudo -E apt install -y build-essential neofetch python3-pip tmux curl fd-find telegram-desktop htop systemd-coredump fish bat unar neovim unzip nodejs thefuck
 
 if [[ "$VERSION" =~ ^(22.04|22.10)$ ]]; then
     sudo apt install -y zoxide
@@ -13,7 +15,8 @@ fi
 
 install_rustup_ubuntu
 export PATH="$HOME/.cargo/bin:$PATH"
-cargo install macchina yazi-fm topgrade
+cargo install macchina yazi-fm topgrade lsd starship
+yes | "${SHELL}" <(curl -L https://micro.mamba.pm/install.sh)
 
 if [[ "$(command -v gnome-shell)" ]]; then
     sudo -E apt install -y kitty gnome-tweaks chrome-gnome-shell gtk2-engines-murrine gnome-themes-extra sassc
