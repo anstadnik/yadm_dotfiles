@@ -49,7 +49,7 @@ return function()
     capabilities = helpers.capabilities,
   }
 
-  local servers_with_fmt = { "julials", "yamlls", "dockerls", "docker_compose_language_service" }
+  local servers_with_fmt = { "julials", "yamlls", "dockerls", "docker_compose_language_service", "marksman" }
 
   for _, lsp in ipairs(servers_with_fmt) do
     lspconfig[lsp].setup {

@@ -12,16 +12,12 @@ return {
     config = function()
       require("neotest").setup {
         adapters = {
-          require "neotest-rust" {
-            -- args = { "--no-capture" },
-            dap_adapter = "lldb",
-          },
-          -- require "neotest-rust",
+          require "neotest-rust",
           require "neotest-python" {
             is_test_file = function(file_path)
               return vim.endswith(file_path, ".py")
             end,
-        pytest_discover_instances = true,
+            pytest_discover_instances = true,
           },
         },
       }
