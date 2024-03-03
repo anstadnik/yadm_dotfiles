@@ -21,8 +21,8 @@ return {
       lang = "rust",
       arg = leet_arg,
       hooks = {
-        ---@type fun(question: { lang: string })[]
-        LeetQuestionNew = {
+        ---@type fun(question: lc.ui.Question)[]
+        ["question_enter"] = {
           function(_)
             -- vim.keymap.set("n", "<CR>", "<cmd>Leet test<CR>", { buffer = true })
             -- vim.keymap.set("n", "<leader><CR>", "<cmd>Leet submit<CR>", { buffer = true })
