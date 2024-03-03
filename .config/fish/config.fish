@@ -68,3 +68,4 @@ if status is-interactive
     # Run macchina for system information on shell start
     macchina
 end
+pixi completion --shell fish | source
