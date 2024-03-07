@@ -1,4 +1,6 @@
 return function()
+  require("neodev").setup {}
+
   local helpers = require "plugins.configs.lspconfig_helpers"
   local lspconfig = require "lspconfig"
 

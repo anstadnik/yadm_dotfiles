@@ -5,7 +5,7 @@ return {
     event = "InsertEnter",
     dependencies = {
       "onsails/lspkind.nvim",
-      "hrsh7th/cmp-nvim-lua",
+      -- "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -18,7 +18,7 @@ return {
     "L3MON4D3/LuaSnip",
     lazy = true,
     config = function()
-      require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/luasnippets" }
+      require("luasnip.loaders.from_lua").load { paths = {"~/.config/nvim/luasnippets" }}
       require("luasnip").config.setup {
         ext_opts = {
           [require("luasnip.util.types").choiceNode] = {
@@ -72,7 +72,7 @@ return {
       require("copilot").setup {
         suggestion = {
           auto_trigger = true,
-          keymap = { accept = "<C-f>" },
+          keymap = { accept = "<C-e>", accept_word = "<C-f>" },
         },
         filetypes = {
           yaml = false,

@@ -3,7 +3,7 @@ local M = {}
 function M.load_mapping(bufnr)
   vim.keymap.set("n", "gd", "<cmd> Telescope lsp_definitions<CR>", { buffer = bufnr })
   vim.keymap.set("n", "<leader>g", "<cmd> Telescope lsp_document_symbols<CR>", { buffer = bufnr })
-  vim.keymap.set("n", "<C-g>", "<cmd> SymbolsOutline<CR>", { buffer = bufnr })
+  vim.keymap.set("n", "<C-g>", "<cmd> Outline<CR>", { buffer = bufnr })
   vim.keymap.set("n", "gr", "<cmd> Telescope lsp_references<CR>", { buffer = bufnr })
   vim.keymap.set("n", "<leader>l", "<cmd> Telescope lsp_dynamic_workspace_symbols<CR>", { buffer = bufnr })
   vim.keymap.set("n", "<leader>e", "<cmd> Telescope diagnostics<CR>", { buffer = bufnr })
