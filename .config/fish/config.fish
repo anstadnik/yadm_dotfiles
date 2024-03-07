@@ -8,18 +8,15 @@ if status is-interactive
     # Set the fish greeting
     set -g fish_greeting
 
-    # Fix typos
-    thefuck --alias | source 
-
     # Initialize starship prompt and other tools
     starship init fish | source
     zoxide init fish | source
     fzf_configure_bindings --directory=\cf
     set fzf_fd_opts --hidden
 
-    # Set Micromamba environment
-    set -x MAMBA_ROOT_PREFIX $HOME/micromamba
-    eval "$(micromamba shell hook --shell fish)"
+    # # Set Micromamba environment
+    # set -x MAMBA_ROOT_PREFIX $HOME/micromamba
+    # eval "$(micromamba shell hook --shell fish)"
 
     # Configure NNN file manager
     set -x NNN_OPENER $HOME/.config/nnn/plugins/nuke

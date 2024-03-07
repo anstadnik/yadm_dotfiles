@@ -18,6 +18,7 @@ return function()
     "Pipfile",
     "pyrightconfig.json",
     "environment.yml",
+    "pixi.toml",
   }
   lspconfig["pyright"].setup {
     on_attach = helpers.on_attach,
