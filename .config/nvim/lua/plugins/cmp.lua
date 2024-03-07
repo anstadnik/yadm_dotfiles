@@ -18,7 +18,7 @@ return {
     "L3MON4D3/LuaSnip",
     lazy = true,
     config = function()
-      require("luasnip.loaders.from_lua").load { paths = {"~/.config/nvim/luasnippets" }}
+      require("luasnip.loaders.from_lua").load { paths = { "~/.config/nvim/luasnippets" } }
       require("luasnip").config.setup {
         ext_opts = {
           [require("luasnip.util.types").choiceNode] = {
@@ -72,7 +72,7 @@ return {
       require("copilot").setup {
         suggestion = {
           auto_trigger = true,
-          keymap = { accept = "<C-e>", accept_word = "<C-f>" },
+          keymap = { accept = "<C-f>", accept_word = "<C-e>" },
         },
         filetypes = {
           yaml = false,
