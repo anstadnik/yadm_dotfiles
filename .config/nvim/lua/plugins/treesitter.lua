@@ -14,9 +14,9 @@ return {
           -- Required
           "c",
           "lua",
-          "query",
           "vim",
           "vimdoc",
+          "query",
 
           "rust",
           "python",

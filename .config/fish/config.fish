@@ -12,17 +12,12 @@ if status is-interactive
     starship init fish | source
     zoxide init fish | source
     fzf_configure_bindings --directory=\cf
+    pixi completion --shell fish | source
     set fzf_fd_opts --hidden
 
     # # Set Micromamba environment
     # set -x MAMBA_ROOT_PREFIX $HOME/micromamba
     # eval "$(micromamba shell hook --shell fish)"
-
-    # Configure NNN file manager
-    set -x NNN_OPENER $HOME/.config/nnn/plugins/nuke
-    set -x NNN_PLUG 's:preview-tui;p:dragdrop;z:autojump;d:diffs;f:fzcd'
-    set -x NNN_OPTS "ac"
-    abbr -a n nnn
 
     # Set default editor and visual editor
     set -x VISUAL nvim
@@ -40,11 +35,11 @@ if status is-interactive
     set -x WORKON_HOME "$XDG_DATA_HOME/virtualenvs"
     set -x DOT_SAGE "$XDG_CONFIG_HOME/sage"
 
-    # Set Gazebo plugin and resource paths
-    # set --path -x GZ_SIM_SYSTEM_PLUGIN_PATH $GZ_SIM_SYSTEM_PLUGIN_PATH
-    # set --path -x GZ_SIM_RESOURCE_PATH $GZ_SIM_RESOURCE_PATH
-    set --path -x GZ_SIM_SYSTEM_PLUGIN_PATH $HOME/work/gz_ws/src/ardupilot_gazebo/build $GZ_SIM_SYSTEM_PLUGIN_PATH
-    set --path -x GZ_SIM_RESOURCE_PATH $HOME/work/gz_ws/src/ardupilot_gazebo/models $HOME/work/gz_ws/src/ardupilot_gazebo/worlds $GZ_SIM_RESOURCE_PATH
+    # # Set Gazebo plugin and resource paths
+    # # set --path -x GZ_SIM_SYSTEM_PLUGIN_PATH $GZ_SIM_SYSTEM_PLUGIN_PATH
+    # # set --path -x GZ_SIM_RESOURCE_PATH $GZ_SIM_RESOURCE_PATH
+    # set --path -x GZ_SIM_SYSTEM_PLUGIN_PATH $HOME/work/gz_ws/src/ardupilot_gazebo/build $GZ_SIM_SYSTEM_PLUGIN_PATH
+    # set --path -x GZ_SIM_RESOURCE_PATH $HOME/work/gz_ws/src/ardupilot_gazebo/models $HOME/work/gz_ws/src/ardupilot_gazebo/worlds $GZ_SIM_RESOURCE_PATH
 
     # Bindings and Abbreviations
     bind -k nul forward-word
@@ -52,6 +47,8 @@ if status is-interactive
     abbr -a v nvim
     abbr -a -p anywhere G "| grep"
     abbr -a -p anywhere L "| less"
+    abbr -a cope gh copilot explain
+    abbr -a cops gh copilot suggest
 
     function ya
       set tmp (mktemp -t "yazi-cwd.XXXXX")
@@ -65,4 +62,3 @@ if status is-interactive
     # Run macchina for system information on shell start
     macchina
 end
-pixi completion --shell fish | source
