@@ -22,10 +22,19 @@ return function()
     "environment.yml",
     "pixi.toml",
   }
-  lspconfig["pyright"].setup {
+  lspconfig["basedpyright"].setup {
     on_attach = helpers.on_attach,
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
     capabilities = helpers.capabilities,
+    settings = {
+      basedpyright = {
+        analysis = {
+          diagnosticMode = "workspace",
+      autoSearchPaths = true,
+      useLibraryCodeForTypes = true
+        },
+      },
+    },
   }
   -- https://github.com/mtshiba/pylyzer/issues/55
   -- lspconfig["pylyzer"].setup {
