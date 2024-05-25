@@ -28,10 +28,17 @@ return function()
     capabilities = helpers.capabilities,
     settings = {
       basedpyright = {
+        disableOrganizeImports = true,
+      },
+      python = {
         analysis = {
-          diagnosticMode = "workspace",
-      autoSearchPaths = true,
-      useLibraryCodeForTypes = true
+          analysis = {
+            --     diagnosticMode = "workspace",
+            -- autoSearchPaths = true,
+            -- useLibraryCodeForTypes = true
+          },
+          -- Ignore all files for analysis to exclusively use Ruff for linting
+          ignore = { "*" },
         },
       },
     },
@@ -42,7 +49,7 @@ return function()
   --   -- root_dir = lspconfig.util.root_pattern(unpack(root_files)),
   --   capabilities = capabilities,
   -- }
-  lspconfig["ruff_lsp"].setup {
+  lspconfig["ruff"].setup {
     on_attach = helpers.on_attach_with_format,
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
     capabilities = helpers.capabilities,
@@ -61,7 +68,7 @@ return function()
     capabilities = helpers.capabilities,
   }
 
-  local servers_with_fmt = { "julials", "yamlls", "dockerls", "docker_compose_language_service", "marksman" }
+  local servers_with_fmt = { "yamlls", "dockerls", "docker_compose_language_service", "marksman" }
 
   for _, lsp in ipairs(servers_with_fmt) do
     lspconfig[lsp].setup {

@@ -1,15 +1,15 @@
 local function set_dark_mode()
-  vim.api.nvim_set_option("background", "dark")
+  vim.api.nvim_set_option_value("background", "dark", {})
   vim.system { "kitty", "+kitten", "themes", "Catppuccin-Mocha" }
-  vim.system { "zellij", "options", "--theme", "catppuccin-mocha" }
+  -- vim.system { "zellij", "options", "--theme", "catppuccin-mocha" }
   vim.system { "tmux", "set", "-g", "@catppuccin_flavour", "mocha" }
   vim.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
 end
 
 local function set_light_mode()
-  vim.api.nvim_set_option("background", "light")
+  vim.api.nvim_set_option_value("background", "light", {})
   vim.system { "kitty", "+kitten", "themes", "Catppuccin-Latte" }
-  vim.system { "zellij", "options", "--theme", "catppuccin-latte" }
+  -- vim.system { "zellij", "options", "--theme", "catppuccin-latte" }
   vim.system { "tmux", "set", "-g", "@catppuccin_flavour", "latte" }
   vim.system { "tmux", "run-shell", "~/.tmux/plugins/tpm/tpm" }
 end

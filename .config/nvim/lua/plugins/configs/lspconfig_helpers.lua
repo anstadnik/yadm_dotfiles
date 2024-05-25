@@ -43,9 +43,13 @@ function M.load_mapping(bufnr)
 end
 
 function M.on_attach(client, bufnr)
+  if client.name == 'ruff' then
+    -- Disable hover in favor of Pyright
+    client.server_capabilities.hoverProvider = false
+  end
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
-  vim.lsp.inlay_hint.enable(bufnr, true)
+  -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   M.load_mapping(bufnr)
 
   -- if client.server_capabilities.documentSymbolProvider then
@@ -54,9 +58,13 @@ function M.on_attach(client, bufnr)
 end
 
 function M.on_attach_with_format(client, bufnr)
+  if client.name == 'ruff' then
+    -- Disable hover in favor of Pyright
+    client.server_capabilities.hoverProvider = false
+  end
   client.server_capabilities.documentFormattingProvider = true
   client.server_capabilities.documentRangeFormattingProvider = true
-  vim.lsp.inlay_hint.enable(bufnr, true)
+  -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   M.load_mapping(bufnr)
 
   -- if client.server_capabilities.documentSymbolProvider then
