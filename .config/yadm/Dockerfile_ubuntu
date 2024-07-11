@@ -6,9 +6,10 @@ ARG GID=1000
 WORKDIR /tmp
 
 # Load mecessary tools for installing yay
-RUN apt update && apt install --yes yadm build-essential lsb-release sudo
+RUN apt update && apt install --yes yadm build-essential lsb-release sudo software-properties-common
 
 # Manage users and permissions
+RUN userdel -r ubuntu
 RUN echo "root:Docker!" | chpasswd \
   && groupadd -g ${GID} -o ${UNAME} \
   && useradd -lm -u ${UID} -g ${GID} ${UNAME} \

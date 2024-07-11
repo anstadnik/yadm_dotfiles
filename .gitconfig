@@ -1,6 +1,10 @@
 [user]
 	email = stadnikandriy1@gmail.com
 	name = Stadnik Andrii
+
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -26,3 +30,9 @@
 
 [diff]
     colorMoved = default
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

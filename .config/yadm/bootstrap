@@ -8,15 +8,15 @@ if [[ ! "$OS" =~ ^(Ubuntu|EndeavourOS|Arch)$ ]]; then
     exit 1
 fi
 
-source $HOME/.config/yadm/helpers/helpers.bash
-source $HOME/.config/yadm/helpers/ubuntu.bash
+(source $HOME/.config/yadm/helpers/helpers.bash)
+(source $HOME/.config/yadm/helpers/ubuntu.bash)
 
 # Confirm sudo
 sudo echo
 
 if [[ "$OS" = "Ubuntu" ]]; then
   (source $HOME/.config/yadm/bootstrap_ubuntu.bash)
-elif [[ "$OS" = "EndeavourOS" || "$OS" = "Arch" ]]; then
+elif [[ "$OS" = "EndeavourOS" ]] || [[ "$OS" = "Arch" ]]; then
   (source $HOME/.config/yadm/bootstrap_arch.bash)
 else
   echo "Unknown distro"

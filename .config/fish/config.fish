@@ -10,6 +10,7 @@ if status is-interactive
 
     # Initialize starship prompt and other tools
     starship init fish | source
+    source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
     zoxide init fish | source
     fzf_configure_bindings --directory=\cf
     pixi completion --shell fish | source

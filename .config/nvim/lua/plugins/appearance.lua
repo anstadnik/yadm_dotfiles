@@ -316,4 +316,5 @@ return {
   --       }
   --     end,
   --   },
+  -- { 'echasnovski/mini.animate', version = false, opts = {} },
 }
