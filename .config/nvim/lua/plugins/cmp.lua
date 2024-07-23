@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    config = require "plugins.configs.cmp",
+    config = require "plugins.config.cmp",
     event = "InsertEnter",
     dependencies = {
       "onsails/lspkind.nvim",
@@ -12,6 +12,7 @@ return {
       -- "tzachar/cmp-tabnine",
       "petertriho/cmp-git",
       "saadparwaiz1/cmp_luasnip",
+      "windwp/nvim-autopairs",
     },
   },
   {
@@ -55,8 +56,6 @@ return {
     dependencies = { "L3MON4D3/LuaSnip" },
   },
 
-  -- misc plugins
-  -- { "tzachar/cmp-tabnine", build = "./install.sh" },
   {
     "petertriho/cmp-git",
     lazy = true,

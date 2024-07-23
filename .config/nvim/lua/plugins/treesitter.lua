@@ -5,7 +5,6 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
     },
-    -- event = "BufEnter",
     config = function()
       vim.treesitter.language.register("python", "sage")
 
@@ -17,6 +16,8 @@ return {
           "vim",
           "vimdoc",
           "query",
+          "markdown",
+          "markdown_inline",
 
           "rust",
           "python",
@@ -24,9 +25,7 @@ return {
           "latex",
           "bash",
           "regex",
-          "markdown",
           "dart",
-          "markdown_inline",
           -- "julia",
           "cpp",
         },
@@ -60,6 +59,7 @@ return {
           },
           select = {
             enable = true,
+            lookahead = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer",
@@ -94,15 +94,15 @@ return {
             swap_previous = { ["<leader>A"] = "@parameter.inner" },
           },
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<leader>v",
-            node_incremental = "<leader>v",
-            scope_incremental = "<leader>s",
-            node_decremental = "<leader>m",
-          },
-        },
+        -- incremental_selection = {
+        --   enable = true,
+        --   keymaps = {
+        --     init_selection = "<leader>v",
+        --     node_incremental = "<leader>v",
+        --     scope_incremental = "<leader>s",
+        --     node_decremental = "<leader>m",
+        --   },
+        -- },
         indent = {
           enable = true,
           disable = { "python", "dart" },
@@ -170,41 +170,12 @@ return {
       vim.keymap.set("x", "L", "<cmd>STSSelectChildNode<cr>", opts)
 
       -- Swapping Nodes in Visual Mode
-      -- vim.keymap.set("x", "<A-j>", "<cmd>STSSwapNextVisual<cr>", opts)
-      -- vim.keymap.set("x", "<A-k>", "<cmd>STSSwapPrevVisual<cr>", opts)
+      vim.keymap.set("x", "<A-j>", "<cmd>STSSwapNextVisual<cr>", opts)
+      vim.keymap.set("x", "<A-k>", "<cmd>STSSwapPrevVisual<cr>", opts)
 
       -- Setup Function example:
       -- These are the default options:
-      require("syntax-tree-surfer").setup {
-        highlight_group = "STS_highlight",
-        disable_no_instance_found_report = false,
-        default_desired_types = {
-          "function",
-          "arrow_function",
-          "function_definition",
-          "if_statement",
-          "else_clause",
-          "else_statement",
-          "elseif_statement",
-          "for_statement",
-          "while_statement",
-          "switch_statement",
-        },
-        left_hand_side = "fdsawervcxqtzb",
-        right_hand_side = "jkl;oiu.,mpy/n",
-        icon_dictionary = {
-          ["if_statement"] = "",
-          ["else_clause"] = "",
-          ["else_statement"] = "",
-          ["elseif_statement"] = "",
-          ["for_statement"] = "ﭜ",
-          ["while_statement"] = "ﯩ",
-          ["switch_statement"] = "ﳟ",
-          ["function"] = "",
-          ["function_definition"] = "",
-          ["variable_declaration"] = "",
-        },
-      }
+      require("syntax-tree-surfer").setup()
     end,
-  },
+    }
 }
