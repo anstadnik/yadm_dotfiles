@@ -4,7 +4,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup {
-        theme = "catppuccin",
+        theme = "auto",
         options = {
           -- component_separators = "",
           section_separators = { left = "", right = "" },

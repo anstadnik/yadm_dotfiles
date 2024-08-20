@@ -11,6 +11,7 @@ opt.clipboard = "unnamedplus" -- Use system clipboard
 
 opt.mouse = "" -- Disable mouse support
 opt.scrolloff = 5 -- Start scrolling when we're 5 lines away from margins
+opt.gdefault = true -- Use global search and replace by default
 
 opt.number = true -- Show line numbers
 opt.relativenumber = true -- Show relative line numbers
@@ -24,3 +25,5 @@ opt.ignorecase = true -- Ignore case in search patterns
 opt.undofile = true -- Enable persistent undo
 
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+
+opt.pumheight = 10 -- Maximum number of entries in a popup

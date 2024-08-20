@@ -105,7 +105,8 @@ return function()
     init_options = {
       editor_version = "vim",
       extension_version = "vim.lsp",
-      token = "user_9IMPzM1nhVENfmTL5gZoD0KOh3_zFWPCHqjuHQs019beGcu1yi78i0TYBmM",
+      -- token = "user_9IMPzM1nhVENfmTL5gZoD0KOh3_zFWPCHqjuHQs019beGcu1yi78i0TYBmM",
+      token = "user_gtvoBfIlqIXI6alm5TTLLaiQ46q8ZsY43MSTcu5Z3qu6cMtEJ6acfQ_oevA"
     },
   }
 

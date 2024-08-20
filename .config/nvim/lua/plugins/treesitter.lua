@@ -85,7 +85,7 @@ return {
             enable = true,
             peek_definition_code = {
               ["<C-p>"] = "@function.outer",
-              ["<leader>dF"] = "@class.outer",
+              -- ["<leader>dF"] = "@class.outer",
             },
           },
           swap = {

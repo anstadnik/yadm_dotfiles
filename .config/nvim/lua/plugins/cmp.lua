@@ -19,20 +19,21 @@ return {
     "L3MON4D3/LuaSnip",
     lazy = true,
     config = function()
-      require("luasnip.loaders.from_lua").load { paths = { "~/.config/nvim/luasnippets" } }
+      require("luasnip.loaders.from_lua").load { paths = "~/.config/nvim/luasnippets" }
+
       require("luasnip").config.setup {
-        ext_opts = {
-          [require("luasnip.util.types").choiceNode] = {
-            active = {
-              virt_text = { { "●", "GruvboxOrange" } },
-            },
-          },
-          [require("luasnip.util.types").insertNode] = {
-            active = {
-              virt_text = { { "●", "GruvboxBlue" } },
-            },
-          },
-        },
+        -- ext_opts = {
+        --   [require("luasnip.util.types").choiceNode] = {
+        --     active = {
+        --       virt_text = { { "●", "GruvboxOrange" } },
+        --     },
+        --   },
+        --   [require("luasnip.util.types").insertNode] = {
+        --     active = {
+        --       virt_text = { { "●", "GruvboxBlue" } },
+        --     },
+        --   },
+        -- },
         history = true,
         updateevents = "TextChanged,TextChangedI",
         region_check_events = "CursorMoved,CursorHold,InsertEnter",
