@@ -65,4 +65,21 @@ return {
       { "<leader>v", "<cmd>DiffviewOpen<cr>" }
     },
   },
+  {
+    'pwntester/octo.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      -- OR 'ibhagwan/fzf-lua',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require "octo".setup({
+        ssh_aliases = {
+          ["gh_work"] = "github.com",
+          ["gh_personal"] = "github.com",
+        }
+      })
+    end
+  }
 }

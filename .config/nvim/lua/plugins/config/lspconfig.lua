@@ -20,6 +20,27 @@ return function()
     "environment.yml",
     "pixi.toml",
   }
+  -- lspconfig["pylyzer"].setup {
+  --   on_attach = helpers.on_attach,
+  --   root_dir = lspconfig.util.root_pattern(unpack(root_files)),
+  --   -- capabilities = helpers.capabilities,
+  --   -- settings = {
+  --   --   basedpyright = {
+  --   --     disableOrganizeImports = true,
+  --   --   },
+  --   --   python = {
+  --   --     analysis = {
+  --   --       analysis = {
+  --   --         --     diagnosticMode = "workspace",
+  --   --         -- autoSearchPaths = true,
+  --   --         -- useLibraryCodeForTypes = true
+  --   --       },
+  --   --       -- Ignore all files for analysis to exclusively use Ruff for linting
+  --   --       ignore = { "*" },
+  --   --     },
+  --   --   },
+  --   -- },
+  -- }
   lspconfig["basedpyright"].setup {
     on_attach = helpers.on_attach,
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
@@ -27,16 +48,12 @@ return function()
     settings = {
       basedpyright = {
         disableOrganizeImports = true,
-      },
-      python = {
         analysis = {
-          analysis = {
-            --     diagnosticMode = "workspace",
-            -- autoSearchPaths = true,
-            -- useLibraryCodeForTypes = true
-          },
+          -- diagnosticMode = "workspace",
+          -- autoSearchPaths = true,
+          -- useLibraryCodeForTypes = true
           -- Ignore all files for analysis to exclusively use Ruff for linting
-          ignore = { "*" },
+          -- ignore = { "*" },
         },
       },
     },

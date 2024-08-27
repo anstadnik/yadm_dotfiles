@@ -64,6 +64,7 @@ return function()
       -- { name = "nvim_lua" },
       { name = "path" },
       { name = "cmp_tabnine" },
+      { name = "git" },
     },
     formatting = {
       expandable_indicator = true,
