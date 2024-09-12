@@ -20,6 +20,7 @@ return function()
     "environment.yml",
     "pixi.toml",
   }
+
   -- lspconfig["pylyzer"].setup {
   --   on_attach = helpers.on_attach,
   --   root_dir = lspconfig.util.root_pattern(unpack(root_files)),
@@ -47,6 +48,7 @@ return function()
     -- capabilities = helpers.capabilities,
     settings = {
       basedpyright = {
+        verboseOutput = true,
         disableOrganizeImports = true,
         analysis = {
           -- diagnosticMode = "workspace",
