@@ -5,10 +5,10 @@ return function()
   -- lspservers with default config
   -- local servers = { "pyright" }
 
-  -- lspconfig["taplo"].setup {
-  --   on_attach = helpers.on_attach,
-  --   -- capabilities = helpers.capabilities,
-  -- }
+  lspconfig["taplo"].setup {
+    on_attach = helpers.on_attach,
+    -- capabilities = helpers.capabilities,
+  }
 
   local root_files = {
     "pyproject.toml",
@@ -63,6 +63,15 @@ return function()
   lspconfig["ruff"].setup {
     on_attach = helpers.on_attach,
     root_dir = lspconfig.util.root_pattern(unpack(root_files)),
+    -- init_options = {
+    --   settings = {
+    --     lint = {
+    --       select = { "ALL" },
+    --       ignore = { "ERA" }
+    --     }
+    --   }
+    -- }
+
     -- capabilities = helpers.capabilities,
   }
   vim.api.nvim_create_autocmd("LspAttach", {
@@ -115,19 +124,19 @@ return function()
   --   -- },
   -- }
 
-  lspconfig["sourcery"].setup {
-    server = {
-      on_attach = helpers.on_attach,
-      -- capabilities = helpers.capabilities,
-      -- flags = { debounce_text_changes = 150 },
-    },
-    init_options = {
-      editor_version = "vim",
-      extension_version = "vim.lsp",
-      -- token = "user_9IMPzM1nhVENfmTL5gZoD0KOh3_zFWPCHqjuHQs019beGcu1yi78i0TYBmM",
-      token = "user_gtvoBfIlqIXI6alm5TTLLaiQ46q8ZsY43MSTcu5Z3qu6cMtEJ6acfQ_oevA"
-    },
-  }
+  -- lspconfig["sourcery"].setup {
+  --   server = {
+  --     on_attach = helpers.on_attach,
+  --     -- capabilities = helpers.capabilities,
+  --     -- flags = { debounce_text_changes = 150 },
+  --   },
+  --   init_options = {
+  --     editor_version = "vim",
+  --     extension_version = "vim.lsp",
+  --     -- token = "user_9IMPzM1nhVENfmTL5gZoD0KOh3_zFWPCHqjuHQs019beGcu1yi78i0TYBmM",
+  --     token = "user_gtvoBfIlqIXI6alm5TTLLaiQ46q8ZsY43MSTcu5Z3qu6cMtEJ6acfQ_oevA"
+  --   },
+  -- }
 
   -- local forward_search_mac = {
   --   executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",

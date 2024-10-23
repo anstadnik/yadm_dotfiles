@@ -16,14 +16,16 @@ return {
   },
   {
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    ft = { "rust", "python" },
+    enabled = false,
+    ft = { "rust", "python", "lua" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       vim.diagnostic.config { -- Configure diagnostic settings
-        virtual_text = false,
+        virtual_lines = { only_current_line = true },
+        virtual_text = true,
         signs = true,
         underline = true,
-        update_in_insert = false,
+        update_in_insert = true,
         severity_sort = true,
       }
       require("lsp_lines").setup()

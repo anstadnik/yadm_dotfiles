@@ -1,61 +1,76 @@
+--
+-- telescope.setup({
+--   defaults = {
+--     mappings = {
+--       i = { ["<c-t>"] = open_with_trouble },
+--       n = { ["<c-t>"] = open_with_trouble },
+--     },
+--   },
+-- })
+
 return {
   {
-  'nvim-telescope/telescope.nvim',
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "nvim-lua/plenary.nvim",
-    "debugloop/telescope-undo.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
-    "aaronhallaert/advanced-git-search.nvim",
-    "nvim-telescope/telescope-bibtex.nvim",
-  },
-  config = function()
-    vim.keymap.set("n", "<leader>n", "<cmd> Telescope find_files <CR>")
-    vim.keymap.set("n", "<leader>/", "<cmd> Telescope live_grep <CR>")
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
+      "debugloop/telescope-undo.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
+      "aaronhallaert/advanced-git-search.nvim",
+      "nvim-telescope/telescope-bibtex.nvim",
+    },
+    config = function()
+      vim.keymap.set("n", "<leader>n", "<cmd> Telescope find_files <CR>")
+      vim.keymap.set("n", "<leader>/", "<cmd> Telescope live_grep <CR>")
 
-    -- vim.keymap.set("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
-    vim.keymap.set("n", "<leader>fb", "<cmd> Telescope buffers <CR>")
-    vim.keymap.set("n", "<leader>fh", "<cmd> Telescope help_tags <CR>")
-    vim.keymap.set("n", "<leader>tk", "<cmd> Telescope keymaps <CR>")
-    vim.keymap.set("n", "<leader>cm", "<cmd> Telescope git_commits <CR>")
-    vim.keymap.set("n", "<leader>gt", "<cmd> Telescope git_status <CR>")
-    vim.keymap.set("n", "<leader>u", "<cmd> Telescope undo <CR>")
-    vim.keymap.set("n", "g/", "<cmd> Telescope advanced_git_search show_custom_functions <CR>")
-    require("telescope").setup {
-      defaults = {
-        -- vimgrep_arguments = {
-        --   "rg",
-        --   "--color=never",
-        --   "--no-heading",
-        --   "--with-filename",
-        --   "--line-number",
-        --   "--column",
-        --   "--smart-case",
-        -- },
-        mappings = {
-          i = { ["<esc>"] = require("telescope.actions").close },
+      -- vim.keymap.set("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
+      vim.keymap.set("n", "<leader>fb", "<cmd> Telescope buffers <CR>")
+      vim.keymap.set("n", "<leader>fh", "<cmd> Telescope help_tags <CR>")
+      vim.keymap.set("n", "<leader>tk", "<cmd> Telescope keymaps <CR>")
+      vim.keymap.set("n", "<leader>cm", "<cmd> Telescope git_commits <CR>")
+      vim.keymap.set("n", "<leader>gt", "<cmd> Telescope git_status <CR>")
+      vim.keymap.set("n", "<leader>u", "<cmd> Telescope undo <CR>")
+      vim.keymap.set("n", "g/", "<cmd> Telescope advanced_git_search show_custom_functions <CR>")
+
+      local open_with_trouble = require("trouble.sources.telescope").open
+
+      require("telescope").setup {
+        defaults = {
+          -- vimgrep_arguments = {
+          --   "rg",
+          --   "--color=never",
+          --   "--no-heading",
+          --   "--with-filename",
+          --   "--line-number",
+          --   "--column",
+          --   "--smart-case",
+          -- },
+          mappings = {
+            i = { ["<esc>"] = require("telescope.actions").close,
+              ["<c-q>"] = open_with_trouble },
+            n = { ["<c-q>"] = open_with_trouble },
+          },
         },
-      },
-      extensions = {
-        ["ui-select"] = { require("telescope.themes").get_cursor {} },
-        bibtex = { format = "plain" },
-        undo = {
+        extensions = {
+          ["ui-select"] = { require("telescope.themes").get_cursor {} },
+          bibtex = { format = "plain" },
           undo = {
-            side_by_side = true,
-            layout_strategy = "vertical",
-            layout_config = {
-              preview_height = 0.8,
+            undo = {
+              side_by_side = true,
+              layout_strategy = "vertical",
+              layout_config = {
+                preview_height = 0.8,
+              },
             },
           },
         },
-      },
-    }
-    require("telescope").load_extension "ui-select"
-    require("telescope").load_extension "undo"
-    require("telescope").load_extension "advanced_git_search"
-  end
+      }
+      require("telescope").load_extension "ui-select"
+      require("telescope").load_extension "undo"
+      require("telescope").load_extension "advanced_git_search"
+    end
 
-},
+  },
   {
     "aaronhallaert/advanced-git-search.nvim",
     cmd = "AdvancedGitSearch",

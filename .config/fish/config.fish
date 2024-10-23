@@ -14,7 +14,7 @@ if status is-interactive
     zoxide init fish | source
     fzf_configure_bindings --directory=\cf
     pixi completion --shell fish | source
-    set fzf_fd_opts --hidden
+    #set fzf_fd_opts --hidden
 
     # # Set Micromamba environment
     # set -x MAMBA_ROOT_PREFIX $HOME/micromamba

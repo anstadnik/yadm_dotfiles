@@ -82,13 +82,77 @@ return {
         "<leader>d",
         function()
           require("CopilotChat").ask(
-            "/COPILOT_GENERATE Please add documentation comment for the selection, use google style. Do not output line numbers, nor make additional offsets.",
+            "/COPILOT_GENERATE Add or fix (if necessary) documentation comment for the selection, use google style. Add or fix (if necessary) module-level documentation, and documentation for classes, function and modules which lack it. Do not output line numbers, nor make additional offsets. Output the whole selection with comments added. Use imperative mood.",
             { selection = require("CopilotChat.select").buffer })
         end,
         desc = "CopilotChat - Quick chat",
       },
       {
-          "<leader>p",
+        "<leader>F",
+        function()
+          local chat = require("CopilotChat")
+          local buffers = vim.api.nvim_list_bufs() -- Get a list of all open buffers
+
+          vim.notify("Starting documentation generation for all open buffers", vim.log.levels.DEBUG)
+
+          -- Recursive function to process buffers sequentially
+          local function process_buffer(index)
+            if index > #buffers then
+              vim.notify("Finished processing all open buffers", vim.log.levels.DEBUG)
+              return
+            end
+
+            local bufnr = buffers[index]
+
+            -- Check if the buffer is loaded and not a special buffer
+            if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_get_option_value("modifiable", { buf = bufnr }) then
+              -- Get the window associated with the buffer (if any)
+              local winnr = vim.fn.bufwinnr(bufnr)
+
+              vim.notify(string.format("Processing buffer %d in window %d", bufnr, winnr), vim.log.levels.DEBUG)
+
+              chat.ask(
+                "@buffer /COPILOT_GENERATE Add or fix (if necessary) documentation comment for the selection, use google style. Add or fix (if necessary) module-level documentation, and documentation for classes, function and modules which lack it. Do not output line numbers, nor make additional offsets. Output the whole selection with comments added. Use imperative mood. Don't use python code block",
+                {
+                  clear_chat_on_new_prompt = true,
+                  callback = function(response)
+                    vim.notify(string.format("Received response for buffer %d", bufnr), vim.log.levels.DEBUG)
+
+                    -- Replace the buffer content with the response
+                    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.split(response, "\n"))
+
+                    vim.notify(string.format("Buffer %d content updated with response", bufnr), vim.log.levels.DEBUG)
+
+                    -- Process the next buffer
+                    process_buffer(index + 1)
+                  end,
+                },
+                { bufnr = bufnr, winnr = winnr }
+              )
+            else
+              vim.notify(string.format("Skipping buffer %d: not loaded or not modifiable", bufnr), vim.log.levels.DEBUG)
+              -- Move to the next buffer if the current one is not loaded or not modifiable
+              process_buffer(index + 1)
+            end
+          end
+
+          -- Start processing from the first buffer
+          process_buffer(1)
+        end,
+      },
+      {
+        "<leader>p",
+        function()
+          local input = vim.fn.input("Quick Chat: ")
+          if input ~= "" then
+            require("CopilotChat").ask(input)
+          end
+        end,
+        desc = "CopilotChat - Quick chat",
+        mode = { 'n', 'x' }
+      },
+      {
+        "<leader>P",
         function()
           local input = vim.fn.input("Quick Chat: ")
           if input ~= "" then
@@ -97,14 +161,36 @@ return {
         end,
         desc = "CopilotChat - Quick chat",
         mode = { 'n', 'x' }
+      },
+      {
+        "<leader><leader>",
+        function()
+          require("CopilotChat").toggle()
+        end,
       }
     },
 
     opts = {
-    --   debug = true, -- Enable debugging
-    --   -- See Configuration section for rest
+      --   debug = true, -- Enable debugging
+      --   -- See Configuration section for rest
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
+  {
+    "chentoast/marks.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "junegunn/vim-easy-align",
+    --     " Start interactive EasyAlign in visual mode (e.g. vipga)
+    -- xmap ga <Plug>(EasyAlign)
+    --
+    -- " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    -- nmap ga <Plug>(EasyAlign)
+    keys = {
+      { "ga", "<Plug>(EasyAlign)", mode = { "n", "v" } },
+    },
 
+  }
 }
