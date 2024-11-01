@@ -47,7 +47,7 @@ return {
           -- -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
         },
       }
-      vim.opt.background = "light"
+      vim.opt.background = "dark"
       vim.cmd.colorscheme "catppuccin"
     end,
   }
