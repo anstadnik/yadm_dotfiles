@@ -10,17 +10,6 @@ return function()
     -- capabilities = helpers.capabilities,
   }
 
-  local root_files = {
-    "pyproject.toml",
-    "setup.py",
-    "setup.cfg",
-    "requirements.txt",
-    "Pipfile",
-    "pyrightconfig.json",
-    "environment.yml",
-    "pixi.toml",
-  }
-
   -- lspconfig["pylyzer"].setup {
   --   on_attach = helpers.on_attach,
   --   root_dir = lspconfig.util.root_pattern(unpack(root_files)),
@@ -42,12 +31,29 @@ return function()
   --   --   },
   --   -- },
   -- }
-  lspconfig["basedpyright"].setup {
+  local root_files = {
+  -- 'pyproject.toml',
+  -- 'setup.py',
+  -- 'setup.cfg',
+  -- 'requirements.txt',
+  -- 'Pipfile',
+  -- 'pyrightconfig.json',
+  'uv.lock',
+  '.git',
+}
+  -- lspconfig["basedpyright"].setup {
+  lspconfig["pyright"].setup {
+    -- lspconfig["pyright"].setup {
     on_attach = helpers.on_attach,
-    root_dir = lspconfig.util.root_pattern(unpack(root_files)),
     -- capabilities = helpers.capabilities,
+    root_dir = function(fname)
+      return require('lspconfig').util.root_pattern(unpack(root_files))(fname)
+    end,
+
     settings = {
-      basedpyright = {
+      -- basedpyright = {
+      pyright = {
+        -- useLibraryCodeForTypes= false,
         verboseOutput = true,
         disableOrganizeImports = true,
         analysis = {
@@ -62,7 +68,6 @@ return function()
   }
   lspconfig["ruff"].setup {
     on_attach = helpers.on_attach,
-    root_dir = lspconfig.util.root_pattern(unpack(root_files)),
     -- init_options = {
     --   settings = {
     --     lint = {

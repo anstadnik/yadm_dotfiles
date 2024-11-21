@@ -82,7 +82,7 @@ return {
         "<leader>d",
         function()
           require("CopilotChat").ask(
-            "/COPILOT_GENERATE Add or fix (if necessary) documentation comment for the selection, use google style. Add or fix (if necessary) module-level documentation, and documentation for classes, function and modules which lack it. Do not output line numbers, nor make additional offsets. Output the whole selection with comments added. Use imperative mood.",
+            "/COPILOT_GENERATE Add or fix (if necessary) documentation comment for the selection, use google style. Add or fix (if necessary) module-level documentation, and documentation for classes, function and modules which lack it. Lines should be no longer than 120 characters. 1 blank line required between summary line and description. The summary line has to be on the same line with the opening quotes, and has to be a single line line. Do not output line numbers, nor make additional offsets. Output the whole selection with comments added. Use imperative mood. Don't use python code block",
             { selection = require("CopilotChat.select").buffer })
         end,
         desc = "CopilotChat - Quick chat",
@@ -112,7 +112,7 @@ return {
               vim.notify(string.format("Processing buffer %d in window %d", bufnr, winnr), vim.log.levels.DEBUG)
 
               chat.ask(
-                "@buffer /COPILOT_GENERATE Add or fix (if necessary) documentation comment for the selection, use google style. Add or fix (if necessary) module-level documentation, and documentation for classes, function and modules which lack it. Do not output line numbers, nor make additional offsets. Output the whole selection with comments added. Use imperative mood. Don't use python code block",
+                "@buffer /COPILOT_GENERATE Add or fix (if necessary) documentation comment for the selection, use google style. Add or fix (if necessary) module-level documentation, and documentation for classes, function and modules which lack it. Lines should be no longer than 120 characters. 1 blank line required between summary line and description. The summary line has to be on the same line with the opening quotes, and has to be a single line line. Do not output line numbers, nor make additional offsets. Output the whole selection with comments added. Use imperative mood. Don't use python code block",
                 {
                   clear_chat_on_new_prompt = true,
                   callback = function(response)
