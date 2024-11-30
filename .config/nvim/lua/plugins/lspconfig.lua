@@ -33,28 +33,28 @@ return {
   },
 
   -- RUST
-  -- {
-  --   "mrcjkb/rustaceanvim",
-  --   version = "^4", -- Recommended
-  --   ft = { "rust" },
-  --   init = function()
-  --     -- local rt = require "rust-tools"
-  --     local helpers = require "plugins.configs.lspconfig_helpers"
-  --     vim.g.rustaceanvim = {
-  --       server = {
-  --         on_attach = helpers.on_attach_with_format,
-  --         capabilities = helpers.capabilities,
-  --       },
-  --     }
-  --   end,
-  -- },
-  -- {
-  --   "Saecki/crates.nvim",
-  --   event = "BufEnter Cargo.toml",
-  --   config = function()
-  --     require("crates").setup()
-  --   end,
-  -- },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
+  lazy = false, -- This plugin is already lazy
+    init = function()
+      -- local rt = require "rust-tools"
+      local helpers = require "plugins.config.lspconfig_helpers"
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = helpers.on_attach,
+          capabilities = helpers.capabilities,
+        },
+      }
+    end,
+  },
+  {
+    "Saecki/crates.nvim",
+    event = "BufEnter Cargo.toml",
+    config = function()
+      require("crates").setup()
+    end,
+  },
 
   -- FLUTTER
   -- {
