@@ -89,6 +89,11 @@ return {
     dependencies = {
       "tpope/vim-fugitive",
     },
+    config = function ()
+      -- set g:flog_enable_extended_chars to true
+      vim.g.flog_enable_extended_chars = true
+
+    end
   },
   -- Lazy nvim
   {

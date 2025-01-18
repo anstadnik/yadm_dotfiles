@@ -177,5 +177,5 @@ return {
       -- These are the default options:
       require("syntax-tree-surfer").setup()
     end,
-    }
+  }
 }

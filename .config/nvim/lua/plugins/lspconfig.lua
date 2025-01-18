@@ -16,13 +16,15 @@ return {
   },
   {
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    enabled = false,
-    ft = { "rust", "python", "lua" },
+    -- enabled = false,
+    -- ft = { "rust", "python", "lua" },
+    ft = { "rust" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       vim.diagnostic.config { -- Configure diagnostic settings
-        virtual_lines = { only_current_line = true },
-        virtual_text = true,
+        -- virtual_lines = { only_current_line = true },
+        virtual_lines = true,
+        -- virtual_text = true,
         signs = true,
         underline = true,
         update_in_insert = true,
@@ -36,7 +38,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^5", -- Recommended
-  lazy = false, -- This plugin is already lazy
+    lazy = false,   -- This plugin is already lazy
     init = function()
       -- local rt = require "rust-tools"
       local helpers = require "plugins.config.lspconfig_helpers"
