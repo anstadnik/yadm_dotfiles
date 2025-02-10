@@ -28,6 +28,10 @@ return {
           "dart",
           -- "julia",
           "cpp",
+          "gitcommit",
+          "diff",
+          "git_rebase",
+          "dockerfile"
         },
         highlight = { enable = true },
         textobjects = {

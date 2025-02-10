@@ -143,54 +143,54 @@ return function()
   --   },
   -- }
 
-  -- local forward_search_mac = {
-  --   executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
-  --   args = { "-g", "%l", "%p", "%f" },
-  -- }
-  -- local forward_search_linux = {
-  --   executable = "zathura",
-  --   args = { "--synctex-forward", "%l:1:%f", "%p" },
-  -- }
-  -- local is_mac = vim.loop.os_uname().sysname == "Darwin"
-  -- local forwardSearch = is_mac and forward_search_mac or forward_search_linux
-  --
-  -- lspconfig["texlab"].setup {
-  --   -- server = {
-  --   on_attach = helpers.on_attach,
-  --   -- capabilities = helpers.capabilities,
-  --   -- flags = { debounce_text_changes = 150 },
-  --   -- },
-  --   settings = {
-  --     texlab = {
-  --       auxDirectory = ".",
-  --       rootDirectory = ".",
-  --       bibtexFormatter = "texlab",
-  --       build = {
-  --         -- args = { "-pdf", "-pdflatex=xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
-  --         -- executable = "latexmk",
-  --         executable = "tectonic",
-  --         args = {
-  --           "-X",
-  --           "compile",
-  --           "%f",
-  --           "--synctex",
-  --           "--keep-logs",
-  --           "--keep-intermediates",
-  --         },
-  --         forwardSearchAfter = true,
-  --         onSave = true,
-  --       },
-  --       diagnosticsDelay = 300,
-  --       formatterLineLength = 80,
-  --       forwardSearch = forwardSearch,
-  --       chktex = { onOpenAndSave = true, onEdit = false },
-  --       latexFormatter = "latexindent",
-  --       latexindent = {
-  --         modifyLineBreaks = true,
-  --       },
-  --     },
-  --   },
-  -- }
+  local forward_search_mac = {
+    executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
+    args = { "-g", "%l", "%p", "%f" },
+  }
+  local forward_search_linux = {
+    executable = "zathura",
+    args = { "--synctex-forward", "%l:1:%f", "%p" },
+  }
+  local is_mac = vim.loop.os_uname().sysname == "Darwin"
+  local forwardSearch = is_mac and forward_search_mac or forward_search_linux
+
+  lspconfig["texlab"].setup {
+    -- server = {
+    on_attach = helpers.on_attach,
+    -- capabilities = helpers.capabilities,
+    -- flags = { debounce_text_changes = 150 },
+    -- },
+    settings = {
+      texlab = {
+        auxDirectory = ".",
+        rootDirectory = ".",
+        bibtexFormatter = "texlab",
+        build = {
+          -- args = { "-pdf", "-pdflatex=xelatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
+          -- executable = "latexmk",
+          executable = "tectonic",
+          args = {
+            "-X",
+            "compile",
+            "%f",
+            "--synctex",
+            "--keep-logs",
+            "--keep-intermediates",
+          },
+          forwardSearchAfter = true,
+          onSave = true,
+        },
+        diagnosticsDelay = 300,
+        formatterLineLength = 80,
+        forwardSearch = forwardSearch,
+        chktex = { onOpenAndSave = true, onEdit = false },
+        latexFormatter = "latexindent",
+        latexindent = {
+          modifyLineBreaks = true,
+        },
+      },
+    },
+  }
 
   lspconfig.lua_ls.setup {
     on_attach = helpers.on_attach,
