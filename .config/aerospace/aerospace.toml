@@ -11,16 +11,16 @@ after-login-command = []
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
   'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
-  'exec-and-forget sketchybar'
+  # 'exec-and-forget sketchybar'
 ]
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+# exec-on-workspace-change = ['/bin/bash', '-c',
+#     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# ]
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -49,7 +49,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
-automatically-unhide-macos-hidden-apps = true
+automatically-unhide-macos-hidden-apps = false
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -57,7 +57,8 @@ automatically-unhide-macos-hidden-apps = true
 preset = 'qwerty'
 
 [workspace-to-monitor-force-assignment]
-    9 = 'secondary'                  # Non-main monitor in case when there are only two monitors
+    3 = ['secondary', 2] # Non-main monitor in case when there are only two monitors
+    9 = [3, 2]
     # 2 = 'main'                       # Main monitor
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
@@ -73,11 +74,23 @@ inner.vertical =   20
 outer.left =       20
 outer.bottom =     20
 outer.top =        20
-outer.right =      80
+outer.right =      20
 
 [[on-window-detected]]
     if.app-id = 'ru.keepcoder.Telegram'
     run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+    if.app-id = 'com.tinyspeck.slackmacgap'
+    run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+    if.app-id = 'com.readdle.SparkDesktop'
+    run = 'move-node-to-workspace 4'
+
+# [[on-window-detected]]
+#     if.app-id = 'com.todoist.mac.Todoist'
+#     run = 'move-node-to-workspace 4'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -198,10 +211,10 @@ alt-shift-m = 'move-node-to-workspace M'
 # alt-shift-y = 'move-node-to-workspace Y'
 # alt-shift-z = 'move-node-to-workspace Z'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+# # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+# alt-tab = 'workspace-back-and-forth'
+# # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+# alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'

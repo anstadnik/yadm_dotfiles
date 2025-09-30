@@ -13,7 +13,7 @@ if status is-interactive
     source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
     zoxide init fish | source
     fzf_configure_bindings --directory=\cf
-    pixi completion --shell fish | source
+    # pixi completion --shell fish | source
     #set fzf_fd_opts --hidden
 
     # # Set Micromamba environment
@@ -43,7 +43,7 @@ if status is-interactive
     # set --path -x GZ_SIM_RESOURCE_PATH $HOME/work/gz_ws/src/ardupilot_gazebo/models $HOME/work/gz_ws/src/ardupilot_gazebo/worlds $GZ_SIM_RESOURCE_PATH
 
     # Bindings and Abbreviations
-    bind -k nul forward-word
+    bind ctrl-space forward-word
     abbr -a ls lsd
     abbr -a v nvim
     abbr -a -p anywhere G "| grep"
@@ -63,3 +63,18 @@ if status is-interactive
     # Run macchina for system information on shell start
     macchina
 end
+
+# uv
+fish_add_path "/Users/astadnik/.local/bin"
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+set -gx MAMBA_EXE "/opt/homebrew/opt/micromamba/bin/mamba"
+set -gx MAMBA_ROOT_PREFIX "/Users/astadnik/mamba"
+$MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+# <<< mamba initialize <<<
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/astadnik/.lmstudio/bin
+# End of LM Studio CLI section
+

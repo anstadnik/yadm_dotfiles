@@ -31,7 +31,8 @@ return {
           "gitcommit",
           "diff",
           "git_rebase",
-          "dockerfile"
+          "dockerfile",
+          "fish"
         },
         highlight = { enable = true },
         textobjects = {
