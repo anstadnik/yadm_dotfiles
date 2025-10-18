@@ -1,0 +1,7 @@
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+background-opacity = 0.9
+background-blur-radius = 20
+macos-option-as-alt = true
+
+# custom-shader = ./shaders/cursor_smear_fade.glsl
