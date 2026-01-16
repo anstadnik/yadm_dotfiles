@@ -104,3 +104,6 @@ end
 set -gx PATH $PATH /Users/astadnik/.lmstudio/bin
 # End of LM Studio CLI section
 
+if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+end
