@@ -1,0 +1,62 @@
+{
+  "Winnow parse": {
+    "body": [
+      "use winnow::Parser;",
+      "",
+      "fn parse_(input: &mut &str) -> winnow::Result<()> {}",
+      "",
+      "fn parse(input: &str) -> Result<()> {",
+      "    parse_.parse(input).map_err(|e| anyhow::anyhow!(\"{e}\"))",
+      "}"
+    ],
+    "description": "Winnow parse"
+  },
+  "Advents of code main": {
+    "body": [
+      "use anyhow::Result;",
+      "use std::fs::read_to_string;",
+      "",
+      "fn task1(input: &str) -> Result<i32> {",
+      "    Ok(0)",
+      "}",
+      "",
+      "fn task2(input: &str) -> Result<i32> {",
+      "    Ok(0)",
+      "}",
+      "",
+      "fn main() -> Result<()> {",
+      "    let input = parse(&read_to_string(\"input.txt\")?)?;",
+      "    println!(\"Task 1: {}\", task1(&input)?);",
+      "    println!(\"Task 2: {}\", task2(&input)?);",
+      "    Ok(())",
+      "}",
+      "",
+      "#[cfg(test)]",
+      "mod tests {",
+      "    use super::*;",
+      "",
+      "    const INPUT: &str = r\"\";",
+      "",
+      "    #[test]",
+      "    fn test_task1() -> Result<()> {",
+      "        let input = parse(INPUT)?;",
+      "        assert_eq!(task1(&input)?, 42);",
+      "        Ok(())",
+      "    }",
+      "",
+      "    #[test]",
+      "    fn test_task2() -> Result<()> {",
+      "        let input = parse(INPUT)?;",
+      "        assert_eq!(task2(&input)?, 42);",
+      "        Ok(())",
+      "    }",
+      "",
+      "    #[test]",
+      "    fn test_main() -> Result<()> {",
+      "        main()",
+      "    }",
+      "}"
+    ],
+    "description": "Advents of code main"
+  }
+}

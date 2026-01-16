@@ -1,0 +1,238 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  // "theme": "Catppuccin Latte",
+  "which_key": { "enabled": true },
+  "git_panel": { "tree_view": false },
+  "remove_trailing_whitespace_on_save": false,
+  "context_servers": {},
+  "ensure_final_newline_on_save": false,
+  "colorize_brackets": true,
+  "sticky_scroll": { "enabled": true },
+  "show_edit_predictions": true,
+  "ssh_connections": [
+    {
+      "host": "fv_gpu",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/andrii.stadnik/work/SuGaR"],
+        },
+        {
+          "paths": ["/home/andrii.stadnik/work/brush"],
+        },
+        {
+          "paths": ["/home/andrii.stadnik/work/cv_research"],
+        },
+        {
+          "paths": ["~/work"],
+        },
+        {
+          "paths": ["~/work/vggt"],
+        },
+      ],
+    },
+    {
+      "host": "fv_gpu_old",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/andrii.stadnik"],
+        },
+        {
+          "paths": ["/home/andrii.stadnik/work/ODM"],
+        },
+        {
+          "paths": ["/home/andrii.stadnik/work/change_detection_pipeline"],
+        },
+        {
+          "paths": ["/home/andrii.stadnik/work/gaussian-splatting-endpoint"],
+        },
+        {
+          "paths": ["~/work/Hierarchical-Localization"],
+        },
+        {
+          "paths": ["~/work/OpenSplat"],
+        },
+        {
+          "paths": ["~/work/cv_research"],
+        },
+        {
+          "paths": ["~/work/glomap"],
+        },
+      ],
+      "port_forwards": [
+        {
+          "local_port": 2718,
+          "remote_port": 2718,
+        },
+      ],
+    },
+    {
+      "host": "rpi",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/astadnik/work/image-localizer"],
+        },
+      ],
+    },
+    {
+      "host": "dod",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/astadnik/annotators_report"],
+        },
+      ],
+    },
+    {
+      "host": "dod",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/astadnik/annotators_report"],
+        },
+        {
+          "paths": ["/work/buildroot/vision-rv1126-buildroot"],
+        },
+      ],
+    },
+    {
+      "host": "work",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/etc/nixos"],
+        },
+        {
+          "paths": ["/home/astadnik/work/hornet-ml-research"],
+        },
+        {
+          "paths": ["/home/astadnik/work/vision-rv1126-buildroot"],
+        },
+        {
+          "paths": ["/home/astadnik/work/vision-services"],
+        },
+      ],
+    },
+  ],
+  // "theme": {
+  //   "mode": "system",
+  //   "dark": "Catppuccin Mocha",
+  //   "light": "Catppuccin Latte"
+  // },
+  // "auto_install_extensions": { "Catppuccin": true },
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-5",
+    },
+    "default_profile": "write",
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-5",
+    },
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
+  "telemetry": { "diagnostics": false, "metrics": false },
+  "vim_mode": true,
+  "show_signature_help_after_edits": true,
+  "relative_line_numbers": "enabled",
+  "minimap": { "show": "always" },
+  "bottom_dock_layout": "full",
+  "terminal": {
+    "option_as_meta": true,
+    "line_height": "standard",
+    "dock": "bottom",
+  },
+  "indent_guides": { "coloring": "indent_aware" },
+  "git": { "inline_blame": { "show_commit_summary": false } },
+  "languages": {
+    "Markdown": { "format_on_save": "off" },
+    "LaTeX": { "format_on_save": "off" },
+    "YAML": { "format_on_save": "off" },
+    "Dockerfile": { "format_on_save": "off" },
+    "Nix": {
+      "language_servers": ["nixd", "!nil"],
+      "formatter": {
+        "external": {
+          "command": "alejandra", // or "nixfmt"
+          "arguments": ["--quiet", "--"],
+        },
+      },
+    },
+    "Python": {
+      "inlay_hints": {
+        "show_value_hints": true,
+      },
+      // "language_servers": ["basedpyright", "ruff"],
+      // "language_servers": ["pyright", "ruff"],
+      "language_servers": ["ty", "ruff"],
+      // "language_servers": ["zuban", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        { "code_action": "source.organizeImports.ruff" },
+        { "code_action": "source.fixAll.ruff" },
+        { "language_server": { "name": "ruff" } },
+      ],
+    },
+  },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        // "basedpyright.analysis": {
+        //   "diagnosticMode": "openFilesOnly"
+        // }
+      },
+    },
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          // "typeCheckingMode": "strict"
+        },
+      },
+    },
+    "ty": { "settings": { "diagnosticMode": "workspace" } },
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "lint": {
+            // "extendSelect": ["UP"]
+          },
+        },
+      },
+    },
+    // ~/.config/zed/settings.json
+
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": {
+            // "onSave": true,
+            // "forwardSearchAfter": true,
+            "executable": "tectonic",
+            "args": [
+              "-X",
+              "compile",
+              "%f",
+              "--untrusted",
+              "--synctex",
+              "--keep-logs",
+              "--keep-intermediates",
+            ],
+          },
+        },
+      },
+    },
+  },
+}

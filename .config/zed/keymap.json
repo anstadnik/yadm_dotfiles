@@ -1,0 +1,30 @@
+[
+  {
+    "bindings": {
+      "cmd-f": "editor::AcceptEditPrediction",
+      "cmd-e": "editor::AcceptPartialEditPrediction",
+      "ctrl-space": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "VimControl && !menu && vim_mode != operator",
+    "bindings": {
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "g e": "vim::PreviousSubwordEnd"
+    }
+  }
+  // {
+  //   "context": "Editor && vim_mode == normal",
+  //   "bindings": {
+  //     "space r a": "editor::Rename"
+  //   }
+  // }
+]
