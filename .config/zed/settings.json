@@ -33,6 +33,7 @@
   "which_key": { "enabled": true },
   "git_panel": { "dock": "right", "diff_stats": true, "tree_view": true },
   "remove_trailing_whitespace_on_save": false,
+  "format_on_save": "on",
   "context_servers": {},
   "ensure_final_newline_on_save": false,
   "colorize_brackets": true,

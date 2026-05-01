@@ -6,4 +6,11 @@ macos-option-as-alt = true
 confirm-close-surface = false
 mouse-hide-while-typing = true
 
-custom-shader = ./shaders/cursor_tail.glsl
+# All optional shell-integration features off — they don't deliver value through tmux:
+#   - cursor: tmux re-asserts pane state on every redraw, clobbering dynamic blink.
+#   - sudo: redundant with pam_tid.so (Touch ID succeeds before askpass triggers).
+#   - title: tmux drives its own window-status from pane_current_command, not OSC titles.
+# OSC 133 prompt markers (cmd+↑/↓) and OSC 7 (CWD inheritance) are always-on — still work.
+shell-integration-features = no-cursor,no-sudo,no-title
+
+# custom-shader = ./shaders/cursor_tail.glsl
