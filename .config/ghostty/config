@@ -1,6 +1,6 @@
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
-background-opacity = 0.3
+background-opacity = 0.7
 background-blur-radius = 20
 macos-option-as-alt = true
 confirm-close-surface = false
