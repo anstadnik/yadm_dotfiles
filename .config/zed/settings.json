@@ -73,12 +73,12 @@
       ],
     },
   ],
-  // "theme": {
-  //   "mode": "system",
-  //   "dark": "Catppuccin Mocha",
-  //   "light": "Catppuccin Latte"
-  // },
-  // "auto_install_extensions": { "Catppuccin": true },
+  "theme": {
+    "mode": "system",
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte",
+  },
+  "auto_install_extensions": { "Catppuccin": true },
   "agent": {
     "new_thread_location": "local_project",
     "dock": "left",
