@@ -17,8 +17,11 @@
 	navigate = true    # use n and N to move between diff sections
 [merge]
 	conflictstyle = diff3
+	algorithm = histogram
+	renameLimit = 9999
 [diff]
 	colorMoved = default
+	algorithm = histogram
 [credential "https://github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
@@ -27,3 +30,5 @@
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [safe]
 	directory = /Users/astadnik/farsight/cvpr_research_mage
+[rerere]
+	enabled = true

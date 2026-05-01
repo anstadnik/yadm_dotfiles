@@ -35,8 +35,8 @@ if status is-interactive
     end
 
     # ---------- Editors ----------
-    set -x VISUAL nvim
-    set -x EDITOR $VISUAL
+    set -x EDITOR "zed-preview --wait --new"
+    set -x VISUAL "$EDITOR"
 
     # # ---------- XDG base dirs ----------
     # set -q XDG_DATA_HOME  || set -Ux XDG_DATA_HOME  $HOME/.local/share
@@ -60,49 +60,41 @@ if status is-interactive
     abbr -a cops gh copilot suggest
 
     # yazi-aware cd helper (prints a hint if yazi isn't installed)
-    function ya
-        if not type -q yazi
-            echo "yazi is not installed." >&2
-            return 127
-        end
-        set tmp (mktemp -t "yazi-cwd.XXXXX")
-        yazi $argv --cwd-file="$tmp"
-        if set cwd (cat -- "$tmp"); and test -n "$cwd"; and test "$cwd" != "$PWD"
-            cd -- "$cwd"
-        end
-        rm -f -- "$tmp"
+    function y
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	command yazi $argv --cwd-file="$tmp"
+	if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+		builtin cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
     end
 
     # Pretty sysinfo if available
     if type -q macchina
         macchina
     end
-end
 
-# ---------- Micromamba / Mamba (guarded, works on macOS & Linux) ----------
-# Prefer micromamba if present
-if type -q micromamba
-    set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
-    micromamba shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
-else if test -x /opt/homebrew/opt/micromamba/bin/mamba
-    # Homebrew micromamba on macOS (legacy path in your old config)
-    set -gx MAMBA_EXE "/opt/homebrew/opt/micromamba/bin/mamba"
-    set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
-    $MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
-else if type -q mamba
-    # If plain mamba is installed
-    set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
-    mamba shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
-end
+    # ---------- Micromamba / Mamba (guarded, works on macOS & Linux) ----------
+    # Prefer micromamba if present
+    if type -q micromamba
+        set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
+        micromamba shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+    else if test -x /opt/homebrew/opt/micromamba/bin/mamba
+        # Homebrew micromamba on macOS (legacy path in your old config)
+        set -gx MAMBA_EXE "/opt/homebrew/opt/micromamba/bin/mamba"
+        set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
+        $MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+    else if type -q mamba
+        # If plain mamba is installed
+        set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
+        mamba shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+    end
 
-# ---------- Optional: LM Studio CLI path (guarded) ----------
-if test -d "$HOME/.lmstudio/bin"
-    fish_add_path "$HOME/.lmstudio/bin"
+    # ---------- Optional: LM Studio CLI path (guarded) ----------
+    if test -d "$HOME/.lmstudio/bin"
+        fish_add_path "$HOME/.lmstudio/bin"
+    end
 end
-
-# Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/astadnik/.lmstudio/bin
-# End of LM Studio CLI section
 
 if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
     source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish

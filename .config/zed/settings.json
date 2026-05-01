@@ -8,8 +8,30 @@
 // from the command palette or from `Zed` application menu.
 {
   // "theme": "Catppuccin Latte",
+  "code_lens": "on",
+  "cli_default_open_behavior": "new_window",
+  "outline_panel": { "dock": "right" },
+  "collaboration_panel": { "dock": "right" },
+  "diff_view_style": "split",
+  "project_panel": {
+    "dock": "right",
+    "git_status_indicator": true,
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    },
+    "github-copilot-cli": { "type": "registry" },
+  },
+  "icon_theme": "Zed (Default)",
+  "document_symbols": "on",
+  "tasks": { "prefer_lsp": false },
+  "vim": { "toggle_relative_line_numbers": false },
+  "auto_signature_help": false,
+  "inlay_hints": { "enabled": false },
+  "lsp_document_colors": "inlay",
   "which_key": { "enabled": true },
-  "git_panel": { "tree_view": false },
+  "git_panel": { "dock": "right", "diff_stats": true, "tree_view": true },
   "remove_trailing_whitespace_on_save": false,
   "context_servers": {},
   "ensure_final_newline_on_save": false,
@@ -18,89 +40,20 @@
   "show_edit_predictions": true,
   "ssh_connections": [
     {
-      "host": "fv_gpu",
-      "args": [],
-      "projects": [
-        {
-          "paths": ["/home/andrii.stadnik/work/SuGaR"],
-        },
-        {
-          "paths": ["/home/andrii.stadnik/work/brush"],
-        },
-        {
-          "paths": ["/home/andrii.stadnik/work/cv_research"],
-        },
-        {
-          "paths": ["~/work"],
-        },
-        {
-          "paths": ["~/work/vggt"],
-        },
-      ],
-    },
-    {
-      "host": "fv_gpu_old",
-      "args": [],
-      "projects": [
-        {
-          "paths": ["/home/andrii.stadnik"],
-        },
-        {
-          "paths": ["/home/andrii.stadnik/work/ODM"],
-        },
-        {
-          "paths": ["/home/andrii.stadnik/work/change_detection_pipeline"],
-        },
-        {
-          "paths": ["/home/andrii.stadnik/work/gaussian-splatting-endpoint"],
-        },
-        {
-          "paths": ["~/work/Hierarchical-Localization"],
-        },
-        {
-          "paths": ["~/work/OpenSplat"],
-        },
-        {
-          "paths": ["~/work/cv_research"],
-        },
-        {
-          "paths": ["~/work/glomap"],
-        },
-      ],
-      "port_forwards": [
-        {
-          "local_port": 2718,
-          "remote_port": 2718,
-        },
-      ],
-    },
-    {
       "host": "rpi",
       "args": [],
-      "projects": [
-        {
-          "paths": ["/home/astadnik/work/image-localizer"],
-        },
-      ],
+      "projects": [{ "paths": ["/home/astadnik/work/image-localizer"] }],
     },
     {
       "host": "dod",
       "args": [],
       "projects": [
+        { "paths": ["/home/astadnik/annotators_report"] },
+        { "paths": ["/home/astadnik/hornet-ml-research"] },
         {
-          "paths": ["/home/astadnik/annotators_report"],
-        },
-      ],
-    },
-    {
-      "host": "dod",
-      "args": [],
-      "projects": [
-        {
-          "paths": ["/home/astadnik/annotators_report"],
-        },
-        {
-          "paths": ["/work/buildroot/vision-rv1126-buildroot"],
+          "paths": [
+            "/home/astadnik/hornet-ml-research/3rd_party/SiamABC_v2/./",
+          ],
         },
       ],
     },
@@ -108,18 +61,15 @@
       "host": "work",
       "args": [],
       "projects": [
-        {
-          "paths": ["/etc/nixos"],
-        },
-        {
-          "paths": ["/home/astadnik/work/hornet-ml-research"],
-        },
-        {
-          "paths": ["/home/astadnik/work/vision-rv1126-buildroot"],
-        },
-        {
-          "paths": ["/home/astadnik/work/vision-services"],
-        },
+        { "paths": ["/etc/nixos"] },
+        { "paths": ["/home/astadnik/work"] },
+        { "paths": ["/home/astadnik/work/avengers/dmt-sample-pipeline/./"] },
+        { "paths": ["/home/astadnik/work/convert_rknn"] },
+        { "paths": ["/home/astadnik/work/hornet-ml-research"] },
+        { "paths": ["/home/astadnik/work/rknn-toolkit"] },
+        { "paths": ["/home/astadnik/work/sam_tracking_labeler"] },
+        { "paths": ["/home/astadnik/work/vision-rv1126-buildroot"] },
+        { "paths": ["/home/astadnik/work/vision-services"] },
       ],
     },
   ],
@@ -130,15 +80,18 @@
   // },
   // "auto_install_extensions": { "Catppuccin": true },
   "agent": {
+    "new_thread_location": "local_project",
+    "dock": "left",
+    "profiles": {},
     "inline_assistant_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4-5",
     },
     "default_profile": "write",
-    "always_allow_tool_actions": true,
     "default_model": {
+      "enable_thinking": false,
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-5",
     },
   },
   "buffer_font_family": "JetBrains Mono",
@@ -154,7 +107,10 @@
     "line_height": "standard",
     "dock": "bottom",
   },
-  "indent_guides": { "coloring": "indent_aware" },
+  "indent_guides": {
+    "background_coloring": "disabled",
+    "coloring": "indent_aware",
+  },
   "git": { "inline_blame": { "show_commit_summary": false } },
   "languages": {
     "Markdown": { "format_on_save": "off" },
@@ -169,6 +125,12 @@
           "arguments": ["--quiet", "--"],
         },
       },
+    },
+    "C++": {
+      "format_on_save": "on",
+    },
+    "C": {
+      "format_on_save": "on",
     },
     "Python": {
       "inlay_hints": {
@@ -194,20 +156,23 @@
         // }
       },
     },
-    "pyright": {
-      "settings": {
-        "python.analysis": {
-          "diagnosticMode": "workspace",
-          // "typeCheckingMode": "strict"
-        },
-      },
-    },
+    // "pyright": {
+    //   "settings": {
+    //     "python.analysis": {
+    //       "diagnosticMode": "workspace",
+    //       // "typeCheckingMode": "strict"
+    //     },
+    //   },
+    // },
     "ty": { "settings": { "diagnosticMode": "workspace" } },
     "ruff": {
       "initialization_options": {
         "settings": {
           "lint": {
             // "extendSelect": ["UP"]
+          },
+          "format": {
+            "skip-magic-trailing-comma": true,
           },
         },
       },
