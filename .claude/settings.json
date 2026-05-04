@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__acp__Write",
+      "mcp__acp__Edit",
+      "Bash(cmake --build build/ --target vision-detection-service)",
+      "Bash(ninja)",
+      "Bash(adb shell:*)",
+      "Bash(devcontainer up:*)",
+      "Bash(bash /Volumes/firmware_cs/vision-services/update.sh --services --adb)",
+      "Bash(adb devices:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/astadnik/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
+  "autoDreamEnabled": true,
+  "theme": "auto",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": false
+}
