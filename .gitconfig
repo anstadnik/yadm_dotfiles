@@ -10,6 +10,7 @@
 	required = true
 [core]
 	pager = delta
+	excludesfile = /Users/astadnik/.gitignore_global
 [interactive]
 	diffFilter = delta --color-only
 [delta]
