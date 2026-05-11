@@ -37,6 +37,24 @@
         "installedAt": "2026-04-19T09:56:38.157Z",
         "lastUpdated": "2026-04-19T09:56:38.157Z"
       }
+    ],
+    "swift-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/astadnik/.claude/plugins/cache/claude-plugins-official/swift-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-05-08T09:10:24.710Z",
+        "lastUpdated": "2026-05-08T09:10:24.710Z"
+      }
+    ],
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/astadnik/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
+        "version": "unknown",
+        "installedAt": "2026-05-11T07:17:35.902Z",
+        "lastUpdated": "2026-05-11T07:17:35.902Z"
+      }
     ]
   }
 }
