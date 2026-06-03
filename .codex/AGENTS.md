@@ -55,6 +55,7 @@
 
 ## Pre-existing state audit
 - Before proposing changes to an existing system, audit the relevant existing state (config files, recent commits, dotfiles, saved configs, accumulated keychain entries, cron jobs, cached state).
+- Before doing anything in a repo, read the repo-local `CLAUDE.md` when present, then search for other instruction-bearing `.md` files (`AGENTS.md`, `README.md`, `progress.md`, workflow/setup docs) and follow the relevant ones.
 - Surface conflicts explicitly: "this change would break X." Flag before the edit, not after the breakage.
 - Watch for invisible state -- the most expensive bugs are caused by configuration the user forgot they wrote.
 
@@ -68,6 +69,11 @@
 - Prefer a Monitor / `until <probe>; do sleep 2; done` over a fixed `ScheduleWakeup`: the loop wakes you the moment the condition holds, so the verification is the wait. Examples of probes: `adb shell pidof <svc>`, `nc -z host port`, `curl -fs URL`, `grep <expected> <log>`, `ipcs -m | grep <key>`.
 - If the probe fails, re-verify the precondition and report the actual state, not the intended one.
 - Test against real scenarios, not just the happy path. If the user has multiple modes (lid open / closed, on Wi-Fi / Ethernet, multiple monitor combos, with / without auth, etc.), run through each before declaring success. A config that works in exactly one scenario is not done.
+
+## Shared Runtime Safety
+- Before killing tmux sessions, processes, ports, containers, dev servers, or agents, prove ownership first. Inspect session/window names, commands, cwd, ports, and timestamps; do not rely on numeric tmux session IDs.
+- Never run `tmux kill-session -t <number>` or kill broad process groups in a shared workspace. Kill only a specifically named session/process that you created or that the user explicitly identified.
+- If stale runtime cleanup might affect other agents or user work, stop and ask before killing it. Prefer starting a uniquely named replacement runtime over terminating ambiguous existing state.
 
 ## Sandbox & Permissions
 - If the sandbox blocks an action you need to take to complete the user's request, stop and ask for explicit approval -- don't silently work around it with a worse path. State exactly what was blocked, what you'd do if approved, and what the cheaper fallback is. Wait for the user to say "go".
