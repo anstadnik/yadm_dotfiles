@@ -1,26 +1,32 @@
 #!/usr/bin/env bash
+# macOS bootstrap. Linux is managed by NixOS + home-manager; dotfiles by yadm.
 set -e
 
-OS=$(cut -f2 <<<$(lsb_release -i))
-
-if [[ ! "$OS" =~ ^(Ubuntu|EndeavourOS|Arch)$ ]]; then
-    echo "Unknown distro"
-    exit 1
+if [[ "$(uname -s)" != "Darwin" ]]; then
+    echo "bootstrap is macOS-only — Linux is managed by NixOS + home-manager." >&2
+    exit 0
 fi
 
-(source $HOME/.config/yadm/helpers/helpers.bash)
-(source $HOME/.config/yadm/helpers/ubuntu.bash)
-
-# Confirm sudo
-sudo echo
-
-if [[ "$OS" = "Ubuntu" ]]; then
-  (source $HOME/.config/yadm/bootstrap_ubuntu.bash)
-elif [[ "$OS" = "EndeavourOS" ]] || [[ "$OS" = "Arch" ]]; then
-  (source $HOME/.config/yadm/bootstrap_arch.bash)
-else
-  echo "Unknown distro"
-  exit 1
+# Homebrew + everything declared in the Brewfile
+if ! command -v brew >/dev/null 2>&1; then
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew bundle --file "$HOME/.config/yadm/Brewfile"
 
-(source $HOME/.config/yadm/bootstrap_common.bash)
+# tmux plugin manager (git submodule)
+yadm submodule update --init --recursive
+
+# Default shell -> fish
+fish_path="$(command -v fish)"
+grep -qxF "$fish_path" /etc/shells || echo "$fish_path" | sudo tee -a /etc/shells
+[ "$SHELL" = "$fish_path" ] || sudo chsh -s "$fish_path" "$USER"
+
+# SSH key (only if missing)
+[ -f "$HOME/.ssh/id_ed25519" ] || ssh-keygen -t ed25519 -q -N "" -f "$HOME/.ssh/id_ed25519"
+
+# fisher + plugins (runs entirely inside fish)
+fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher edc/bass"
+
+# Neovim plugins
+nvim --headless "+Lazy! sync" +qa

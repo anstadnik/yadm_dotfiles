@@ -12,6 +12,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -19,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cmd=$(jq -r '.tool_input.command // empty'); echo \"$cmd\" | grep -qE 'git +(reset +--hard|clean +-[a-z]*f|push +.*--force(-with-lease)?|branch +-D)' && { echo 'BLOCKED: destructive git op. Re-run with explicit user approval.' >&2; exit 2; } || exit 0"
+            "command": "bash /Users/astadnik/.claude/hooks/git-guard.sh"
           }
         ]
       }
@@ -30,7 +31,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "path=$(jq -r '.tool_input.file_path // empty'); case \"$path\" in *.py) uvx --quiet ruff format \"$path\" >/dev/null 2>&1 ;; *.cpp|*.cc|*.h|*.hpp|*.c) clang-format -i \"$path\" >/dev/null 2>&1 ;; esac; exit 0"
+            "command": "bash /Users/astadnik/.claude/hooks/format-on-save.sh"
           }
         ]
       }
@@ -57,5 +58,5 @@
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": false,
-  "model": "opus"
+  "skipWorkflowUsageWarning": true
 }

@@ -1,0 +1,444 @@
+tap "dagger/tap"
+tap "felixkratz/formulae"
+tap "localsend/localsend"
+tap "markwu/personal"
+tap "messense/macos-cross-toolchains"
+tap "minio/stable"
+tap "nikitabobko/tap"
+tap "osrf/simulation"
+tap "oven-sh/bun"
+# Run your GitHub Actions locally
+brew "act"
+# Command-line tool for formatting Nix Code
+brew "alejandra"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Command-line interface for SQLite
+brew "sqlite"
+# Next-gen compiler infrastructure
+brew "llvm"
+# Arduino command-line interface
+brew "arduino-cli"
+# Record and share terminal sessions
+brew "asciinema"
+# Cross-platform C++ Library for asynchronous programming
+brew "asio"
+# Portable library for importing many well-known 3D model formats
+brew "assimp"
+# Automatic configure script builder
+brew "autoconf"
+# Collection of over 500 reusable autoconf macros
+brew "autoconf-archive"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Backend processor for BibLaTeX
+brew "biber"
+# Emulate a GCP BigQuery server on your local machine
+brew "bigquery-emulator"
+# Parser generator
+brew "bison"
+# Yet another cross-platform graphical process/system monitor
+brew "bottom"
+# Software library to render fonts
+brew "freetype"
+# Console Bonsai is a bonsai tree generator, written in C using ncurses
+brew "cbonsai"
+# Object-file caching compiler wrapper
+brew "ccache"
+# C/C++/ObjC language server
+brew "ccls"
+# C++ template library for linear algebra
+brew "eigen"
+# GNU compiler collection
+brew "gcc"
+# Application-level logging library
+brew "glog"
+# LLVM's OpenMP runtime library
+brew "libomp", link: true
+# Programs that partition graphs and order matrices
+brew "metis"
+# C++ library for large-scale optimization
+brew "ceres-solver"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
+brew "clang-format"
+# Cross-platform make
+brew "cmake"
+# YAML Parser
+brew "libyaml"
+# Dependency manager for Cocoa projects
+brew "cocoapods"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
+# Fast Library for Approximate Nearest Neighbors
+brew "flann"
+# OpenGL Extension Wrangler Library
+brew "glew"
+# C++ YAML parser and emitter for YAML 1.2 spec
+brew "yaml-cpp"
+# Structure-from-Motion and Multi-View Stereo
+brew "colmap"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Improved tinyxml (in memory efficiency and size)
+brew "tinyxml2"
+# Static analysis of C and C++ code
+brew "cppcheck"
+# Securely send things from one computer to another
+brew "croc"
+# Lightweight unit testing framework for C
+brew "cunit"
+# Super fast C++ logging library
+brew "spdlog"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Reference implementation for the Development Containers specification
+brew "devcontainer"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# More intuitive version of du in rust
+brew "dust"
+# Git for data science projects
+brew "dvc"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Fast, simple, recursive content discovery tool written in Rust
+brew "feroxbuster"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# Plugin manager for the Fish shell
+brew "fisher"
+# Stack trace visualizer
+brew "flamegraph"
+# Library for FreeImage, a dependency-free graphics library
+brew "freeimage"
+# X11 implementation of the Remote Desktop Protocol (RDP)
+brew "freerdp"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Geospatial Data Abstraction Library
+brew "gdal"
+# GitHub command-line tool
+brew "gh"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Small git utilities
+brew "git-extras"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
+# Git extension for versioning large files
+brew "git-lfs"
+# Simple and efficient way to access statistics in git
+brew "git-quick-stats"
+# Render markdown on the CLI
+brew "glow"
+# Google Testing and Mocking Framework
+brew "googletest"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Development framework for multimedia applications
+brew "gstreamer"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Modern, extensible Python project management
+brew "hatch"
+# Post-modern modal text editor
+brew "helix"
+# Improved top (interactive process viewer)
+brew "htop"
+# Command-line benchmarking tool
+brew "hyperfine"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
+# Interactive computing in Python
+brew "ipython"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Handy way to save and run project-specific commands
+brew "just"
+# Style and grammar checker
+brew "languagetool"
+# Add indentation to LaTeX files
+brew "latexindent"
+# Fastest way to identify anything!
+brew "lemmeknow"
+# Asynchronous event library
+brew "libev"
+# LLVM Project Linker
+brew "lld"
+# Clone of ls with colorful output, file type icons, and more
+brew "lsd"
+# System information fetcher, with an emphasis on performance and minimalism
+brew "macchina"
+# Zero-dependency real-time media server and media proxy
+brew "mediamtx"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Fast and user friendly build system
+brew "meson"
+# Fast Cross-Platform Package Manager
+brew "micromamba"
+# Deep clean and optimize your Mac
+brew "mole"
+# Lightweight PDF and XPS viewer
+brew "mupdf"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Control nvim processes using `nvr` command-line tool
+brew "neovim-remote"
+# Nanomsg-next-generation -- light-weight brokerless messaging
+brew "nng"
+# Tiny, lightning fast, feature-packed file manager
+brew "nnn"
+# Create, run, and share large language models (LLMs)
+brew "ollama", restart_service: :changed
+# Open source computer vision library
+brew "opencv"
+# Sparse volumetric data processing toolkit
+brew "openvdb"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# PAM module for reattaching to the user's GUI (Aqua) session
+brew "pam-reattach"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
+# Perl compatible regular expressions library
+brew "pcre"
+# Package management made easy
+brew "pixi"
+# C++ class libraries for building network and internet-based applications
+brew "poco"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Modern Python application packaging and distribution tool
+brew "pyoxidizer"
+# Cross-platform application and UI framework
+brew "qt@5"
+# Python bindings for v5 of Qt
+brew "pyqt@5"
+# Python Language Server for the Language Server Protocol
+brew "python-lsp-server"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.12"
+# Cross-platform application and UI framework
+brew "qt"
+# Rsync for cloud storage
+brew "rclone"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Extremely fast Python linter, written in Rust
+brew "ruff"
+# Modern Day Portscanner
+brew "rustscan"
+# Rust toolchain installer
+brew "rustup"
+# Hunt down social media accounts by username
+brew "sherlock"
+# Tool to create Python bindings for C and C++ libraries
+brew "sip"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Easiest, most secure way to use WireGuard and 2FA
+brew "tailscale"
+# Modernized, complete, self-contained TeX/LaTeX engine
+brew "tectonic"
+# Implementation of the Language Server Protocol for LaTeX
+brew "texlab"
+# Programmatically correct mistyped console commands
+brew "thefuck"
+# Official tldr client written in Rust
+brew "tlrc"
+# Terminal multiplexer
+brew "tmux"
+# Manage complex tmux sessions easily
+brew "tmuxinator"
+# Program that allows you to count code, quickly
+brew "tokei"
+# Upgrade all the things
+brew "topgrade"
+# Extremely fast Python type checker, written in Rust
+brew "ty"
+# Command-line unarchiving tools supporting multiple formats
+brew "unar"
+# Sends magic packets to wake up network-devices
+brew "wakeonlan"
+# Execute commands when watched files change
+brew "watchexec"
+# Internet file retriever
+brew "wget"
+# Tools for the WireGuard secure network tunnel
+brew "wireguard-tools"
+# Generate your Xcode project from a spec file and your folder structure
+brew "xcodegen"
+# Check your $HOME for unwanted files and directories
+brew "xdg-ninja"
+# Yet Another Dotfiles Manager
+brew "yadm"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
+# Fast static site generator in a single binary with everything built-in
+brew "zola"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# Python language server and type checker, written in Rust
+brew "zuban"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
+# Custom macOS statusbar with shell plugin, interaction and graph support
+brew "felixkratz/formulae/sketchybar"
+# Collection of gazebo simulation software
+brew "osrf/simulation/gz-jetty"
+# Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
+brew "oven-sh/bun/bun"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace"
+# Application launcher and productivity software
+cask "alfred"
+# Android SDK component
+cask "android-platform-tools"
+# Chromium based browser
+cask "arc"
+# Electronics prototyping platform
+cask "arduino-ide"
+# Compact TeX distribution as alternative to the full TeX Live / MacTeX
+cask "basictex"
+# 3D creation suite
+cask "blender"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
+# Anthropic's official Claude AI desktop app
+cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code@latest"
+# 3D point cloud and mesh processing software
+cask "cloudcompare"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
+# Containerized environments for coding agents
+cask "dagger/tap/container-use"
+# Server and cloud storage browser
+cask "cyberduck"
+# API documentation browser and code snippet manager
+cask "dash"
+# Run Stable Diffusion locally
+cask "diffusionbee"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+# UI toolkit for building applications for mobile, web and desktop
+cask "flutter"
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono"
+cask "font-monaspace"
+cask "font-symbols-only-nerd-font"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Client for the Google Drive storage service
+cask "google-drive"
+# GPU-based terminal emulator
+cask "kitty"
+# Open source code editor written in Rust
+cask "lapce"
+# Discover, download, and run local LLMs
+cask "lm-studio"
+# Open-source cross-platform alternative to AirDrop
+cask "localsend"
+# Run Stable Diffusion natively
+cask "mochi-diffusion"
+# Tool to control external monitor brightness & volume
+cask "monitorcontrol"
+# Visualiser for neural network, deep learning, and machine learning models
+cask "netron"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Component-based data mining software
+cask "orange"
+# App wrapper for Postgres
+cask "postgres-app"
+# Geographic Information System
+cask "qgis"
+# Imaging utility to install operating systems to a microSD card
+cask "raspberry-pi-imager"
+# Control your tools with a few keystrokes
+cask "raycast"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
+# Remote management solution
+cask "royal-tsx"
+# Open source virtual/remote desktop application
+cask "rustdesk"
+# Instant messaging application focusing on security
+cask "signal"
+# PDF reader and note-taking application
+cask "skim"
+# Application to control your PlayStation 4 or PlayStation 5
+cask "sony-ps-remote-play"
+# System monitor for the menu bar
+cask "stats"
+# Decentralised wallet and messenger
+cask "status"
+# Web browser focusing on security
+cask "tor-browser"
+# Multimedia player
+cask "vlc"
+# Video communication and virtual meeting platform
+cask "webex"
+# Connect to Windows
+cask "windows-app"
+# Multiplayer code editor
+cask "zed@preview"
+# Gecko based web browser
+cask "zen"
+# Video communication and virtual meeting platform
+cask "zoom"
+# Collect, organise, cite, and share research sources
+cask "zotero"
+cargo "bacon"
+cargo "cargo-bloat"
+cargo "cargo-edit"
+cargo "cargo-expand"
+cargo "cargo-llvm-cov"
+cargo "cargo-mutants"
+cargo "cargo-nextest"
+cargo "cargo-profiler"
+cargo "cargo-udeps"
+cargo "cargo-update"
+cargo "cargo-watch"
+cargo "flamegraph"
+cargo "flutter_rust_bridge_codegen"
+cargo "kondo-ui"
+cargo "leetcode-cli"
+cargo "llm-cli"
+cargo "nerdfix"
+cargo "wasm-pack"
+cargo "wgpu-info"
+uv "graphifyy"
+uv "pyrefly"
+npm "@gltf-transform/cli"
+npm "corepack"
+npm "gltfpack"
+npm "openclaw"

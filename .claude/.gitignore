@@ -5,11 +5,8 @@
 !statusline-command.sh
 !skills/
 !skills/**
-!plugins/
-plugins/*
-!plugins/config.json
-!plugins/installed_plugins.json
-!plugins/known_marketplaces.json
+!hooks/
+!hooks/**
 !projects/
 projects/*
 !projects/-Users-astadnik--claude/
