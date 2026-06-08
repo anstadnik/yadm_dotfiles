@@ -29,13 +29,21 @@ if status is-interactive
         zoxide init fish | source
     end
 
+    if type -q direnv
+        direnv hook fish | source
+    end
+
     # fzf keybindings (only if provided by your setup)
     if functions -q fzf_configure_bindings
         fzf_configure_bindings --directory=\cf
     end
 
     # ---------- Editors ----------
-    set -x EDITOR "zed-preview --wait --new"
+    if type -q zed-preview
+        set -x EDITOR "zed-preview --wait --new"
+    else
+        set -x EDITOR nvim
+    end
     set -x VISUAL "$EDITOR"
 
     # # ---------- XDG base dirs ----------
