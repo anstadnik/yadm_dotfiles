@@ -1,0 +1,4 @@
+# Per-machine auto-generated state — each host writes its own; do not sync.
+.config/gh/config.yml
+.config/htop/htoprc
+.codex/rules/default.rules
