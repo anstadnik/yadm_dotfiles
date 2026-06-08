@@ -39,12 +39,17 @@ if status is-interactive
     end
 
     # ---------- Editors ----------
-    if type -q zed-preview
-        set -x EDITOR "zed-preview --wait --new"
-    else
-        set -x EDITOR nvim
+    # Prefer Zed when present (binary name varies: zed-preview on macOS,
+    # zeditor/zed on NixOS); fall back to nvim on headless hosts.
+    set -l editor nvim
+    for zed_bin in zed-preview zeditor zed
+        if type -q $zed_bin
+            set editor "$zed_bin --wait --new"
+            break
+        end
     end
-    set -x VISUAL "$EDITOR"
+    set -x EDITOR $editor
+    set -x VISUAL $editor
 
     # # ---------- XDG base dirs ----------
     # set -q XDG_DATA_HOME  || set -Ux XDG_DATA_HOME  $HOME/.local/share
