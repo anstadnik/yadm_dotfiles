@@ -27,4 +27,27 @@
       "tab": "editor::Tab",
     },
   },
+
+  {
+    "context": "Editor && !menu",
+    "bindings": {
+      // "ctrl-c": "editor::Copy", // vim default: return to normal mode
+      // "ctrl-x": "editor::Cut", // vim default: decrement
+      // "ctrl-v": "editor::Paste", // vim default: visual block mode
+      // "ctrl-y": "editor::Undo", // vim default: line up
+      // "ctrl-f": "buffer_search::Deploy", // vim default: page down
+      // "ctrl-o": "workspace::Open", // vim default: go back
+      "ctrl-s": "workspace::Save", // vim default: show signature
+      // "ctrl-a": "editor::SelectAll", // vim default: increment
+      "ctrl-b": "workspace::ToggleLeftDock", // vim default: down
+      "ctrl-j": "workspace::ToggleBottomDock", //
+      "ctrl-shift-b": "workspace::ToggleRightDock", //
+      "ctrl-q": "pane::CloseActiveItem",
+    },
+  },
+  // 2) Disable Vim’s ctrl-w prefix combos (removes the delay/hang)
+  {
+    "context": "Editor",
+    "bindings": { "ctrl-w": "pane::CloseActiveItem" },
+  },
 ]

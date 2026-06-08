@@ -31,6 +31,9 @@
   "auto_signature_help": false,
   "inlay_hints": { "enabled": false },
   "lsp_document_colors": "inlay",
+  "tab_bar": {
+    "show": true,
+  },
   "which_key": { "enabled": true },
   "git_panel": { "dock": "right", "diff_stats": true, "tree_view": true },
   "remove_trailing_whitespace_on_save": false,

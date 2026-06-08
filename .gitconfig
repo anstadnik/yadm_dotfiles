@@ -33,3 +33,5 @@
 	directory = /Users/astadnik/farsight/cvpr_research_mage
 [rerere]
 	enabled = true
+[color]
+	ui = auto
