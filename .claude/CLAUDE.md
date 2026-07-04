@@ -76,6 +76,7 @@
 - If stale runtime cleanup might affect other agents or user work, stop and ask before killing it. Prefer starting a uniquely named replacement runtime over terminating ambiguous existing state.
 
 ## Sandbox & Permissions
+- On ANY denial (sandbox, permission prompt, or auto-mode classifier), the default is to ASK me to authorize the original action and WAIT. Do NOT change course and do something I didn't ask for. Surfacing/substituting a fallback instead of asking is itself the mistake -- ask first, propose alternatives only after I decline.
 - If the sandbox blocks an action you need to take to complete the user's request, stop and ask for explicit approval -- don't silently work around it with a worse path. State exactly what was blocked, what you'd do if approved, and what the cheaper fallback is. Wait for the user to say "go".
 - Same when a tool denies an action mid-task. Don't quietly switch to a degraded approach; flag the gap so the user can either approve the original or accept the degraded one knowingly.
 

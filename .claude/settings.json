@@ -20,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/astadnik/.claude/hooks/git-guard.sh"
+            "command": "bash ~/.claude/hooks/git-guard.sh"
           }
         ]
       }
@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/astadnik/.claude/hooks/format-on-save.sh"
+            "command": "bash ~/.claude/hooks/format-on-save.sh"
           }
         ]
       }
