@@ -12,10 +12,14 @@ if ! command -v brew >/dev/null 2>&1; then
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
-brew bundle --file "$HOME/.config/yadm/Brewfile"
 
-# tmux plugin manager (git submodule)
-yadm submodule update --init --recursive
+# Homebrew >= 6 refuses third-party taps until trusted
+grep -E '^tap ' "$HOME/.config/yadm/Brewfile" | cut -d'"' -f2 | while read -r t; do
+    brew tap "$t"
+    brew trust "$t"
+done
+
+brew bundle --file "$HOME/.config/yadm/Brewfile"
 
 # Default shell -> fish
 fish_path="$(command -v fish)"
@@ -25,8 +29,5 @@ grep -qxF "$fish_path" /etc/shells || echo "$fish_path" | sudo tee -a /etc/shell
 # SSH key (only if missing)
 [ -f "$HOME/.ssh/id_ed25519" ] || ssh-keygen -t ed25519 -q -N "" -f "$HOME/.ssh/id_ed25519"
 
-# fisher + plugins (runs entirely inside fish)
-fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher edc/bass"
-
-# Neovim plugins
-nvim --headless "+Lazy! sync" +qa
+# fish plugins (fisher installed via brew; plugin list in ~/.config/fish/fish_plugins)
+fish -c "fisher update"
