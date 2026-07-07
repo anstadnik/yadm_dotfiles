@@ -86,6 +86,7 @@
 - For a single known target (a specific file path, a specific symbol), use `Read`/`rg` directly -- don't dispatch a sub-agent.
 
 ## Tooling
+- Install software via Homebrew only -- no curl|sh installers, npm -g, pip install, or cargo install for tools. If something isn't in brew, ask first.
 - Python: use `uv` (not pip, not python3). Run scripts with `uv run`.
 - For ad-hoc data processing on log files / TSVs / sweep outputs, prefer `uvx --from polars-cli polars` or `uv run --with polars python -c '...'` over hand-rolled awk pipelines. Polars handles grouping/percentile/joins cleanly without saving intermediate files.
 - Build: prefer Ninja (`-G Ninja`).
