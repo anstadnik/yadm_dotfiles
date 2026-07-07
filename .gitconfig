@@ -1,8 +1,6 @@
 [user]
 	email = stadnikandriy1@gmail.com
 	name = Stadnik Andrii
-[includeIf "gitdir:~/work/"]
-	path = ~/work/.gitconfig
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -29,8 +27,6 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
-[safe]
-	directory = /Users/astadnik/farsight/cvpr_research_mage
 [rerere]
 	enabled = true
 [color]

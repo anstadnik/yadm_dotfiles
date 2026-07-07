@@ -1,5 +1,5 @@
-# Specifies the network interface to use for the LocalIP readout
-interface = "wlan0"
+# Specifies the network interface to use for the LocalIP readout (macOS Wi-Fi is en0)
+interface = "en0"
 
 # Lengthen uptime output
 long_uptime = true
