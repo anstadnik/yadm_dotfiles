@@ -65,7 +65,9 @@ if status is-interactive
 
     # ---------- Helpers / Abbrs ----------
     bind ctrl-space forward-word
-    abbr -a ls lsd
+    if type -q lsd
+        abbr -a ls lsd
+    end
     abbr -a v nvim
     abbr -a -p anywhere G "| grep"
     abbr -a -p anywhere L "| less"
@@ -85,22 +87,6 @@ if status is-interactive
     # Pretty sysinfo if available
     if type -q macchina
         macchina
-    end
-
-    # ---------- Micromamba / Mamba (guarded, works on macOS & Linux) ----------
-    # Prefer micromamba if present
-    if type -q micromamba
-        set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
-        micromamba shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
-    else if test -x /opt/homebrew/opt/micromamba/bin/mamba
-        # Homebrew micromamba on macOS (legacy path in your old config)
-        set -gx MAMBA_EXE "/opt/homebrew/opt/micromamba/bin/mamba"
-        set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
-        $MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
-    else if type -q mamba
-        # If plain mamba is installed
-        set -gx MAMBA_ROOT_PREFIX "$HOME/mamba"
-        mamba shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
     end
 
     # ---------- Optional: LM Studio CLI path (guarded) ----------

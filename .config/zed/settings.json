@@ -7,7 +7,6 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  // "theme": "Catppuccin Latte",
   "completion_menu_item_kind": "symbol",
   "line_ending": "detect",
   "code_lens": "on",
@@ -172,6 +171,9 @@
     },
     "Python": {
       "inlay_hints": {
+        // Global inlay_hints.enabled is false; must re-enable here or
+        // show_value_hints has no effect.
+        "enabled": true,
         "show_value_hints": true,
       },
       // "language_servers": ["basedpyright", "ruff"],

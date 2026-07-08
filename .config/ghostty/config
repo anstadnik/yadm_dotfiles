@@ -6,11 +6,13 @@ macos-option-as-alt = true
 confirm-close-surface = false
 mouse-hide-while-typing = true
 
-# All optional shell-integration features off — they don't deliver value through tmux:
-#   - cursor: tmux re-asserts pane state on every redraw, clobbering dynamic blink.
-#   - sudo: redundant with pam_tid.so (Touch ID succeeds before askpass triggers).
-#   - title: tmux drives its own window-status from pane_current_command, not OSC titles.
+# cursor integration kept off: tmux re-asserts pane state on every redraw,
+# clobbering dynamic bar/block switching.
+# sudo is ON: wraps sudo to preserve $TERMINFO — xterm-ghostty terminfo ships in
+# Ghostty.app, not the system db, so `sudo nvim` etc. need it in plain-Ghostty shells.
+# title is ON: tmux runs set-titles on, so fish-set pane titles (#T) flow through
+# to the Ghostty tab title.
 # OSC 133 prompt markers (cmd+↑/↓) and OSC 7 (CWD inheritance) are always-on — still work.
-shell-integration-features = no-cursor,no-sudo,no-title
+shell-integration-features = no-cursor
 
 # custom-shader = ./shaders/cursor_tail.glsl
