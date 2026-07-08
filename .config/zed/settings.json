@@ -20,7 +20,12 @@
     "git_status_indicator": true,
   },
   "agent_servers": {
-    "codex-acp": { "type": "registry" },
+    "codex-acp": {
+      "default_config_options": {
+        "reasoning_effort": "xhigh",
+      },
+      "type": "registry",
+    },
     "claude-acp": { "type": "registry" },
     "github-copilot-cli": { "type": "registry" },
   },
@@ -49,89 +54,63 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/astadnik/work/image-localizer"
-          ]
-        }
-      ]
+          "paths": ["/home/astadnik/work/image-localizer"],
+        },
+      ],
     },
     {
       "host": "dod",
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/astadnik/annotators_report"
-          ]
+          "paths": ["/home/astadnik/annotators_report"],
+        },
+        {
+          "paths": ["/home/astadnik/hornet-ml-research"],
         },
         {
           "paths": [
-            "/home/astadnik/hornet-ml-research"
-          ]
+            "/home/astadnik/hornet-ml-research/3rd_party/SiamABC_v2/./",
+          ],
         },
-        {
-          "paths": [
-            "/home/astadnik/hornet-ml-research/3rd_party/SiamABC_v2/./"
-          ]
-        }
-      ]
+      ],
     },
     {
       "host": "work",
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/etc/nixos"
-          ]
+          "paths": ["/etc/nixos"],
         },
         {
-          "paths": [
-            "/home/astadnik/work"
-          ]
+          "paths": ["/home/astadnik/work"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/avengers/dmt-sample-pipeline/./"
-          ]
+          "paths": ["/home/astadnik/work/avengers/dmt-sample-pipeline/./"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/convert_rknn"
-          ]
+          "paths": ["/home/astadnik/work/convert_rknn"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/hornet-ml-research"
-          ]
+          "paths": ["/home/astadnik/work/hornet-ml-research"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/rknn-toolkit"
-          ]
+          "paths": ["/home/astadnik/work/rknn-toolkit"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/rv1126b"
-          ]
+          "paths": ["/home/astadnik/work/rv1126b"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/sam_tracking_labeler"
-          ]
+          "paths": ["/home/astadnik/work/sam_tracking_labeler"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/vision-rv1126-buildroot"
-          ]
+          "paths": ["/home/astadnik/work/vision-rv1126-buildroot"],
         },
         {
-          "paths": [
-            "/home/astadnik/work/vision-services"
-          ]
-        }
-      ]
-    }
+          "paths": ["/home/astadnik/work/vision-services"],
+        },
+      ],
+    },
   ],
   "theme": {
     "mode": "system",
@@ -168,7 +147,8 @@
     "background_coloring": "disabled",
     "coloring": "indent_aware",
   },
-  "git": { "inline_blame": { "show_commit_summary": false } },
+  "git": { "inline_blame": { "location": "inline",
+                             "show_commit_summary": false } },
   "languages": {
     "Markdown": { "format_on_save": "off" },
     "LaTeX": { "format_on_save": "off" },
@@ -196,7 +176,7 @@
       },
       // "language_servers": ["basedpyright", "ruff"],
       // "language_servers": ["pyright", "ruff"],
-      "language_servers": ["ty", "ruff"],
+      "language_servers": ["pyrefly", "ruff"],
       // "language_servers": ["zuban", "ruff"],
       "format_on_save": "on",
       "formatter": [
